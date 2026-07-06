@@ -163,27 +163,30 @@
   window.addEventListener('resize', queueDrive);
   driveScroll();
 
-  // ===== Login form (visual only, no backend) =====
-  var loginForm = document.getElementById('loginForm');
-  if (loginForm){
-    loginForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      var msg = document.getElementById('loginMsg');
-      var email = (document.getElementById('loginEmail').value || '').trim();
-      if (!email || email.indexOf('@') === -1){
-        msg.style.color = 'var(--magenta)';
-        msg.textContent = 'Enter a valid email to continue.';
-        return;
-      }
-      msg.style.color = 'var(--cyan)';
-      msg.textContent = 'Accounts aren\u2019t live yet — thanks for trying the preview.';
-    });
-  }
-
-  // ===== Land correctly on cross-page #anchors once layout has settled =====
-  window.addEventListener('load', function(){
-    if (location.hash.length > 1){
-      var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-      if (el) setTimeout(function(){ el.scrollIntoView(); }, 80);
+  // ===== "Still in the works" notice for not-yet-published sections =====
+  (function(){
+    var modal = document.getElementById('wipModal');
+    if (!modal) return;
+    var tagEl = document.getElementById('wipTag');
+    var titleEl = document.getElementById('wipTitle');
+    var textEl = document.getElementById('wipText');
+    function openModal(section){
+      tagEl.textContent = (section ? section + ' — ' : '') + 'coming soon';
+      titleEl.textContent = (section ? section : 'This section') + ' is still in the works';
+      textEl.textContent = "We're still building this part of CMYKForge. The home page is live — the rest is on the way. Check back soon.";
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function(){ modal.classList.add('open'); });
     }
-  });
+    function closeModal(){
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(function(){ modal.hidden = true; }, 260);
+    }
+    document.addEventListener('click', function(e){
+      var trigger = e.target.closest('[data-wip]');
+      if (trigger){ e.preventDefault(); openModal(trigger.getAttribute('data-wip')); return; }
+      if (e.target === modal || e.target.id === 'wipClose'){ closeModal(); }
+    });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  })();

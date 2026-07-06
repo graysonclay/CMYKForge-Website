@@ -5,9 +5,17 @@ way to put it on your Squarespace **domain** is to host it on **GitHub Pages** a
 the domain at GitHub with a few DNS records. You keep the domain registered at
 Squarespace — only its DNS changes.
 
-> Note: this is a custom multi-page HTML site, so it does **not** run inside the
-> Squarespace website builder. Squarespace stays as the domain registrar; GitHub Pages
-> serves the pages.
+> Note: this is a custom HTML site, so it does **not** run inside the Squarespace website
+> builder. Squarespace stays as the domain registrar; GitHub Pages serves the pages.
+
+**Home-only launch:** for now only the **home page** is published. The Shop, About, Login,
+and Cart links show a "still in the works" notice instead of opening, and any direct link
+to an unpublished path lands on a matching `404.html` notice. When you're ready to publish
+the rest, flip `WIP` off in the build and re-generate the other pages (ask and I'll do it).
+
+**Domain (`cmykforge.org`) is pre-filled:** a `CNAME` file containing `cmykforge.org` is
+already in the repo, so GitHub Pages will pick up the custom domain automatically once
+Pages is enabled — you mainly need to add the DNS records at Squarespace (step 2b).
 
 ---
 
@@ -31,13 +39,13 @@ Squarespace — only its DNS changes.
 
 Decide which address you want as the primary:
 
-- **Apex** — `yourdomain.com`
-- **www** — `www.yourdomain.com`
+- **Apex** — `cmykforge.org`
+- **www** — `www.cmykforge.org`
 
 Set both up so either works.
 
 ### 2a. Tell GitHub the domain
-In **Settings → Pages → Custom domain**, enter `yourdomain.com` and **Save**.
+In **Settings → Pages → Custom domain**, enter `cmykforge.org` and **Save**.
 GitHub writes a `CNAME` file to the repo and will provision a free HTTPS certificate
 once DNS resolves.
 
@@ -45,7 +53,7 @@ once DNS resolves.
 In Squarespace: **Settings → Domains → (your domain) → DNS → DNS Settings → Add Record**
 (wording may vary slightly). Add:
 
-**Apex `yourdomain.com` — four A records** (Host `@`):
+**Apex `cmykforge.org` — four A records** (Host `@`):
 
 | Type | Host | Value            |
 |------|------|------------------|
@@ -76,7 +84,7 @@ remain.
 ### 2c. Finish
 - DNS can take from a few minutes up to ~24 hours to propagate.
 - Back in **Settings → Pages**, once the domain check passes, tick **Enforce HTTPS**.
-- Visit `https://yourdomain.com` — you should see the site, with the home page at `/`.
+- Visit `https://cmykforge.org` — you should see the site, with the home page at `/`.
 
 ---
 
