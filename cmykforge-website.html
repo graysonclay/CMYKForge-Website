@@ -578,6 +578,58 @@
   .video-fallback{padding:40px 24px;text-align:center;color:var(--muted);font-size:14px}
   .video-fallback a{color:var(--cyan);text-decoration:underline}
 
+  /* ===== Apple-style pinned color-separation scrollytelling ===== */
+  .pinned{position:relative;height:320vh}
+  .pin-wrap{
+    position:sticky;top:0;height:100vh;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  }
+  .pin-wrap::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(620px 520px at 72% 50%, rgba(37,182,230,calc(.05 + var(--p,0)*.14)), transparent 62%),
+      radial-gradient(620px 520px at 70% 46%, rgba(232,71,158,calc(.04 + var(--p,0)*.12)), transparent 62%),
+      radial-gradient(620px 520px at 74% 56%, rgba(246,201,69,calc(.03 + var(--p,0)*.08)), transparent 62%);
+  }
+  .pin-copy{position:relative;z-index:2}
+  .pin-steps{position:relative;min-height:230px}
+  .pin-step{
+    position:absolute;inset:0;opacity:0;transform:translateY(14px);
+    transition:opacity .28s var(--ease),transform .28s var(--ease);pointer-events:none;
+  }
+  .pin-step.active{opacity:1;transform:none}
+  .pin-step .k{
+    display:flex;align-items:center;gap:10px;margin-bottom:16px;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);
+  }
+  .pin-step h2{font-size:clamp(30px,4.4vw,52px);margin-bottom:16px;text-wrap:balance}
+  .pin-step p{color:var(--muted);font-size:clamp(15px,1.7vw,19px);max-width:440px}
+  .pin-rail{display:flex;gap:8px;margin-top:34px}
+  .pin-rail i{width:34px;height:4px;border-radius:4px;background:rgba(255,255,255,.14);transition:.3s var(--ease)}
+  .pin-rail i.on{background:linear-gradient(90deg,var(--cyan),var(--magenta));width:54px}
+  .pin-stage{position:relative;height:min(70vh,560px);display:grid;place-items:center;z-index:1}
+  .pin-plates{
+    position:relative;width:min(72%,380px);aspect-ratio:1/1;
+    transform:scale(calc(.95 + var(--p,0)*.05));
+  }
+  .pin-ring{
+    position:absolute;inset:-8%;border-radius:50%;border:1px dashed rgba(255,255,255,.1);
+    transform:rotate(calc(var(--p,0)*140deg));
+  }
+  .plate{position:absolute;inset:0;border-radius:50%;will-change:transform}
+  .plate.c,.plate.m,.plate.y{mix-blend-mode:screen}
+  /* Plates spread wide at p=0 and converge to a tight CMY Venn (not full overlap) at p=1,
+     so the end state reads as vivid full-spectrum color rather than washing out to white. */
+  .plate.c{background:radial-gradient(circle at 40% 35%,#3cc7f2,rgba(37,182,230,.1) 72%);
+    transform:translate(calc(-46% + var(--p,0)*32%),calc(-28% + var(--p,0)*16%)) rotate(calc((1 - var(--p,0)) * -10deg))}
+  .plate.m{background:radial-gradient(circle at 60% 40%,#f45ba8,rgba(232,71,158,.1) 72%);
+    transform:translate(calc(46% - var(--p,0)*32%),calc(-22% + var(--p,0)*10%)) rotate(calc((1 - var(--p,0)) * 12deg))}
+  .plate.y{background:radial-gradient(circle at 50% 62%,#ffd85e,rgba(246,201,69,.08) 72%);
+    transform:translate(0,calc(40% - var(--p,0)*26%)) rotate(calc((1 - var(--p,0)) * 6deg))}
+  .plate.k{background:radial-gradient(circle at 50% 50%,#2a3140,#0a0d13 78%);
+    opacity:calc(.28 + var(--p,0)*.3);transform:scale(calc(.6 + var(--p,0)*.3))}
+
   /* ===== Responsive ===== */
   @media(max-width:960px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
@@ -612,9 +664,27 @@
     .timeline{grid-template-columns:1fr}
     .hero-btns .btn,.finalcta .btn{flex:1;justify-content:center}
   }
+  @media(max-width:760px){
+    /* On phones, unpin the scrollytelling into a clean stacked section (pin patterns
+       are a desktop idiom); the visual shows its full-spectrum end state. */
+    .pinned{height:auto}
+    .pin-wrap{position:relative;height:auto;grid-template-columns:1fr;gap:30px;padding:56px 24px}
+    .pin-stage{--p:1;height:44vh;order:-1}
+    .pin-plates{width:min(66%,240px)}
+    .pin-steps{position:static;min-height:0;display:grid;gap:26px}
+    .pin-step{position:relative;opacity:1;transform:none}
+    .pin-rail{display:none}
+  }
   /* accessibility: reduced motion */
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;scroll-behavior:auto}
+    /* Unpin the scrollytelling section and show its final, combined state */
+    .pinned{height:auto}
+    .pin-wrap{position:relative;height:auto;grid-template-columns:1fr;gap:36px;padding-top:64px;padding-bottom:64px}
+    .pin-steps{min-height:0;display:grid;gap:28px}
+    .pin-step{position:relative;opacity:1;transform:none}
+    .pin-stage{--p:1;height:min(60vh,420px)}
+    .plate{transition:none}
   }
 </style>
 </head>
@@ -757,6 +827,42 @@
       <div class="pstep"><div class="accent" style="background:var(--yellow)"></div><h4>Model Generation</h4><p>Converts the plan into layered geometry.</p></div>
       <div class="parrow" aria-hidden="true">→</div>
       <div class="pstep"><div class="accent" style="background:linear-gradient(90deg,var(--cyan),var(--magenta))"></div><h4>Export &amp; Printability</h4><p>Prepares slicer-ready files.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOR SEPARATION (pinned scrollytelling) ============ -->
+<section class="pinned" id="separation" aria-label="How CMYKForge separates and recombines color">
+  <div class="pin-wrap">
+    <div class="pin-copy">
+      <span class="section-tag">Color separation</span>
+      <div class="pin-steps">
+        <div class="pin-step active" data-step="1">
+          <div class="k"><span class="chdot dc"></span>01 — Channels</div>
+          <h2>Start with separated color.</h2>
+          <p>CMYKForge reads your image and splits it into cyan, magenta, yellow, and key channels — the raw ingredients of full-spectrum print.</p>
+        </div>
+        <div class="pin-step" data-step="2">
+          <div class="k"><span class="chdot dm"></span>02 — Alignment</div>
+          <h2>Matched to your filaments.</h2>
+          <p>Each channel is planned around the real materials you’ve loaded, using their transmission distance and hex values.</p>
+        </div>
+        <div class="pin-step" data-step="3">
+          <div class="k"><span class="chdot dy"></span>03 — Print</div>
+          <h2>One full-spectrum result.</h2>
+          <p>The channels converge into a single color-aware model, ready for multi-material FDM printing.</p>
+        </div>
+      </div>
+      <div class="pin-rail" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div class="pin-stage" aria-hidden="true">
+      <div class="pin-plates">
+        <span class="pin-ring"></span>
+        <span class="plate k"></span>
+        <span class="plate c"></span>
+        <span class="plate m"></span>
+        <span class="plate y"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -1302,7 +1408,7 @@
     document.documentElement.classList.add('js-anim');
     var revealSel = 'section h2, section > .wrap > .section-tag, section > .wrap > .lead, .card, .product, .fstep, .pstep, .sysrow, .folder, .tnode, .video-showcase, .matrix-wrap, .betaform, .faq-item, .finalcta, .process, .timeline, .placeholder, .colorviz';
     var revealEls = Array.prototype.slice.call(document.querySelectorAll(revealSel))
-      .filter(function(el){ return !el.closest('.hero'); });
+      .filter(function(el){ return !el.closest('.hero') && !el.closest('.pinned'); });
     revealEls.forEach(function(el){ el.classList.add('reveal'); });
     var revealIO = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
@@ -1322,6 +1428,38 @@
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     revealEls.forEach(function(el){ revealIO.observe(el); });
   }
+
+  // ===== Scroll-driven pinned visuals + hero parallax (Apple-style) =====
+  var heroVisual = document.querySelector('.hero-visual');
+  var pinnedSections = Array.prototype.slice.call(document.querySelectorAll('.pinned'));
+  var driveQueued = false;
+  function driveScroll(){
+    driveQueued = false;
+    if (reduceMotion) return;
+    // Hero visual parallax: drift up, ease back, and fade as the hero scrolls away
+    if (heroVisual){
+      var t = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1);
+      heroVisual.style.transform = 'translateY(' + (t * -60) + 'px) scale(' + (1 - t * 0.05) + ')';
+      heroVisual.style.opacity = String(1 - t * 0.45);
+    }
+    // Pinned sections: compute 0..1 progress and expose it as --p, advance captions
+    pinnedSections.forEach(function(sec){
+      var total = sec.offsetHeight - window.innerHeight;
+      var p = total > 0 ? Math.min(Math.max(-sec.getBoundingClientRect().top / total, 0), 1) : 0;
+      sec.style.setProperty('--p', p.toFixed(4));
+      var steps = sec.querySelectorAll('[data-step]');
+      if (steps.length){
+        var active = Math.min(steps.length - 1, Math.floor(p * steps.length + 0.0001));
+        steps.forEach(function(s, i){ s.classList.toggle('active', i === active); });
+        var rail = sec.querySelectorAll('.pin-rail i');
+        rail.forEach(function(r, i){ r.classList.toggle('on', i === active); });
+      }
+    });
+  }
+  function queueDrive(){ if (!driveQueued){ driveQueued = true; requestAnimationFrame(driveScroll); } }
+  window.addEventListener('scroll', queueDrive, { passive: true });
+  window.addEventListener('resize', queueDrive);
+  driveScroll();
 
   // ===== Scroll-spy active nav (deterministic, based on viewport-center) =====
   var navAnchors = Array.prototype.slice.call(navLinks.querySelectorAll('a'));
