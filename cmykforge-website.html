@@ -630,6 +630,68 @@
   .plate.k{background:radial-gradient(circle at 50% 50%,#2a3140,#0a0d13 78%);
     opacity:calc(.28 + var(--p,0)*.3);transform:scale(calc(.6 + var(--p,0)*.3))}
 
+  /* Shared copy styles for single-statement pinned sections */
+  .pin-title{font-size:clamp(30px,4.4vw,52px);margin-bottom:16px;text-wrap:balance}
+  .pin-sub{color:var(--muted);font-size:clamp(15px,1.7vw,19px);max-width:440px}
+  .wheel-sec,.layers-sec{height:210vh}
+
+  /* ===== Color wheel: CMY circles converge and draw a full hue wheel ===== */
+  .wheel-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;color:var(--muted);font-size:13px}
+  .wheel-legend span{display:flex;align-items:center;gap:8px}
+  .wheel-rig{
+    position:relative;width:min(74%,380px);aspect-ratio:1/1;
+    transform:rotate(calc(var(--p,0)*90deg));
+  }
+  .wheel{
+    position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from -90deg,
+      #ff4d5e,#ff9b3d,#f6c945,#8fe06a,#25e0c4,#25b6e6,#5b7bff,#b06aff,#e8479e,#ff4d5e);
+    -webkit-mask:
+      radial-gradient(closest-side, transparent 55%, #000 57%),
+      conic-gradient(from -90deg, #000 calc(var(--p,0)*360deg), transparent 0);
+    -webkit-mask-composite:source-in;
+    mask:
+      radial-gradient(closest-side, transparent 55%, #000 57%),
+      conic-gradient(from -90deg, #000 calc(var(--p,0)*360deg), transparent 0);
+    mask-composite:intersect;
+    filter:saturate(1.05);
+  }
+  .wheel-dot{
+    position:absolute;top:42%;left:42%;width:16%;height:16%;border-radius:50%;
+    mix-blend-mode:screen;filter:blur(.3px);will-change:transform;
+  }
+  .wheel-dot.wd-c{background:radial-gradient(circle at 40% 38%,#3cc7f2,rgba(37,182,230,.15));
+    transform:translate(0,calc(var(--p,0)*-260%))}
+  .wheel-dot.wd-m{background:radial-gradient(circle at 40% 38%,#f45ba8,rgba(232,71,158,.15));
+    transform:translate(calc(var(--p,0)*225%),calc(var(--p,0)*130%))}
+  .wheel-dot.wd-y{background:radial-gradient(circle at 40% 38%,#ffd85e,rgba(246,201,69,.15));
+    transform:translate(calc(var(--p,0)*-225%),calc(var(--p,0)*130%))}
+
+  /* ===== Layer build: FDM layers stack up from the plate ===== */
+  .layer-rig{
+    position:relative;width:min(70%,360px);height:min(64vh,460px);
+    display:flex;flex-direction:column-reverse;align-items:center;justify-content:flex-start;
+    gap:2px;padding-bottom:16px;
+  }
+  .layer{
+    height:calc((100% - 22px)/16);border-radius:6px;
+    opacity:calc(var(--p,0)*17 - var(--i));
+    transform:translateY(calc((1 - clamp(0,calc(var(--p,0)*17 - var(--i)),1)) * 10px));
+    will-change:opacity,transform;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .build-plate{
+    position:absolute;bottom:0;left:-6%;right:-6%;height:10px;border-radius:6px;
+    background:linear-gradient(90deg,#191d26,#2c313d 50%,#191d26);
+    box-shadow:0 12px 34px rgba(0,0,0,.55);
+  }
+  .layer-head{
+    position:absolute;left:50%;width:34%;height:5px;border-radius:4px;margin-left:-17%;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta));
+    top:calc((1 - clamp(0,var(--p,0),1)) * 8px + (1 - var(--p,0)) * 4%);
+    opacity:calc(1 - var(--p,0));
+    box-shadow:0 0 16px rgba(37,182,230,.6);
+  }
+
   /* ===== Apple-style scroll-illuminated statement ===== */
   .statement{position:relative;height:180vh}
   .statement-inner{
@@ -683,15 +745,22 @@
     .hero-btns .btn,.finalcta .btn{flex:1;justify-content:center}
   }
   @media(max-width:760px){
-    /* On phones, unpin the scrollytelling into a clean stacked section (pin patterns
-       are a desktop idiom); the visual shows its full-spectrum end state. */
-    .pinned{height:auto}
-    .pin-wrap{position:relative;height:auto;grid-template-columns:1fr;gap:30px;padding:56px 24px}
-    .pin-stage{--p:1;height:44vh;order:-1}
-    .pin-plates{width:min(66%,240px)}
-    .pin-steps{position:static;min-height:0;display:grid;gap:26px}
-    .pin-step{position:relative;opacity:1;transform:none}
-    .pin-rail{display:none}
+    /* Separation uses stacked crossfading captions — unpin it into a clean static
+       stack on phones (its two-column step pattern is a desktop idiom). */
+    #separation{height:auto}
+    #separation .pin-wrap{position:relative;height:auto;grid-template-columns:1fr;gap:30px;padding:56px 24px}
+    #separation .pin-stage{--p:1;height:44vh;order:-1}
+    #separation .pin-plates{width:min(66%,240px)}
+    #separation .pin-steps{position:static;min-height:0;display:grid;gap:26px}
+    #separation .pin-step{position:relative;opacity:1;transform:none}
+    #separation .pin-rail{display:none}
+    /* Wheel + layers animate cleanly single-column, so keep them pinned on phones. */
+    .wheel-sec,.layers-sec{height:220vh}
+    .wheel-sec .pin-wrap,.layers-sec .pin-wrap{grid-template-columns:1fr;gap:22px;align-content:center}
+    .wheel-sec .pin-stage,.layers-sec .pin-stage{height:44vh;order:-1}
+    .wheel-rig{width:min(66%,240px)}
+    .layer-rig{width:min(74%,250px);height:min(42vh,320px)}
+    .pin-title{font-size:clamp(26px,7vw,40px)}
     .statement{height:160vh}
   }
   /* accessibility: reduced motion */
@@ -973,6 +1042,30 @@
   </div>
 </section>
 
+<!-- ============ COLOR WHEEL (pinned scrollytelling) ============ -->
+<section class="pinned wheel-sec" id="colorwheel" aria-label="How CMYK primaries form the full color wheel">
+  <div class="pin-wrap">
+    <div class="pin-copy">
+      <span class="section-tag">Full-spectrum color</span>
+      <h2 class="pin-title">From three inks to every hue.</h2>
+      <p class="pin-sub">Cyan, magenta, and yellow overlap in planned layers to reach the colors between them — the same principle behind every point on the color wheel.</p>
+      <div class="wheel-legend">
+        <span><i class="chdot dc"></i>Cyan</span>
+        <span><i class="chdot dm"></i>Magenta</span>
+        <span><i class="chdot dy"></i>Yellow</span>
+      </div>
+    </div>
+    <div class="pin-stage" aria-hidden="true">
+      <div class="wheel-rig">
+        <span class="wheel"></span>
+        <span class="wheel-dot wd-c"></span>
+        <span class="wheel-dot wd-m"></span>
+        <span class="wheel-dot wd-y"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 8. OFFLINE BY DESIGN ============ -->
 <section id="offline">
   <div class="wrap">
@@ -1051,6 +1144,39 @@
       <h3>Export &amp; Printability System</h3>
       <p class="lead">The Export &amp; Printability System is the final step in the CMYKForge Standard workflow. After the model has been generated, this system helps prepare the project for slicer-compatible file output, including multi-material 3MF workflows where supported.</p>
       <p class="lead" style="margin-top:12px">This step focuses on making the generated model usable beyond the preview. CMYKForge Standard is designed to help carry the color plan, material layout, and geometry into export-ready files for real FDM printing workflows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAYER BUILD (pinned scrollytelling) ============ -->
+<section class="pinned layers-sec" id="layers" aria-label="Models are built layer by layer">
+  <div class="pin-wrap">
+    <div class="pin-copy">
+      <span class="section-tag">Model generation</span>
+      <h2 class="pin-title">Color, resolved layer by layer.</h2>
+      <p class="pin-sub">CMYKForge turns the color plan into real geometry — stacked FDM layers that carry your material strategy from the build plate up.</p>
+    </div>
+    <div class="pin-stage" aria-hidden="true">
+      <div class="layer-rig">
+        <span class="layer-head"></span>
+        <span class="layer" style="--i:0;width:68%;background:rgb(37,182,230)"></span>
+        <span class="layer" style="--i:1;width:75%;background:rgb(63,167,220)"></span>
+        <span class="layer" style="--i:2;width:81%;background:rgb(89,152,211)"></span>
+        <span class="layer" style="--i:3;width:86%;background:rgb(115,138,201)"></span>
+        <span class="layer" style="--i:4;width:91%;background:rgb(141,123,192)"></span>
+        <span class="layer" style="--i:5;width:94%;background:rgb(167,108,182)"></span>
+        <span class="layer" style="--i:6;width:97%;background:rgb(193,93,172)"></span>
+        <span class="layer" style="--i:7;width:98%;background:rgb(219,78,163)"></span>
+        <span class="layer" style="--i:8;width:98%;background:rgb(233,80,152)"></span>
+        <span class="layer" style="--i:9;width:97%;background:rgb(235,97,140)"></span>
+        <span class="layer" style="--i:10;width:94%;background:rgb(237,114,128)"></span>
+        <span class="layer" style="--i:11;width:91%;background:rgb(239,132,116)"></span>
+        <span class="layer" style="--i:12;width:86%;background:rgb(240,149,105)"></span>
+        <span class="layer" style="--i:13;width:81%;background:rgb(242,166,93)"></span>
+        <span class="layer" style="--i:14;width:75%;background:rgb(244,184,81)"></span>
+        <span class="layer" style="--i:15;width:68%;background:rgb(246,201,69)"></span>
+        <span class="build-plate"></span>
+      </div>
     </div>
   </div>
 </section>
