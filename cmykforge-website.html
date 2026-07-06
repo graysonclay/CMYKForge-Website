@@ -630,6 +630,24 @@
   .plate.k{background:radial-gradient(circle at 50% 50%,#2a3140,#0a0d13 78%);
     opacity:calc(.28 + var(--p,0)*.3);transform:scale(calc(.6 + var(--p,0)*.3))}
 
+  /* ===== Apple-style scroll-illuminated statement ===== */
+  .statement{position:relative;height:180vh}
+  .statement-inner{
+    position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:0 24px;
+  }
+  .statement-text{
+    max-width:940px;text-align:center;font-weight:700;letter-spacing:-.02em;
+    font-size:clamp(27px,5vw,58px);line-height:1.2;text-wrap:balance;
+  }
+  .statement-text .word{display:inline-block;color:var(--text);transition:opacity .12s linear}
+  /* Words start dim only once JS takes over; without JS they stay fully legible */
+  .js-anim .statement-text .word{opacity:.16}
+  .statement-text .word.hl{
+    background:linear-gradient(100deg,var(--cyan),var(--magenta) 55%,var(--yellow));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+
   /* ===== Responsive ===== */
   @media(max-width:960px){
     .hero-grid{grid-template-columns:1fr;gap:40px}
@@ -674,6 +692,7 @@
     .pin-steps{position:static;min-height:0;display:grid;gap:26px}
     .pin-step{position:relative;opacity:1;transform:none}
     .pin-rail{display:none}
+    .statement{height:160vh}
   }
   /* accessibility: reduced motion */
   @media(prefers-reduced-motion:reduce){
@@ -685,6 +704,9 @@
     .pin-step{position:relative;opacity:1;transform:none}
     .pin-stage{--p:1;height:min(60vh,420px)}
     .plate{transition:none}
+    /* Statement: unpin and show fully lit */
+    .statement{height:auto}
+    .statement-inner{position:relative;height:auto;padding:90px 24px}
   }
 </style>
 </head>
@@ -786,6 +808,21 @@
         <p>Generate model files intended for real slicer workflows.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ STATEMENT (scroll-illuminated text) ============ -->
+<section class="statement" id="statement" data-illuminate aria-label="CMYKForge in one line">
+  <div class="statement-inner">
+    <p class="statement-text">
+      <span class="word">A</span> <span class="word">limited</span> <span class="word">set</span>
+      <span class="word">of</span> <span class="word">filaments</span> <span class="word">becomes</span>
+      <span class="word">a</span> <span class="word hl">full</span> <span class="word hl">spectrum</span>
+      <span class="word hl">of</span> <span class="word hl">color</span> <span class="word">—</span>
+      <span class="word">planned,</span> <span class="word">previewed,</span> <span class="word">and</span>
+      <span class="word">prepared</span> <span class="word">before</span> <span class="word">the</span>
+      <span class="word">first</span> <span class="word">layer</span> <span class="word">prints.</span>
+    </p>
   </div>
 </section>
 
@@ -1432,6 +1469,8 @@
   // ===== Scroll-driven pinned visuals + hero parallax (Apple-style) =====
   var heroVisual = document.querySelector('.hero-visual');
   var pinnedSections = Array.prototype.slice.call(document.querySelectorAll('.pinned'));
+  var illuminated = Array.prototype.slice.call(document.querySelectorAll('[data-illuminate]'))
+    .map(function(sec){ return { sec: sec, words: Array.prototype.slice.call(sec.querySelectorAll('.word')) }; });
   var driveQueued = false;
   function driveScroll(){
     driveQueued = false;
@@ -1454,6 +1493,18 @@
         var rail = sec.querySelectorAll('.pin-rail i');
         rail.forEach(function(r, i){ r.classList.toggle('on', i === active); });
       }
+    });
+    // Scroll-illuminated statements: sweep word brightness from dim to full
+    illuminated.forEach(function(item){
+      var sec = item.sec, words = item.words;
+      var total = sec.offsetHeight - window.innerHeight;
+      var p = total > 0 ? Math.min(Math.max(-sec.getBoundingClientRect().top / total, 0), 1) : 0;
+      var lead = 4; // how many words are mid-transition at once
+      var lit = p * (words.length + lead * 2) - lead;
+      words.forEach(function(w, i){
+        var t = Math.max(0, Math.min(1, lit - i));
+        w.style.opacity = (0.16 + t * 0.84).toFixed(3);
+      });
     });
   }
   function queueDrive(){ if (!driveQueued){ driveQueued = true; requestAnimationFrame(driveScroll); } }
