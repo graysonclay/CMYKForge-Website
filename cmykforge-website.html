@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CMYKForge — full-spectrum color software for multi-material FDM image reproduction. Print what you see. More colors than filament.">
+<title>CMYKForge — Print What You See</title>
+<style>
+  :root{
+    --bg:#07080B;
+    --panel:#11141C;
+    --panel2:#171B25;
+    --cyan:#25B6E6;
+    --magenta:#E8479E;
+    --yellow:#F6C945;
+    --text:#F3F5F8;
+    --muted:#B6BDC8;
+    --soft:#7C8492;
+    --border:rgba(255,255,255,0.12);
+    --radius:16px;
+    --radius-sm:10px;
+    --maxw:1160px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* Ambient background mesh */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:
+      radial-gradient(560px 400px at 12% -5%, rgba(37,182,230,.16), transparent 60%),
+      radial-gradient(620px 460px at 92% 4%, rgba(232,71,158,.13), transparent 60%),
+      radial-gradient(700px 520px at 60% 100%, rgba(246,201,69,.08), transparent 62%);
+    pointer-events:none;
+  }
+
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:88px 0;position:relative}
+  .section-tag{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--soft);
+    margin-bottom:16px;
+    padding:6px 14px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:rgba(255,255,255,.02);
+  }
+  h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em;font-weight:700}
+  h2{font-size:clamp(28px,4vw,42px);margin-bottom:18px}
+  h3{font-size:22px;margin-bottom:10px}
+  .lead{color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:760px}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+
+  /* Gradient text accent */
+  .grad{
+    background:linear-gradient(100deg,var(--cyan),var(--magenta) 55%,var(--yellow));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:12px;font-weight:600;font-size:15px;
+    cursor:pointer;border:1px solid transparent;transition:.25s var(--ease);
+    background:transparent;color:var(--text);
+  }
+  .btn-primary{
+    background:linear-gradient(100deg,var(--cyan),var(--magenta));
+    color:#fff;box-shadow:0 8px 30px rgba(37,182,230,.25);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(232,71,158,.35)}
+  .btn-ghost{border:1px solid var(--border);background:rgba(255,255,255,.02);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--cyan);color:#fff;background:rgba(37,182,230,.08)}
+  .btn[disabled],.btn.is-soft{opacity:.65;cursor:not-allowed}
+
+  /* Panels / cards */
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    transition:.3s var(--ease);
+    position:relative;
+    overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22)}
+  .card h3{font-size:19px}
+  .card p{color:var(--muted);font-size:15px}
+  .card .note{
+    margin-top:14px;font-size:13px;color:var(--soft);
+    border-left:2px solid var(--cyan);padding-left:12px;
+  }
+  .grid{display:grid;gap:22px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+
+  .accent-top::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta),var(--yellow));
+    opacity:.85;
+  }
+
+  /* ============ HEADER ============ */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    background:rgba(7,8,11,.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    transition:.3s var(--ease);
+  }
+  header.site.scrolled{background:rgba(7,8,11,.92);box-shadow:0 6px 30px rgba(0,0,0,.4)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{
+    font-weight:800;font-size:21px;letter-spacing:-.03em;
+  }
+  .brand span:nth-child(1){color:var(--cyan)}
+  .brand span:nth-child(2){color:var(--magenta)}
+  .brand span:nth-child(3){color:var(--yellow)}
+  .brand span:nth-child(4){color:var(--text)}
+  .nav-links{display:flex;align-items:center;gap:6px}
+  .nav-links a{
+    padding:9px 15px;border-radius:9px;font-size:15px;font-weight:500;
+    color:var(--muted);transition:.2s;position:relative;
+  }
+  .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+  .nav-links a::after{
+    content:"";position:absolute;left:15px;right:15px;bottom:5px;height:2px;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta));
+    transform:scaleX(0);transform-origin:left;transition:.25s var(--ease);border-radius:2px;
+  }
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{border:1px solid var(--border);}
+  .nav-cart{position:relative}
+  .nav-cart .dot{
+    position:absolute;top:2px;right:6px;width:7px;height:7px;border-radius:50%;
+    background:var(--yellow);
+  }
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.25s}
+
+  /* ============ HERO ============ */
+  .hero{padding:70px 0 90px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .badge{
+    display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);
+    border:1px solid var(--border);border-radius:999px;padding:7px 15px;margin-bottom:22px;
+    background:rgba(255,255,255,.02);
+  }
+  .badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);
+    box-shadow:0 0 0 0 rgba(37,182,230,.6);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,182,230,.5)}70%{box-shadow:0 0 0 10px rgba(37,182,230,0)}100%{box-shadow:0 0 0 0 rgba(37,182,230,0)}}
+  .hero .eyebrow{font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);margin-bottom:14px}
+  .hero h1{font-size:clamp(44px,7vw,86px);line-height:.98;margin-bottom:8px;letter-spacing:-.04em}
+  .hero .slogan{font-size:clamp(20px,3vw,30px);font-weight:600;color:var(--muted);margin-bottom:24px}
+  .hero .slogan .grad{font-weight:700}
+  .hero p.body{color:var(--muted);font-size:17px;max-width:540px;margin-bottom:30px}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+  .hero-foot{font-size:13px;color:var(--soft)}
+
+  /* Hero CSS visual — CMYK color separation model */
+  .hero-visual{
+    position:relative;aspect-ratio:1/1;max-width:460px;margin-left:auto;width:100%;
+  }
+  .sep-stack{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .sep-layer{
+    position:absolute;width:64%;height:64%;border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+    mix-blend-mode:screen;opacity:.92;
+    animation:floaty 7s ease-in-out infinite;
+  }
+  .sep-c{background:radial-gradient(circle at 35% 30%,rgba(37,182,230,.9),rgba(37,182,230,.15) 70%);transform:translate(-58px,-58px);animation-delay:0s}
+  .sep-m{background:radial-gradient(circle at 60% 40%,rgba(232,71,158,.9),rgba(232,71,158,.15) 70%);transform:translate(0,0);animation-delay:.7s}
+  .sep-y{background:radial-gradient(circle at 50% 70%,rgba(246,201,69,.85),rgba(246,201,69,.12) 70%);transform:translate(58px,58px);animation-delay:1.4s}
+  .sep-k{
+    background:linear-gradient(160deg,#1c2230,#0b0e15);mix-blend-mode:normal;opacity:1;
+    transform:translate(30px,-30px);animation-delay:2.1s;
+    display:flex;align-items:flex-end;padding:18px;
+  }
+  .sep-k .chdots{display:flex;gap:8px}
+  .sep-k .chdots i{width:11px;height:11px;border-radius:50%;display:block}
+  @keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -14px}}
+  .hero-rings{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+  .hero-rings::before,.hero-rings::after{
+    content:"";position:absolute;inset:8%;border-radius:50%;
+    border:1px dashed rgba(255,255,255,.08);
+  }
+  .hero-rings::after{inset:22%;border-color:rgba(37,182,230,.12)}
+  .cmyk-bar{
+    position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+    width:78%;height:10px;border-radius:999px;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta) 45%,var(--yellow) 78%,#0d1017);
+    box-shadow:0 8px 30px rgba(0,0,0,.5);
+  }
+
+  /* CMYK channel dots reusable */
+  .chdot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .dc{background:var(--cyan)} .dm{background:var(--magenta)} .dy{background:var(--yellow)} .dk{background:#2a3140}
+  .dw{background:#e9edf3}
+
+  /* Chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .chip{
+    font-size:13px;padding:8px 14px;border-radius:999px;border:1px solid var(--border);
+    background:rgba(255,255,255,.02);color:var(--muted);
+  }
+  .chip.on{border-color:var(--cyan);color:var(--text)}
+
+  /* Status pills */
+  .pill{
+    display:inline-block;font-size:12px;font-weight:600;letter-spacing:.04em;
+    padding:5px 12px;border-radius:999px;text-transform:uppercase;
+  }
+  .pill-beta{background:rgba(37,182,230,.14);color:var(--cyan);border:1px solid rgba(37,182,230,.35)}
+  .pill-soon{background:rgba(255,255,255,.05);color:var(--soft);border:1px solid var(--border)}
+  .pill-future{background:rgba(246,201,69,.1);color:var(--yellow);border:1px solid rgba(246,201,69,.28)}
+
+  /* ============ Section 6 split ============ */
+  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+  .feature-line{
+    display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--text);
+    background:rgba(37,182,230,.08);border:1px solid rgba(37,182,230,.28);
+    padding:12px 18px;border-radius:12px;margin:22px 0;
+  }
+
+  /* Placeholder visual box */
+  .placeholder{
+    border:1px dashed rgba(255,255,255,.2);
+    border-radius:var(--radius);
+    background:
+      repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 12px,transparent 12px 24px),
+      linear-gradient(180deg,var(--panel),var(--panel2));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--soft);font-size:13px;min-height:260px;gap:14px;padding:24px;
+    position:relative;
+  }
+  .placeholder .ic{
+    width:56px;height:56px;border-radius:14px;
+    background:conic-gradient(from 0deg,var(--cyan),var(--magenta),var(--yellow),var(--cyan));
+    opacity:.85;
+    -webkit-mask:radial-gradient(circle at center,transparent 40%,#000 42%);
+            mask:radial-gradient(circle at center,transparent 40%,#000 42%);
+  }
+  .placeholder .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+
+  /* Process strip */
+  .process{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .pstep{
+    flex:1;min-width:190px;
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    border:1px solid var(--border);border-radius:var(--radius-sm);padding:22px;position:relative;
+  }
+  .pstep .accent{height:3px;width:44px;border-radius:3px;margin-bottom:14px}
+  .pstep h4{font-size:16px;margin-bottom:6px}
+  .pstep p{font-size:13px;color:var(--soft)}
+  .parrow{display:flex;align-items:center;color:var(--soft);font-size:22px}
+
+  /* Color system visual */
+  .colorviz{
+    aspect-ratio:1/1;border-radius:var(--radius);border:1px solid var(--border);
+    background:radial-gradient(circle at 30% 25%,rgba(37,182,230,.25),transparent 45%),
+               radial-gradient(circle at 72% 30%,rgba(232,71,158,.25),transparent 45%),
+               radial-gradient(circle at 50% 78%,rgba(246,201,69,.2),transparent 48%),
+               linear-gradient(180deg,var(--panel),#0a0c12);
+    position:relative;overflow:hidden;
+  }
+  .colorviz::before{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 26px);
+  }
+  .colorviz .orbit{
+    position:absolute;top:50%;left:50%;width:60%;height:60%;transform:translate(-50%,-50%);
+    border:1px dashed rgba(255,255,255,.12);border-radius:50%;
+    animation:spin 22s linear infinite;
+  }
+  .colorviz .orbit i{position:absolute;width:16px;height:16px;border-radius:50%;top:-8px;left:50%;margin-left:-8px}
+  .colorviz .orbit.o2{width:40%;height:40%;animation-duration:15s;animation-direction:reverse}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .colorviz .lbl{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:var(--soft);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+
+  /* Core systems rows */
+  .sysrow{
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:22px;
+  }
+  .sysrow .num{
+    display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;
+    border-radius:11px;font-weight:700;font-size:17px;margin-bottom:16px;
+    background:rgba(37,182,230,.12);color:var(--cyan);border:1px solid rgba(37,182,230,.3);
+  }
+  .mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  .mini{
+    background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:16px;
+  }
+  .mini h4{font-size:14px;margin-bottom:6px}
+  .mini p{font-size:12.5px;color:var(--soft)}
+  .pipe-panel{
+    margin-top:22px;background:rgba(7,8,11,.5);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:20px;
+  }
+  .pipe-panel .pipe-title{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:12px}
+  .pipe-flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .pipe-flow .node{
+    background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;
+    padding:9px 14px;font-size:13px;font-weight:600;
+  }
+  .pipe-flow .arw{color:var(--cyan);font-weight:700}
+
+  /* Export folders */
+  .folders{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
+  .folder{
+    background:linear-gradient(180deg,var(--panel2),#0c0f16);
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:24px;position:relative;overflow:hidden;transition:.3s var(--ease);
+  }
+  .folder:hover{transform:translateY(-5px);border-color:rgba(255,255,255,.24)}
+  .folder .tab{
+    position:absolute;top:0;left:24px;background:var(--panel);border:1px solid var(--border);
+    border-top:0;border-radius:0 0 8px 8px;padding:5px 14px;font-size:12px;font-weight:700;
+    letter-spacing:.06em;color:var(--muted);
+  }
+  .folder .stage{
+    margin-top:34px;height:150px;border-radius:12px;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+    background:#0a0c12;
+  }
+  /* 3MF full-color abstract model */
+  .m-3mf{
+    background:conic-gradient(from 45deg at 50% 50%,var(--cyan),var(--magenta),var(--yellow),var(--cyan));
+    width:78px;height:78px;border-radius:14px;transform:rotate(45deg);
+    box-shadow:0 10px 40px rgba(232,71,158,.35);
+    animation:floaty 6s ease-in-out infinite;
+  }
+  /* STL single gray model */
+  .m-stl{
+    background:linear-gradient(160deg,#3a4150,#20262f);
+    width:78px;height:78px;border-radius:14px;transform:rotate(45deg);
+    box-shadow:0 10px 40px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08);
+    animation:floaty 6.5s ease-in-out infinite;
+  }
+  /* OBJ full-color model with paper sheet behind */
+  .m-obj{position:relative;width:110px;height:110px}
+  .m-obj .sheet{
+    position:absolute;inset:12px 8px 8px 20px;background:linear-gradient(160deg,#e9edf3,#c3c9d2);
+    border-radius:8px;transform:rotate(8deg);box-shadow:0 8px 24px rgba(0,0,0,.4);
+  }
+  .m-obj .cube{
+    position:absolute;top:12px;left:6px;width:70px;height:70px;border-radius:14px;transform:rotate(45deg);
+    background:conic-gradient(from 120deg,var(--yellow),var(--cyan),var(--magenta),var(--yellow));
+    box-shadow:0 10px 30px rgba(37,182,230,.3);
+    animation:floaty 5.8s ease-in-out infinite;
+  }
+  .folder h3{font-size:17px;margin:20px 0 6px}
+  .folder p{font-size:13.5px;color:var(--muted)}
+
+  /* Workflow numbered */
+  .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+  .fstep{
+    background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);
+    border-radius:var(--radius);padding:26px;position:relative;transition:.3s var(--ease);
+  }
+  .fstep:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.2)}
+  .fstep .fnum{
+    font-size:40px;font-weight:800;line-height:1;
+    background:linear-gradient(120deg,var(--cyan),var(--magenta));
+    -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px;
+  }
+  .fstep h3{font-size:17px}
+  .fstep p{font-size:14px;color:var(--muted)}
+
+  /* Product grid */
+  .products{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+  .product{
+    background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--border);
+    border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;transition:.3s var(--ease);
+    position:relative;overflow:hidden;
+  }
+  .product:hover{transform:translateY(-5px)}
+  .product.featured{border-color:rgba(37,182,230,.45);box-shadow:0 20px 60px rgba(37,182,230,.14)}
+  .product .phead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px}
+  .product h3{font-size:20px;margin:0}
+  .product .desc{color:var(--muted);font-size:14px;margin-bottom:16px}
+  .product ul{list-style:none;margin-bottom:22px;flex:1}
+  .product li{font-size:13.5px;color:var(--muted);padding:6px 0 6px 22px;position:relative}
+  .product li::before{content:"";position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:50%;
+    background:linear-gradient(120deg,var(--cyan),var(--magenta))}
+  .product.soon li::before,.product.future li::before{background:var(--soft)}
+
+  /* Beta */
+  .betaline{
+    text-align:center;font-size:clamp(18px,2.5vw,24px);font-weight:700;margin:8px auto 34px;
+    max-width:640px;
+  }
+  .betaline .grad{font-weight:800}
+  .betaform{
+    display:flex;gap:12px;max-width:520px;margin:36px auto 0;flex-wrap:wrap;
+  }
+  .betaform input{
+    flex:1;min-width:220px;background:rgba(255,255,255,.03);border:1px solid var(--border);
+    border-radius:12px;padding:14px 18px;color:var(--text);font-size:15px;
+  }
+  .betaform input:focus{outline:none;border-color:var(--cyan);background:rgba(37,182,230,.06)}
+  .form-msg{text-align:center;margin-top:16px;font-size:14px;color:var(--cyan);min-height:20px}
+
+  /* Matrix table */
+  .matrix-wrap{overflow-x:auto;margin-top:34px;border:1px solid var(--border);border-radius:var(--radius)}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  th,td{text-align:left;padding:16px 20px;border-bottom:1px solid var(--border);font-size:14.5px}
+  thead th{background:var(--panel2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:rgba(255,255,255,.02)}
+  td .yes{color:var(--cyan);font-weight:600}
+  td .no{color:var(--soft)}
+  td .plan{color:var(--yellow);font-weight:600}
+  td.note-c{color:var(--muted)}
+
+  /* Roadmap timeline */
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px;position:relative}
+  .timeline::before{
+    content:"";position:absolute;top:19px;left:8%;right:8%;height:2px;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta),var(--yellow));opacity:.5;
+  }
+  .tnode{text-align:center;position:relative}
+  .tnode .dot{
+    width:16px;height:16px;border-radius:50%;margin:12px auto 20px;position:relative;z-index:1;
+    background:var(--soft);border:3px solid var(--bg);
+  }
+  .tnode.now .dot{background:var(--cyan);box-shadow:0 0 0 4px rgba(37,182,230,.25)}
+  .tnode h4{font-size:15px;margin-bottom:6px}
+  .tnode p{font-size:12.5px;color:var(--soft)}
+  .tnode .tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:4px}
+  .tnode.now .tag{color:var(--cyan)}
+
+  /* FAQ */
+  .faq{max-width:820px;margin:36px auto 0}
+  .faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:14px;
+    background:linear-gradient(180deg,var(--panel),var(--panel2));overflow:hidden}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:0;color:var(--text);cursor:pointer;
+    padding:20px 24px;font-size:16px;font-weight:600;display:flex;justify-content:space-between;
+    align-items:center;gap:16px;
+  }
+  .faq-q .ico{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;transition:.3s;color:var(--cyan);font-size:18px;
+  }
+  .faq-item.open .faq-q .ico{transform:rotate(45deg);background:rgba(37,182,230,.12)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+  .faq-a p{padding:0 24px 22px;color:var(--muted);font-size:14.5px}
+
+  /* Final CTA */
+  .finalcta{
+    text-align:center;background:
+      radial-gradient(600px 300px at 50% 0%,rgba(37,182,230,.14),transparent 60%),
+      linear-gradient(180deg,var(--panel),#0a0c12);
+    border:1px solid var(--border);border-radius:24px;padding:64px 32px;position:relative;overflow:hidden;
+  }
+  .finalcta .cmyk-bar{position:absolute;top:0;left:0;transform:none;width:100%;height:4px;border-radius:0}
+  .finalcta .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:28px 0 18px}
+  .small-note{font-size:12.5px;color:var(--soft);max-width:600px;margin:0 auto}
+
+  /* Footer */
+  footer.site{border-top:1px solid var(--border);padding:56px 0 30px;background:#05060a}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:40px}
+  .foot-desc{color:var(--muted);font-size:14px;max-width:340px;margin:14px 0}
+  .foot-slogan{color:var(--soft);font-size:13px;font-style:italic}
+  .foot-col h4{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:16px}
+  .foot-col a{display:block;color:var(--muted);font-size:14px;padding:6px 0;transition:.2s}
+  .foot-col a:hover{color:var(--cyan)}
+  .foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+  .foot-bottom .disc{max-width:520px}
+
+  /* ===== Responsive ===== */
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-visual{margin:0 auto;max-width:380px}
+    .split{grid-template-columns:1fr;gap:32px}
+    .g4{grid-template-columns:repeat(2,1fr)}
+    .mini-grid{grid-template-columns:repeat(2,1fr)}
+    .folders{grid-template-columns:1fr}
+    .flow{grid-template-columns:repeat(2,1fr)}
+    .products{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .timeline{grid-template-columns:repeat(2,1fr);gap:28px}
+    .timeline::before{display:none}
+  }
+  @media(max-width:680px){
+    section{padding:64px 0}
+    .nav-links{
+      position:fixed;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;
+      background:rgba(7,8,11,.98);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
+      padding:14px 20px;gap:2px;transform:translateY(-140%);transition:.35s var(--ease);
+      max-height:calc(100vh - 70px);overflow:auto;
+    }
+    .nav-links.open{transform:translateY(0)}
+    .nav-links a{padding:14px 12px;border-radius:8px}
+    .nav-links a::after{display:none}
+    .burger{display:flex}
+    .g2,.g3,.g4,.mini-grid,.flow,.products,.foot-grid{grid-template-columns:1fr}
+    .process{flex-direction:column}
+    .parrow{transform:rotate(90deg);justify-content:center}
+    .pipe-flow{flex-direction:column;align-items:stretch}
+    .pipe-flow .arw{text-align:center}
+    .timeline{grid-template-columns:1fr}
+    .hero-btns .btn,.finalcta .btn{flex:1;justify-content:center}
+  }
+  /* accessibility: reduced motion */
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. HEADER / NAV ============ -->
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="CMYKForge home">
+      <span>C</span><span>M</span><span>Y</span><span>KForge</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#top">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#about">About Us</a>
+      <a href="#" class="nav-cta">Login</a>
+      <a href="#" class="nav-cart">Cart<span class="dot" aria-hidden="true"></span></a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 2. HERO ============ -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="badge"><span class="pulse" aria-hidden="true"></span>Limited Standard beta planned</span>
+      <div class="eyebrow">CMYKForge</div>
+      <h1>Print What<br>You See.</h1>
+      <p class="slogan"><span class="grad">More colors than filament.</span></p>
+      <p class="body">CMYKForge is being built to make full-spectrum color FDM printing more predictable, more visual, and easier to understand. Start with an image, prepare a CMYK-based material strategy, preview the result, and generate files for multi-material printing workflows.</p>
+      <div class="hero-btns">
+        <a href="#shop" class="btn btn-primary">Shop CMYKForge</a>
+        <a href="#standard" class="btn btn-ghost">View Standard</a>
+      </div>
+      <p class="hero-foot">Built for CMYK and optional white filament workflows.</p>
+    </div>
+
+    <div class="hero-visual" role="img" aria-label="Abstract CMYK color separation visual with cyan, magenta, yellow and black material channels">
+      <div class="hero-rings" aria-hidden="true"></div>
+      <div class="sep-stack" aria-hidden="true">
+        <div class="sep-layer sep-c"></div>
+        <div class="sep-layer sep-m"></div>
+        <div class="sep-layer sep-y"></div>
+        <div class="sep-layer sep-k">
+          <div class="chdots">
+            <i class="dc"></i><i class="dm"></i><i class="dy"></i><i class="dk" style="background:#0b0e15;border:1px solid rgba(255,255,255,.2)"></i><i class="dw"></i>
+          </div>
+        </div>
+      </div>
+      <div class="cmyk-bar" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. WHAT CMYKFORGE IS ============ -->
+<section id="what">
+  <div class="wrap">
+    <span class="section-tag">What it is</span>
+    <h2>A New Way to Generate Color in 3D Printing</h2>
+    <p class="lead">CMYKForge is a color-focused model generation platform for multi-material FDM printing. Instead of matching an image only to the filament colors loaded in a printer, CMYKForge uses CMYK-style material planning, filament profiles, preview tools, and export systems to help prepare image-based prints with more control.</p>
+    <p class="lead" style="margin-top:14px">The goal is to reduce guesswork and make color preparation part of the model generation process from the beginning.</p>
+    <div class="grid g3" style="margin-top:40px">
+      <div class="card accent-top">
+        <h3>Image-Based Printing</h3>
+        <p>Turn photos, artwork, logos, and designs into color-aware printable models.</p>
+      </div>
+      <div class="card accent-top">
+        <h3>CMYK / CMYKW Workflows</h3>
+        <p>Prepare models around cyan, magenta, yellow, black, and optional white material strategies.</p>
+      </div>
+      <div class="card accent-top">
+        <h3>Slicer-Compatible Output</h3>
+        <p>Generate model files intended for real slicer workflows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. THE PROBLEM ============ -->
+<section id="problem">
+  <div class="wrap">
+    <span class="section-tag">The problem</span>
+    <h2>Color FDM Printing Still Has Too Much Guesswork</h2>
+    <p class="lead">Many image-based color printing workflows depend heavily on trial and error. Loaded filament colors, slicer behavior, material translucency, layer thickness, and calibration can all change the final result.</p>
+    <p class="lead" style="margin-top:14px">CMYKForge is being built to give creators a clearer workflow before printing starts.</p>
+    <div class="grid g3" style="margin-top:40px">
+      <div class="card">
+        <h3>Limited Filament Colors</h3>
+        <p>Most printers can only load a small number of materials at once.</p>
+      </div>
+      <div class="card">
+        <h3>Unpredictable Results</h3>
+        <p>The preview, exported model, slicer result, and real print can look different.</p>
+      </div>
+      <div class="card">
+        <h3>Manual Tuning</h3>
+        <p>Creators often have to adjust settings through repeated tests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. THE CMYKFORGE APPROACH ============ -->
+<section id="approach">
+  <div class="wrap">
+    <span class="section-tag">The approach</span>
+    <h2>From Image Color to Printable Material Strategy</h2>
+    <p class="lead">CMYKForge prepares image color as part of the model generation process. The system analyzes image information, prepares a CMYK-style color plan, converts that plan into model structure, and exports files for slicer workflows.</p>
+    <div class="process">
+      <div class="pstep"><div class="accent" style="background:var(--cyan)"></div><h4>Image Analysis</h4><p>Reads color structure, contrast, and detail.</p></div>
+      <div class="parrow" aria-hidden="true">→</div>
+      <div class="pstep"><div class="accent" style="background:var(--magenta)"></div><h4>Color Engine</h4><p>Builds a CMYK-style material plan.</p></div>
+      <div class="parrow" aria-hidden="true">→</div>
+      <div class="pstep"><div class="accent" style="background:var(--yellow)"></div><h4>Model Generation</h4><p>Converts the plan into layered geometry.</p></div>
+      <div class="parrow" aria-hidden="true">→</div>
+      <div class="pstep"><div class="accent" style="background:linear-gradient(90deg,var(--cyan),var(--magenta))"></div><h4>Export &amp; Printability</h4><p>Prepares slicer-ready files.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. CMYKFORGE STANDARD ============ -->
+<section id="standard">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="section-tag">CMYKForge Standard</span>
+        <h2>CMYKForge Standard</h2>
+        <p class="lead" style="color:var(--text);font-weight:500">The local-first color 3D printing workflow for CMYK-based image-to-model generation.</p>
+        <p class="lead" style="margin-top:16px">CMYKForge Standard is built to help creators prepare images, artwork, logos, and photographs for multi-material FDM color printing. It focuses on CMYK-style color planning, filament-aware workflows, preview tools, model generation, printability checks, and slicer-compatible file generation.</p>
+        <p class="lead" style="margin-top:14px">This version is designed for users who want the core CMYKForge workflow without AI features, cloud processing, or subscription-based color analysis.</p>
+        <div class="feature-line"><span class="chdot dc" aria-hidden="true"></span>100% local workflow. No AI. No cloud processing.</div>
+        <div class="chips">
+          <span class="chip on">Local-first</span>
+          <span class="chip">No AI included</span>
+          <span class="chip">CMYK / CMYKW</span>
+          <span class="chip">3MF / STL / OBJ</span>
+          <span class="chip">Printability checks</span>
+          <span class="chip on">Limited beta</span>
+        </div>
+      </div>
+      <div class="placeholder" role="img" aria-label="Placeholder area reserved for a future CMYKForge Standard product visual">
+        <div class="ic" aria-hidden="true"></div>
+        <div class="lbl">Future product visual placeholder</div>
+        <p>Product imagery will be added here once available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. THE COLOR SYSTEMS ============ -->
+<section id="colorsystems">
+  <div class="wrap">
+    <span class="section-tag">Color systems</span>
+    <h2>The Color Systems</h2>
+    <p class="lead">CMYKForge Standard is designed around a color-focused generation workflow. The software analyzes image color, prepares CMYK-style material strategies, and helps translate visual information into printable model data for multi-material FDM printers.</p>
+    <div class="split" style="margin-top:40px;align-items:stretch">
+      <div class="grid" style="gap:20px">
+        <div class="card">
+          <h3>CMYK-Based Preparation</h3>
+          <p>Uses cyan, magenta, yellow, black, and optional white material planning to prepare image-based models for color FDM printing.</p>
+          <div class="note">Needs the TD and hex code of each filament to work properly.</div>
+        </div>
+        <div class="card">
+          <h3>Filament-Aware Workflow</h3>
+          <p>Helps account for selected filament behavior so color preparation is better connected to the materials actually being used.</p>
+          <div class="note">Inaccurate TD and hex codes can cause issues with color mixing.</div>
+        </div>
+        <div class="card">
+          <h3>Preview-Focused Process</h3>
+          <p>Built to help users understand expected visual results before exporting files for slicing and printing.</p>
+          <div class="note">Image creation is not AI powered in apps across all versions.</div>
+        </div>
+      </div>
+      <div class="colorviz" role="img" aria-label="Abstract dark color-system visual with orbiting CMYK color channel dots">
+        <div class="orbit" aria-hidden="true">
+          <i style="background:var(--cyan)"></i>
+        </div>
+        <div class="orbit o2" aria-hidden="true">
+          <i style="background:var(--magenta)"></i>
+        </div>
+        <div class="orbit" style="width:76%;height:76%;animation-duration:30s" aria-hidden="true">
+          <i style="background:var(--yellow)"></i>
+        </div>
+        <div class="lbl">Color system visual placeholder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. OFFLINE BY DESIGN ============ -->
+<section id="offline">
+  <div class="wrap">
+    <span class="section-tag">Offline by design</span>
+    <h2>Offline by Design</h2>
+    <p class="lead" style="color:var(--text);font-weight:500">The core CMYKForge workflow without AI, cloud processing, or online generation.</p>
+    <p class="lead" style="margin-top:16px">CMYKForge Standard is built as the local-first version of CMYKForge. It focuses on the essential color 3D printing workflow: preparing image-based models, working with filament profiles, previewing expected results, and generating slicer-compatible files without relying on cloud processing or AI tools.</p>
+    <p class="lead" style="margin-top:14px">This version is designed for users who want the base CMYKForge experience: clean, direct, and focused on offline color preparation.</p>
+    <div class="grid g4" style="margin-top:40px">
+      <div class="card"><h3>No Cloud Processing</h3><p>Your generation workflow is designed around local use.</p></div>
+      <div class="card"><h3>No AI Required</h3><p>CMYKForge Standard does not depend on cloud AI or local AI models.</p></div>
+      <div class="card"><h3>Offline-Focused Workflow</h3><p>The core tools are built for preparing, previewing, and exporting files without online generation.</p></div>
+      <div class="card"><h3>Optional AI Path</h3><p>AI can be added later when optional CMYKForge AI features become available.</p></div>
+    </div>
+    <div class="note" style="margin-top:26px;max-width:820px;border-left:2px solid var(--yellow)">AI features are not included in CMYKForge Standard by default. Optional AI tools may be added later through a separate version, upgrade, or future feature path when available.</div>
+  </div>
+</section>
+
+<!-- ============ 9. CORE SYSTEMS ============ -->
+<section id="systems">
+  <div class="wrap">
+    <span class="section-tag">Core systems</span>
+    <h2>The Systems Behind CMYKForge Standard</h2>
+    <p class="lead">CMYKForge Standard is more than a visual editor. Under the interface, multiple systems work together to turn an image into a color-aware 3D printable model.</p>
+
+    <!-- 1 Image Analysis -->
+    <div class="sysrow" style="margin-top:40px">
+      <div class="num">1</div>
+      <h3>Image Analysis System</h3>
+      <p class="lead">CMYKForge Standard begins by reading the uploaded image and preparing it for color-aware model generation. Before the Color Engine builds a CMYK-style material plan, the Image Analysis System studies the image's color structure, contrast, detail, and visual regions.</p>
+      <p class="lead" style="margin-top:12px">This helps CMYKForge understand where smooth gradients, sharp edges, shadows, highlights, and important visual transitions exist so the rest of the workflow can make more informed generation decisions.</p>
+      <div class="note" style="margin-top:16px">No AI is required. Image analysis in CMYKForge Standard is part of the core local workflow.</div>
+      <div class="mini-grid">
+        <div class="mini"><h4>Color Structure</h4><p>Reads the image's visible color regions before CMYK-style material planning begins.</p></div>
+        <div class="mini"><h4>Detail Detection</h4><p>Helps identify edges, fine details, and visual transitions that may affect the generated model.</p></div>
+        <div class="mini"><h4>Contrast Mapping</h4><p>Looks at shadows, highlights, and tonal separation so the image can be prepared more intelligently.</p></div>
+        <div class="mini"><h4>Print-Aware Prep</h4><p>Prepares image information for the next systems in the CMYKForge Standard workflow.</p></div>
+      </div>
+    </div>
+
+    <!-- 2 Color Engine -->
+    <div class="sysrow">
+      <div class="num">2</div>
+      <h3>Color Engine</h3>
+      <p class="lead">The Color Engine helps translate image color into cyan, magenta, yellow, black, and optional white material strategies for multi-material FDM printing. It is the system that connects image color, selected filament data, and preview expectations into a color-aware material plan.</p>
+      <div class="chips" style="margin-top:18px">
+        <span class="chip"><span class="chdot dc" style="margin-right:6px"></span>Cyan</span>
+        <span class="chip"><span class="chdot dm" style="margin-right:6px"></span>Magenta</span>
+        <span class="chip"><span class="chdot dy" style="margin-right:6px"></span>Yellow</span>
+        <span class="chip"><span class="chdot dk" style="margin-right:6px"></span>Black</span>
+        <span class="chip"><span class="chdot dw" style="margin-right:6px"></span>Optional White</span>
+      </div>
+    </div>
+
+    <!-- 3 Model Generation -->
+    <div class="sysrow">
+      <div class="num">3</div>
+      <h3>Model Generation System</h3>
+      <p class="lead">The Model Generation System turns CMYKForge's color and image planning into an actual 3D printable structure. After the image has been analyzed and the Color Engine has prepared the material strategy, this system converts that information into layered geometry designed for real multi-material FDM workflows.</p>
+      <p class="lead" style="margin-top:12px">This system helps turn color decisions into real model data, preparing the project for slicer-compatible file generation.</p>
+      <div class="pipe-panel">
+        <div class="pipe-title">Generation Pipeline</div>
+        <div class="pipe-flow">
+          <span class="node">Image Analysis</span><span class="arw">→</span>
+          <span class="node">Color Engine</span><span class="arw">→</span>
+          <span class="node">Layer Geometry</span><span class="arw">→</span>
+          <span class="node">Export Ready</span>
+        </div>
+        <div class="note" style="margin-top:14px">The model is generated from the same color and material plan used throughout the workflow.</div>
+      </div>
+    </div>
+
+    <!-- 4 Export & Printability -->
+    <div class="sysrow">
+      <div class="num">4</div>
+      <h3>Export &amp; Printability System</h3>
+      <p class="lead">The Export &amp; Printability System is the final step in the CMYKForge Standard workflow. After the model has been generated, this system helps prepare the project for slicer-compatible file output, including multi-material 3MF workflows where supported.</p>
+      <p class="lead" style="margin-top:12px">This step focuses on making the generated model usable beyond the preview. CMYKForge Standard is designed to help carry the color plan, material layout, and geometry into export-ready files for real FDM printing workflows.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. EXPORT & PRINTABILITY ============ -->
+<section id="export">
+  <div class="wrap">
+    <span class="section-tag">Export &amp; printability</span>
+    <h2>Export &amp; Printability</h2>
+    <p class="lead" style="color:var(--text);font-weight:500">From generated model to slicer-ready output.</p>
+    <p class="lead" style="margin-top:14px">CMYKForge Standard is designed to help carry the color plan, material layout, and geometry into export-ready files for real FDM printing workflows.</p>
+    <div class="grid g4" style="margin-top:40px">
+      <div class="card"><h3>3MF Export</h3><p>Prepares multi-material model data for slicers and printer workflows that support 3MF files.</p></div>
+      <div class="card"><h3>STL / OBJ Support</h3><p>Supports common model export paths for broader compatibility and flexible workflows.</p></div>
+      <div class="card"><h3>Printability Checks</h3><p>Helps identify possible issues before export, such as fragile structures, disconnected regions, or difficult geometry.</p></div>
+      <div class="card"><h3>Slicer Workflow</h3><p>Designed to work alongside slicers instead of replacing them.</p></div>
+    </div>
+
+    <div class="folders">
+      <div class="folder" role="img" aria-label="3MF export card showing a full-color abstract model">
+        <span class="tab">3MF</span>
+        <div class="stage"><div class="m-3mf" aria-hidden="true"></div></div>
+        <h3>3MF</h3>
+        <p>Full-color, multi-material model data for supported workflows.</p>
+      </div>
+      <div class="folder" role="img" aria-label="STL export card showing a single-color gray abstract model">
+        <span class="tab">STL</span>
+        <div class="stage"><div class="m-stl" aria-hidden="true"></div></div>
+        <h3>STL</h3>
+        <p>Single-geometry export for broad model compatibility.</p>
+      </div>
+      <div class="folder" role="img" aria-label="OBJ export card showing a full-color abstract model with a material sheet behind it">
+        <span class="tab">OBJ</span>
+        <div class="stage"><div class="m-obj" aria-hidden="true"><div class="sheet"></div><div class="cube"></div></div></div>
+        <h3>OBJ</h3>
+        <p>Full-color model with an accompanying material reference.</p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:28px;max-width:820px;border-left:2px solid var(--magenta)">Final print results may vary depending on printer, slicer, filament, calibration, and print settings.</div>
+  </div>
+</section>
+
+<!-- ============ 11. HOW STANDARD WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <span class="section-tag">Workflow</span>
+    <h2>How CMYKForge Standard Works</h2>
+    <p class="lead">CMYKForge Standard is designed to keep the color-printing workflow understandable. Start with an image, choose your filament setup, preview the generated result, and export files for your slicer.</p>
+    <div class="flow">
+      <div class="fstep"><div class="fnum">1</div><h3>Upload an Image</h3><p>Start with a photo, logo, artwork file, or design.</p></div>
+      <div class="fstep"><div class="fnum">2</div><h3>Choose Filament Profiles</h3><p>Select the CMYK, black, and optional white materials being used.</p></div>
+      <div class="fstep"><div class="fnum">3</div><h3>Generate the Color Plan</h3><p>CMYKForge prepares the image for a color-aware FDM workflow.</p></div>
+      <div class="fstep"><div class="fnum">4</div><h3>Preview the Model</h3><p>Review the expected result before exporting.</p></div>
+      <div class="fstep"><div class="fnum">5</div><h3>Export Files</h3><p>Generate slicer-compatible files for the next step.</p></div>
+      <div class="fstep"><div class="fnum">6</div><h3>Slice and Print</h3><p>Open the files in your slicer and prepare the print for your printer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. PRODUCT FAMILY / SHOP ============ -->
+<section id="shop">
+  <div class="wrap">
+    <span class="section-tag">Shop</span>
+    <h2>CMYKForge Products</h2>
+    <p class="lead">CMYKForge is being built as a family of color 3D printing tools, starting with CMYKForge Standard. Future versions may add optional AI workflows, advanced calibration, business tools, and expanded optimization features.</p>
+
+    <div class="products">
+      <!-- Standard -->
+      <div class="product featured">
+        <div class="phead"><h3>CMYKForge Standard</h3><span class="pill pill-beta">Limited Beta</span></div>
+        <p class="desc">The core local-first CMYKForge workflow for image-based color 3D printing. Built for CMYK and optional white material planning, previewing, model generation, printability checks, and slicer-compatible export.</p>
+        <ul>
+          <li>No AI included</li>
+          <li>No cloud processing required</li>
+          <li>Local-first workflow</li>
+          <li>CMYK / CMYKW color preparation</li>
+          <li>3MF, STL, and OBJ export direction</li>
+          <li>Limited first beta group</li>
+        </ul>
+        <a href="#standard" class="btn btn-primary">View Standard</a>
+      </div>
+
+      <!-- Local AI -->
+      <div class="product soon">
+        <div class="phead"><h3>CMYKForge Local AI</h3><span class="pill pill-soon">Coming Soon</span></div>
+        <p class="desc">A future version planned for optional local AI assistance, designed to help with color guidance, workflow suggestions, and print preparation without depending on cloud processing.</p>
+        <ul>
+          <li>Planned local AI tools</li>
+          <li>Offline-friendly direction</li>
+          <li>AI-assisted workflow guidance</li>
+          <li>Future availability</li>
+        </ul>
+        <button class="btn btn-ghost is-soft" disabled>Coming Soon</button>
+      </div>
+
+      <!-- Local AI Plus -->
+      <div class="product soon">
+        <div class="phead"><h3>CMYKForge Local AI Plus</h3><span class="pill pill-soon">Coming Soon</span></div>
+        <p class="desc">A future expanded local AI version planned for stronger optimization, deeper print guidance, and more advanced local analysis tools.</p>
+        <ul>
+          <li>Advanced local AI direction</li>
+          <li>Deeper color and print guidance</li>
+          <li>Expanded workflow optimization</li>
+          <li>Future availability</li>
+        </ul>
+        <button class="btn btn-ghost is-soft" disabled>Coming Soon</button>
+      </div>
+
+      <!-- Business -->
+      <div class="product soon">
+        <div class="phead"><h3>CMYKForge Business</h3><span class="pill pill-soon">Coming Soon</span></div>
+        <p class="desc">A future version planned for studios, print farms, creators, and professional users who need stronger workflow control, profile management, and business-focused tools.</p>
+        <ul>
+          <li>Professional workflow direction</li>
+          <li>Multi-project organization</li>
+          <li>Advanced profile management</li>
+          <li>Business-focused tools</li>
+          <li>Future availability</li>
+        </ul>
+        <button class="btn btn-ghost is-soft" disabled>Coming Soon</button>
+      </div>
+
+      <!-- Cloud AI -->
+      <div class="product future">
+        <div class="phead"><h3>CMYKForge Cloud AI</h3><span class="pill pill-future">Future Concept</span></div>
+        <p class="desc">A future optional cloud-assisted version that may support deeper analysis, stronger troubleshooting, and advanced optimization for users who want cloud-based AI features.</p>
+        <ul>
+          <li>Optional cloud AI direction</li>
+          <li>Advanced optimization potential</li>
+          <li>Future calibration support</li>
+          <li>Not part of CMYKForge Standard</li>
+        </ul>
+        <button class="btn btn-ghost is-soft" disabled>Future Concept</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. BETA ACCESS ============ -->
+<section id="beta">
+  <div class="wrap">
+    <span class="section-tag">Beta access</span>
+    <h2 class="center">Built with Early Tester Feedback</h2>
+    <p class="lead center">CMYKForge Standard is currently being prepared for a limited beta testing group. Early users will help test real image workflows, export reliability, preview accuracy, slicer compatibility, and printability across different printer and filament setups.</p>
+    <p class="betaline">Only <span class="grad">15 beta access spots</span> are planned for the first testing group.</p>
+    <div class="grid g4">
+      <div class="card"><h3>Color Results</h3><p>How generated models compare to the intended image.</p></div>
+      <div class="card"><h3>Export Reliability</h3><p>How well files open and prepare inside slicers.</p></div>
+      <div class="card"><h3>Workflow Clarity</h3><p>How easy the process feels for real users.</p></div>
+      <div class="card"><h3>Printability</h3><p>How practical the generated models are to slice and print.</p></div>
+    </div>
+    <form class="betaform" id="betaForm" novalidate>
+      <input type="email" id="betaEmail" placeholder="Email for beta updates" aria-label="Email for beta updates">
+      <button type="submit" class="btn btn-primary">Join Updates</button>
+    </form>
+    <div class="form-msg" id="betaMsg" role="status" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ 14. REQUIREMENTS ============ -->
+<section id="requirements">
+  <div class="wrap">
+    <span class="section-tag">Requirements</span>
+    <h2>What You'll Need</h2>
+    <div class="grid g4" style="margin-top:36px">
+      <div class="card accent-top"><h3>Multi-Material FDM Printer</h3><p>Best suited for printers that can use multiple filament colors.</p></div>
+      <div class="card accent-top"><h3>CMYK or CMYKW Filaments</h3><p>Designed around cyan, magenta, yellow, black, and optional white workflows.</p></div>
+      <div class="card accent-top"><h3>Compatible Slicer</h3><p>Generated files are intended to be opened and prepared in slicer software.</p></div>
+      <div class="card accent-top"><h3>Calibration Matters</h3><p>Final results depend on printer setup, filament behavior, layer settings, and slicer settings.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. COMPATIBILITY MATRIX ============ -->
+<section id="matrix">
+  <div class="wrap">
+    <span class="section-tag">Compatibility</span>
+    <h2>Compatibility at a Glance</h2>
+    <p class="lead">A quick reference for what CMYKForge Standard supports today and what is reserved for future versions.</p>
+    <div class="matrix-wrap">
+      <table>
+        <thead>
+          <tr><th>Workflow Type</th><th>CMYKForge Standard Support</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Image-based color models</td><td><span class="yes">Supported</span></td><td class="note-c">Built around photos, artwork, logos, and designs.</td></tr>
+          <tr><td>CMYK / CMYKW material planning</td><td><span class="yes">Supported</span></td><td class="note-c">Uses cyan, magenta, yellow, black, and optional white workflows.</td></tr>
+          <tr><td>AI generation</td><td><span class="no">Not included</span></td><td class="note-c">Reserved for future optional versions.</td></tr>
+          <tr><td>Cloud processing</td><td><span class="no">Not required</span></td><td class="note-c">Standard is designed around a local-first workflow.</td></tr>
+          <tr><td>3MF export</td><td><span class="plan">Planned / supported where compatible</span></td><td class="note-c">Best direction for multi-material workflows.</td></tr>
+          <tr><td>STL / OBJ export</td><td><span class="yes">Supported direction</span></td><td class="note-c">Useful for broader model compatibility.</td></tr>
+          <tr><td>Business workflow tools</td><td><span class="no">Future version</span></td><td class="note-c">Planned for CMYKForge Business.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. PRODUCT ROADMAP ============ -->
+<section id="roadmap">
+  <div class="wrap">
+    <span class="section-tag">Roadmap</span>
+    <h2>Product Path</h2>
+    <p class="lead">CMYKForge Standard is the foundation. Future versions are planned to expand the workflow with optional AI assistance, stronger optimization, and professional tools while keeping the core color-generation idea intact.</p>
+    <div class="timeline">
+      <div class="tnode now"><div class="dot" aria-hidden="true"></div><span class="tag">Available in beta</span><h4>Standard</h4><p>Core local-first color workflow.</p></div>
+      <div class="tnode"><div class="dot" aria-hidden="true"></div><span class="tag">Planned</span><h4>Local AI</h4><p>Future optional local AI assistance.</p></div>
+      <div class="tnode"><div class="dot" aria-hidden="true"></div><span class="tag">Planned</span><h4>Local AI Plus</h4><p>Future advanced local AI optimization.</p></div>
+      <div class="tnode"><div class="dot" aria-hidden="true"></div><span class="tag">Planned</span><h4>Business</h4><p>Future professional workflow tools.</p></div>
+      <div class="tnode"><div class="dot" aria-hidden="true"></div><span class="tag">Future concept</span><h4>Cloud AI Concept</h4><p>Possible optional cloud-assisted analysis path.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17. FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <span class="section-tag">FAQ</span>
+    <h2>Questions Before Beta</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Does CMYKForge Standard include AI?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a"><p>No. CMYKForge Standard is the non-AI, local-first version. Optional AI tools may come later in separate versions or upgrades.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Does CMYKForge replace my slicer?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a"><p>No. CMYKForge prepares color-aware model files that are intended to be opened and processed in compatible slicer software.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Will the colors be perfect?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a"><p>No software can guarantee perfect print color because real results depend on filament, printer, slicer settings, calibration, lighting, and material behavior. CMYKForge is designed to reduce guesswork and improve planning.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>Why use CMYK filaments?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a"><p>CMYK and optional white workflows are designed to create more flexible color strategies from a limited number of loaded materials.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span>How many beta testers are planned first?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a"><p>The first CMYKForge Standard beta group is planned around 15 testers so feedback stays manageable and useful.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 18. FINAL CTA ============ -->
+<section id="cta">
+  <div class="wrap">
+    <div class="finalcta">
+      <div class="cmyk-bar" aria-hidden="true"></div>
+      <h2>Start with the Core CMYKForge Workflow</h2>
+      <p class="lead center">CMYKForge Standard is the base version of CMYKForge for creators who want a local-first, non-AI workflow for preparing image-based color 3D prints.</p>
+      <div class="btns">
+        <a href="#standard" class="btn btn-primary">View Standard</a>
+        <a href="#beta" class="btn btn-ghost">Join Updates</a>
+      </div>
+      <p class="small-note">CMYKForge Standard is in development. Features, workflows, availability, and export behavior may change as the software improves.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 19. FOOTER ============ -->
+<footer class="site" id="about">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:22px"><span>C</span><span>M</span><span>Y</span><span>KForge</span></div>
+        <p class="foot-desc">Full-spectrum color software for multi-material FDM image reproduction.</p>
+        <p class="foot-slogan">Print what you see. More colors than filament.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#top">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About Us</a>
+        <a href="#standard">CMYKForge Standard</a>
+        <a href="#roadmap">AI Roadmap</a>
+        <a href="#beta">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:admin@cmykforge.com">admin@cmykforge.com</a>
+        <p class="foot-desc" style="margin-top:10px">For beta interest and general questions.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CMYKForge. All rights reserved.</span>
+      <span class="disc">CMYKForge is in development. Features, workflows, and availability may change before release.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header shadow on scroll
+  var header = document.querySelector('header.site');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 12) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+
+  // Mobile menu toggle
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // Close menu when a link is tapped (mobile)
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.parentElement;
+      var answer = item.querySelector('.faq-a');
+      var isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if (!isOpen){
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // Beta form — harmless placeholder interaction (no backend)
+  var betaForm = document.getElementById('betaForm');
+  var betaMsg = document.getElementById('betaMsg');
+  betaForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('betaEmail').value.trim();
+    if (!email || email.indexOf('@') === -1){
+      betaMsg.style.color = 'var(--magenta)';
+      betaMsg.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    betaMsg.style.color = 'var(--cyan)';
+    betaMsg.textContent = 'Thanks — beta update signup placeholder received.';
+    console.log('Beta signup placeholder:', email);
+    betaForm.reset();
+  });
+</script>
+
+</body>
+</html>
