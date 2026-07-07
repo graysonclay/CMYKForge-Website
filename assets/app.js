@@ -5,8 +5,8 @@
   //  Until a real https:// link is set, the buttons stay inert.
   // ============================================================
   var SOCIAL_LINKS = {
-    reddit:  'REDDIT_URL_HERE',   // e.g. 'https://www.reddit.com/r/CMYKForge/'
-    youtube: 'YOUTUBE_URL_HERE'   // e.g. 'https://www.youtube.com/@CMYKForge'
+    reddit:  'https://www.reddit.com/user/CMYKForge/',   // u/CMYKForge
+    youtube: 'https://www.youtube.com/@CMYKForge'        // CMYKForge channel
   };
   // ============================================================
 
