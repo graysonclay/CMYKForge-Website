@@ -864,3 +864,133 @@
   @media(max-width:680px){
     .social-links{grid-template-columns:1fr}
   }
+
+  /* =====================================================================
+     CMYKForge Optical Glass UI — visual polish pass
+     Appended overrides only. No markup, copy, structure, links, logo,
+     or product messaging changed — surfaces are restyled as dark glass
+     with subtle CMYK edge lighting. Text colors are preserved.
+  ===================================================================== */
+
+  /* Reusable glass surface (available as a utility, and applied below) */
+  .glass{
+    background:linear-gradient(180deg, rgba(26,30,41,.72), rgba(15,18,26,.74));
+    -webkit-backdrop-filter:blur(15px) saturate(1.12);
+    backdrop-filter:blur(15px) saturate(1.12);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 20px 44px -24px rgba(0,0,0,.7);
+  }
+
+  /* --- Top-level glass panels (blur only on non-nested surfaces) ----- */
+  .card, .product, .faq-item, .sysrow, .pstep, .fstep, .folder,
+  .video-showcase, .shop-feature, .social-button, .finalcta,
+  .auth-card, .cart-empty{
+    -webkit-backdrop-filter:blur(15px) saturate(1.12);
+    backdrop-filter:blur(15px) saturate(1.12);
+  }
+  .card, .product, .faq-item, .sysrow, .pstep, .fstep,
+  .video-showcase, .shop-feature, .social-button{
+    background:linear-gradient(180deg, rgba(26,30,41,.72), rgba(15,18,26,.74));
+    border-color:rgba(255,255,255,.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 20px 44px -24px rgba(0,0,0,.68);
+  }
+
+  /* Hover: brighten the glass edge + a soft, tasteful lift */
+  .card:hover, .product:hover, .fstep:hover, .folder:hover, .social-button:hover{
+    border-color:rgba(255,255,255,.22);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 30px 62px -26px rgba(0,0,0,.8);
+  }
+  .faq-item:hover{border-color:rgba(255,255,255,.2)}
+  .faq-item.open{border-color:rgba(37,182,230,.3)}
+
+  /* CMYK edge lighting: cards in a grid cycle cyan / magenta / yellow on hover */
+  .grid > .card:hover{
+    border-color:rgba(37,182,230,.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 62px -26px rgba(0,0,0,.8), 0 0 30px -10px rgba(37,182,230,.34);
+  }
+  .grid > .card:nth-child(3n+2):hover{
+    border-color:rgba(232,71,158,.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 62px -26px rgba(0,0,0,.8), 0 0 30px -10px rgba(232,71,158,.34);
+  }
+  .grid > .card:nth-child(3n):hover{
+    border-color:rgba(246,201,69,.38);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 62px -26px rgba(0,0,0,.8), 0 0 30px -10px rgba(246,201,69,.30);
+  }
+
+  /* Keep the CMYK top-accent hairline, add a faint glow */
+  .accent-top::before{height:2px;opacity:.95;box-shadow:0 0 14px rgba(37,182,230,.35)}
+
+  /* --- Nested surfaces: translucent, but NO backdrop-filter (avoids
+         double-blur artifacts inside a glass parent) --------------------- */
+  .mini{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.09)}
+  .pipe-panel{background:rgba(7,8,11,.42);border-color:rgba(255,255,255,.09)}
+  .folder .stage{background:rgba(6,8,12,.6);border-color:rgba(255,255,255,.09)}
+  .card .note{border-left-color:var(--cyan)}
+
+  /* --- Product cards: premium software panels ----------------------- */
+  .product{
+    background:linear-gradient(180deg, rgba(28,33,45,.74), rgba(15,18,26,.78));
+  }
+  .product.featured{
+    border-color:rgba(37,182,230,.42);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 26px 60px -26px rgba(0,0,0,.8), 0 0 40px -14px rgba(37,182,230,.28);
+  }
+
+  /* --- Folders (3MF/STL/OBJ): dark glass file panels ---------------- */
+  .folder{background:linear-gradient(180deg, rgba(22,26,36,.74), rgba(12,15,22,.78))}
+
+  /* --- Compatibility matrix: glass table container ------------------ */
+  .matrix-wrap{
+    background:linear-gradient(180deg, rgba(23,27,37,.62), rgba(14,17,25,.68));
+    -webkit-backdrop-filter:blur(14px) saturate(1.1);
+    backdrop-filter:blur(14px) saturate(1.1);
+    border-color:rgba(255,255,255,.10);
+  }
+  thead th{background:rgba(23,27,37,.72)}
+
+  /* --- Final CTA panel: deeper glass with subtle CMYK top light ----- */
+  .finalcta{
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 34px 74px -30px rgba(0,0,0,.82);
+  }
+
+  /* --- Navigation: light glass, sharp and readable ------------------ */
+  header.site{
+    background:rgba(7,8,11,.55);
+    -webkit-backdrop-filter:blur(18px) saturate(1.25);
+    backdrop-filter:blur(18px) saturate(1.25);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  header.site.scrolled{
+    background:rgba(7,8,11,.78);
+    box-shadow:0 10px 34px rgba(0,0,0,.5);
+    border-bottom-color:rgba(255,255,255,.1);
+  }
+
+  /* --- Buttons: keep primary strong; ghost gets a light glass ------- */
+  .btn-ghost{background:rgba(255,255,255,.045);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{background:rgba(37,182,230,.10)}
+
+  /* --- Chips + badge: subtle glass pills ---------------------------- */
+  .chip{background:rgba(255,255,255,.035);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .badge{background:rgba(255,255,255,.04);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-color:rgba(255,255,255,.12)}
+
+  /* --- Hero visual: a soft dark glass stage behind the CMYK layers -- */
+  .hero-visual::before{
+    content:"";position:absolute;inset:8%;border-radius:32px;z-index:0;
+    background:radial-gradient(130% 130% at 50% 22%, rgba(24,28,39,.55), rgba(7,8,11,.12));
+    border:1px solid rgba(255,255,255,.07);
+    box-shadow:0 50px 90px -40px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+
+  /* --- Beta form input: glass field --------------------------------- */
+  .betaform input{background:rgba(255,255,255,.035);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+  /* --- Mobile: trim blur for performance while keeping contrast ----- */
+  @media(max-width:680px){
+    .card, .product, .faq-item, .sysrow, .pstep, .fstep, .folder,
+    .video-showcase, .shop-feature, .social-button, .finalcta{
+      -webkit-backdrop-filter:blur(10px) saturate(1.1);
+      backdrop-filter:blur(10px) saturate(1.1);
+    }
+  }
