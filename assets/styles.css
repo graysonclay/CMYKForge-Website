@@ -47,7 +47,7 @@
   img{max-width:100%;display:block}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  section{padding:88px 0;position:relative}
+  section{padding:66px 0;position:relative}
   .section-tag{
     display:inline-block;
     font-size:12px;
@@ -105,7 +105,7 @@
     margin-top:14px;font-size:13px;color:var(--soft);
     border-left:2px solid var(--cyan);padding-left:12px;
   }
-  .grid{display:grid;gap:22px}
+  .grid{display:grid;gap:18px}
   .g2{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:repeat(3,1fr)}
   .g4{grid-template-columns:repeat(4,1fr)}
@@ -608,21 +608,26 @@
     transform:scale(calc(.95 + var(--p,0)*.05));
   }
   .pin-ring{
-    position:absolute;inset:-8%;border-radius:50%;border:1px dashed rgba(255,255,255,.1);
-    transform:rotate(calc(var(--p,0)*140deg));
+    position:absolute;inset:-8%;border-radius:50%;border:1px dashed rgba(0,0,0,.12);
+    transform:rotate(calc(var(--p,0)*140deg));z-index:0;
   }
-  .plate{position:absolute;inset:0;border-radius:50%;will-change:transform}
-  .plate.c,.plate.m,.plate.y{mix-blend-mode:screen}
-  /* Plates spread wide at p=0 and converge to a tight CMY Venn (not full overlap) at p=1,
-     so the end state reads as vivid full-spectrum color rather than washing out to white. */
-  .plate.c{background:radial-gradient(circle at 40% 35%,#3cc7f2,rgba(37,182,230,.1) 72%);
-    transform:translate(calc(-46% + var(--p,0)*32%),calc(-28% + var(--p,0)*16%)) rotate(calc((1 - var(--p,0)) * -10deg))}
-  .plate.m{background:radial-gradient(circle at 60% 40%,#f45ba8,rgba(232,71,158,.1) 72%);
-    transform:translate(calc(46% - var(--p,0)*32%),calc(-22% + var(--p,0)*10%)) rotate(calc((1 - var(--p,0)) * 12deg))}
-  .plate.y{background:radial-gradient(circle at 50% 62%,#ffd85e,rgba(246,201,69,.08) 72%);
-    transform:translate(0,calc(40% - var(--p,0)*26%)) rotate(calc((1 - var(--p,0)) * 6deg))}
-  .plate.k{background:radial-gradient(circle at 50% 50%,#2a3140,#0a0d13 78%);
-    opacity:calc(.28 + var(--p,0)*.3);transform:scale(calc(.6 + var(--p,0)*.3))}
+  /* Subtractive CMY mixing: the plates multiply over a light "print proof" disc,
+     so overlaps read as real filament mixes — cyan+magenta = blue/purple,
+     cyan+yellow = green, magenta+yellow = red, and all three = near-black (key). */
+  .pin-plates::before{
+    content:"";position:absolute;inset:-10%;border-radius:50%;z-index:0;
+    background:radial-gradient(circle at 50% 42%, #eef1f5 0%, #e2e7ee 60%, #cfd6e0 100%);
+    box-shadow:0 50px 100px -34px rgba(0,0,0,.75), inset 0 2px 12px rgba(255,255,255,.55), inset 0 0 0 1px rgba(255,255,255,.35);
+  }
+  .plate{position:absolute;top:18%;left:18%;width:64%;height:64%;border-radius:50%;will-change:transform}
+  .plate.c,.plate.m,.plate.y{mix-blend-mode:multiply}
+  .plate.c{background:radial-gradient(circle at 42% 40%,#4ecbf2,#1fa9dd 82%);
+    transform:translate(calc(-38% + var(--p,0)*14%),calc(-24% + var(--p,0)*8%)) rotate(calc((1 - var(--p,0)) * -8deg))}
+  .plate.m{background:radial-gradient(circle at 42% 40%,#f45ba8,#e12e8b 82%);
+    transform:translate(calc(38% - var(--p,0)*14%),calc(-20% + var(--p,0)*4%)) rotate(calc((1 - var(--p,0)) * 10deg))}
+  .plate.y{background:radial-gradient(circle at 42% 40%,#ffe06a,#f4c130 82%);
+    transform:translate(0,calc(36% - var(--p,0)*14%)) rotate(calc((1 - var(--p,0)) * 5deg))}
+  .plate.k{display:none}
 
   /* Shop feature banner + product card media */
   .shop-feature{
@@ -688,16 +693,20 @@
     mask-composite:intersect;
     filter:saturate(1.05);
   }
+  /* Each dot rides out to the exact angle of its colour on the hue ring:
+     yellow ≈ top (-10°), cyan ≈ 110°, magenta ≈ 230° — matching the
+     conic-gradient stops above. The rig rotation carries dots + ring together,
+     so a dot always sits on its own colour. */
   .wheel-dot{
     position:absolute;top:42%;left:42%;width:16%;height:16%;border-radius:50%;
-    mix-blend-mode:screen;filter:blur(.3px);will-change:transform;
+    box-shadow:0 0 0 2px rgba(255,255,255,.6), 0 6px 16px rgba(0,0,0,.5);will-change:transform;
   }
-  .wheel-dot.wd-c{background:radial-gradient(circle at 40% 38%,#3cc7f2,rgba(37,182,230,.15));
-    transform:translate(0,calc(var(--p,0)*-260%))}
-  .wheel-dot.wd-m{background:radial-gradient(circle at 40% 38%,#f45ba8,rgba(232,71,158,.15));
-    transform:translate(calc(var(--p,0)*225%),calc(var(--p,0)*130%))}
-  .wheel-dot.wd-y{background:radial-gradient(circle at 40% 38%,#ffd85e,rgba(246,201,69,.15));
-    transform:translate(calc(var(--p,0)*-225%),calc(var(--p,0)*130%))}
+  .wheel-dot.wd-c{background:#25b6e6;
+    transform:rotate(110deg) translateY(calc(var(--p,0)*-245%)) rotate(-110deg)}
+  .wheel-dot.wd-m{background:#e8479e;
+    transform:rotate(230deg) translateY(calc(var(--p,0)*-245%)) rotate(-230deg)}
+  .wheel-dot.wd-y{background:#f6c945;
+    transform:rotate(-10deg) translateY(calc(var(--p,0)*-245%)) rotate(10deg)}
 
   /* ===== Layer build: FDM layers stack up from the plate ===== */
   .layer-rig{
@@ -757,7 +766,7 @@
     .timeline::before{display:none}
   }
   @media(max-width:680px){
-    section{padding:64px 0}
+    section{padding:50px 0}
     .nav-links{
       position:fixed;top:70px;left:0;right:0;flex-direction:column;align-items:stretch;
       background:rgba(7,8,11,.98);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
