@@ -1,4 +1,15 @@
 
+  // ============================================================
+  //  EDIT ME — CMYKForge social links
+  //  Paste your real URLs between the quotes (keep the quotes).
+  //  Until a real https:// link is set, the buttons stay inert.
+  // ============================================================
+  var SOCIAL_LINKS = {
+    reddit:  'REDDIT_URL_HERE',   // e.g. 'https://www.reddit.com/r/CMYKForge/'
+    youtube: 'YOUTUBE_URL_HERE'   // e.g. 'https://www.youtube.com/@CMYKForge'
+  };
+  // ============================================================
+
   // Sticky header shadow on scroll
   var header = document.querySelector('header.site');
   window.addEventListener('scroll', function(){
@@ -189,4 +200,30 @@
       if (e.target === modal || e.target.id === 'wipClose'){ closeModal(); }
     });
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  })();
+
+  // ===== Wire up social links from the SOCIAL_LINKS config at the top of this file =====
+  (function(){
+    function isReal(u){ return u && u.indexOf('URL_HERE') === -1 && /^https?:\/\//i.test(u); }
+    var els = document.querySelectorAll('[data-social]');
+    els.forEach(function(el){
+      var url = SOCIAL_LINKS[el.getAttribute('data-social')];
+      if (isReal(url)){
+        el.setAttribute('href', url);
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+        el.classList.remove('is-pending');
+        el.removeAttribute('aria-disabled');
+      } else {
+        el.setAttribute('href', '#');
+        el.classList.add('is-pending');
+        el.setAttribute('aria-disabled', 'true');
+        el.setAttribute('title', 'Link coming soon');
+      }
+    });
+    // Placeholder links shouldn't navigate anywhere until a real URL is set.
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('[data-social]');
+      if (a && a.classList.contains('is-pending')) e.preventDefault();
+    });
   })();
