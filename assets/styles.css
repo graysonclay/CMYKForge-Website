@@ -820,13 +820,13 @@
   @media(max-width:760px){
     /* Separation uses stacked crossfading captions — unpin it into a clean static
        stack on phones (its two-column step pattern is a desktop idiom). */
-    #separation{height:auto}
-    #separation .pin-wrap{position:relative;height:auto;grid-template-columns:1fr;gap:30px;padding:56px 24px}
-    #separation .pin-stage{--p:1;height:44vh;order:-1}
+    #separation, .export-sec{height:auto}
+    #separation .pin-wrap, .export-sec .pin-wrap{position:relative;height:auto;grid-template-columns:1fr;gap:30px;padding:56px 24px}
+    #separation .pin-stage, .export-sec .pin-stage{--p:1;height:auto;min-height:44vh;order:-1}
     #separation .pin-plates{width:min(66%,240px)}
-    #separation .pin-steps{position:static;min-height:0;display:grid;gap:26px}
-    #separation .pin-step{position:relative;opacity:1;transform:none}
-    #separation .pin-rail{display:none}
+    #separation .pin-steps, .export-sec .pin-steps{position:static;min-height:0;display:grid;gap:26px}
+    #separation .pin-step, .export-sec .pin-step{position:relative;opacity:1;transform:none}
+    #separation .pin-rail, .export-sec .pin-rail{display:none}
     /* Wheel + layers animate cleanly single-column, so keep them pinned on phones. */
     .wheel-sec,.layers-sec{height:220vh}
     .wheel-sec .pin-wrap,.layers-sec .pin-wrap{grid-template-columns:1fr;gap:22px;align-content:center}
@@ -1090,3 +1090,122 @@
     .prod-hero-media{order:-1;aspect-ratio:16/10}
     .prod-hero-media.art{aspect-ratio:1/1;max-width:320px;justify-self:center;margin:0 auto}
   }
+
+  /* =====================================================================
+     Color Engine visual: sampled image color -> CMYK(+W) filament plan
+  ===================================================================== */
+  .engine-viz{
+    align-self:center;display:flex;flex-direction:column;gap:20px;padding:28px;
+    border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);
+    background:linear-gradient(180deg, rgba(26,30,41,.66), rgba(13,16,24,.7));
+    -webkit-backdrop-filter:blur(16px) saturate(1.12);backdrop-filter:blur(16px) saturate(1.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 30px 64px -30px rgba(0,0,0,.8);
+  }
+  .ev-top{display:flex;align-items:center;gap:16px}
+  .ev-img{
+    width:88px;height:88px;border-radius:12px;position:relative;flex-shrink:0;
+    border:1px solid rgba(255,255,255,.14);
+    background:
+      radial-gradient(60% 55% at 68% 34%, #f0913f 0%, rgba(240,145,63,0) 62%),
+      radial-gradient(55% 60% at 24% 30%, #25b6e6 0%, rgba(37,182,230,0) 60%),
+      radial-gradient(70% 60% at 40% 82%, #e8479e 0%, rgba(232,71,158,0) 64%),
+      linear-gradient(160deg,#1c2230,#0b0e15);
+  }
+  .ev-picker{
+    position:absolute;top:24%;left:58%;width:20px;height:20px;border-radius:50%;
+    border:2px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.5), 0 4px 10px rgba(0,0,0,.5);
+  }
+  .ev-arrow{color:var(--soft);font-size:20px}
+  .ev-swatch{
+    width:52px;height:52px;border-radius:12px;background:#f0913f;flex-shrink:0;
+    border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 8px 22px -8px rgba(240,145,63,.6), inset 0 1px 0 rgba(255,255,255,.35);
+  }
+  .ev-rows{display:flex;flex-direction:column;gap:11px}
+  .ev-row{display:flex;align-items:center;gap:12px}
+  .ev-ch{width:16px;font-weight:700;font-size:13px;text-align:center}
+  .ev-track{
+    flex:1;height:8px;border-radius:99px;overflow:hidden;
+    background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);
+  }
+  .ev-track i{display:block;height:100%;border-radius:99px;box-shadow:0 0 10px -2px currentColor}
+  .ev-val{width:96px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .ev-opt{color:var(--soft)}
+  .ev-lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);text-align:center}
+  .ev-lbl .ev-note{letter-spacing:0;text-transform:none;opacity:.7}
+
+  /* =====================================================================
+     Export pipeline scrollytelling: render -> generate file -> downloaded
+     Phases derived from the shared --p: A .0-.38, B .38-.72, C .72-1
+  ===================================================================== */
+  .export-sec{height:230vh}
+  .export-rig{
+    --pA:clamp(0, calc(var(--p,0) * 2.8), 1);
+    --pB:clamp(0, calc((var(--p,0) - 0.38) * 3.1), 1);
+    --pC:clamp(0, calc((var(--p,0) - 0.72) * 3.6), 1);
+    display:flex;flex-direction:column;align-items:center;gap:26px;width:min(84%,360px);
+  }
+  /* 1: the model rendering in, bottom-up */
+  .ex-model{
+    position:relative;width:180px;height:180px;border-radius:26px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.16);
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.07) 0 1px, transparent 1px 14px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, transparent 1px 14px),
+      rgba(10,12,18,.6);
+    box-shadow:0 30px 60px -28px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  .ex-fill{
+    position:absolute;left:0;right:0;bottom:0;height:calc(var(--pA) * 100%);
+    background:conic-gradient(from 40deg at 50% 46%, var(--cyan), var(--magenta), var(--yellow), var(--cyan));
+    opacity:.92;
+  }
+  .ex-scan{
+    position:absolute;left:0;right:0;height:3px;bottom:calc(var(--pA) * 100%);
+    background:linear-gradient(90deg, transparent, #7fe0ff 30%, #fff 50%, #7fe0ff 70%, transparent);
+    box-shadow:0 0 18px rgba(37,182,230,.9);
+    opacity:calc((1 - var(--pA)) * clamp(0, calc(var(--pA) * 9), 1));
+  }
+  /* 2: the exported file appearing with a progress bar */
+  .ex-file{
+    width:100%;display:flex;align-items:center;gap:14px;padding:15px 18px;
+    border-radius:14px;border:1px solid rgba(255,255,255,.13);
+    background:linear-gradient(180deg, rgba(28,33,45,.72), rgba(14,17,25,.76));
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 22px 44px -26px rgba(0,0,0,.75);
+    opacity:var(--pB);
+    transform:translateY(calc((1 - var(--pB)) * 22px));
+  }
+  .ex-file .ext{
+    flex-shrink:0;width:42px;height:42px;border-radius:10px;display:grid;place-items:center;
+    font-size:11px;font-weight:800;letter-spacing:.04em;color:#fff;
+    background:conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--yellow), var(--cyan));
+  }
+  .ex-file .fmeta{flex:1;min-width:0}
+  .ex-file .fname{font-size:14px;font-weight:600;color:var(--text)}
+  .ex-file .fbar{
+    margin-top:8px;height:5px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.08);
+  }
+  .ex-file .fbar i{
+    display:block;height:100%;width:calc(var(--pB) * 100%);border-radius:99px;
+    background:linear-gradient(90deg, var(--cyan), var(--magenta));
+  }
+  .ex-file .fsize{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+  /* 3: downloaded badge — up arrow in a circle with a drawing ring */
+  .ex-dl{
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    opacity:clamp(0, calc(var(--pC) * 1.6), 1);
+    transform:scale(calc(.82 + var(--pC) * .18));
+  }
+  .ex-dl .ring{
+    position:relative;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+    background:rgba(37,182,230,.1);border:1px solid rgba(255,255,255,.14);
+  }
+  .ex-dl .ring::after{
+    content:"";position:absolute;inset:-4px;border-radius:50%;
+    background:conic-gradient(from -90deg, var(--cyan), var(--magenta) calc(var(--pC) * 360deg), transparent 0);
+    -webkit-mask:radial-gradient(closest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+            mask:radial-gradient(closest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+  }
+  .ex-dl .arr{font-size:26px;font-weight:700;color:var(--text);line-height:1}
+  .ex-dl .dlbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
