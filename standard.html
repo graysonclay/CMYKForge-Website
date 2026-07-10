@@ -76,17 +76,20 @@
           <div class="note">Image creation is not AI powered in apps across all versions.</div>
         </div>
       </div>
-      <div class="colorviz" role="img" aria-label="Abstract dark color-system visual with orbiting CMYK color channel dots">
-        <div class="orbit" aria-hidden="true">
-          <i style="background:var(--cyan)"></i>
+      <div class="engine-viz" role="img" aria-label="Diagram of the Color Engine: a sampled image color broken down into cyan, magenta, yellow, black, and optional white filament amounts">
+        <div class="ev-top" aria-hidden="true">
+          <div class="ev-img"><span class="ev-picker"></span></div>
+          <span class="ev-arrow">→</span>
+          <div class="ev-swatch"></div>
         </div>
-        <div class="orbit o2" aria-hidden="true">
-          <i style="background:var(--magenta)"></i>
+        <div class="ev-rows" aria-hidden="true">
+          <div class="ev-row"><span class="ev-ch" style="color:var(--cyan)">C</span><span class="ev-track"><i style="width:12%;background:var(--cyan)"></i></span><span class="ev-val">12%</span></div>
+          <div class="ev-row"><span class="ev-ch" style="color:var(--magenta)">M</span><span class="ev-track"><i style="width:56%;background:var(--magenta)"></i></span><span class="ev-val">56%</span></div>
+          <div class="ev-row"><span class="ev-ch" style="color:var(--yellow)">Y</span><span class="ev-track"><i style="width:84%;background:var(--yellow)"></i></span><span class="ev-val">84%</span></div>
+          <div class="ev-row"><span class="ev-ch" style="color:#8a93a3">K</span><span class="ev-track"><i style="width:7%;background:#3a4150"></i></span><span class="ev-val">7%</span></div>
+          <div class="ev-row"><span class="ev-ch" style="color:#e9edf3">W</span><span class="ev-track"><i style="width:18%;background:#e9edf3"></i></span><span class="ev-val ev-opt">18% · optional</span></div>
         </div>
-        <div class="orbit" style="width:76%;height:76%;animation-duration:30s" aria-hidden="true">
-          <i style="background:var(--yellow)"></i>
-        </div>
-        <div class="lbl">Color system visual placeholder</div>
+        <div class="ev-lbl">Image color → filament plan <span class="ev-note">(illustrative values)</span></div>
       </div>
     </div>
   </div>
@@ -241,6 +244,53 @@
   </div>
 </section>
 
+
+<!-- ============ EXPORT PIPELINE (pinned scrollytelling) ============ -->
+<section class="pinned export-sec" id="exportstory" aria-label="From generated model to downloaded slicer-ready file">
+  <div class="pin-wrap">
+    <div class="pin-copy">
+      <span class="section-tag">Export pipeline</span>
+      <div class="pin-steps">
+        <div class="pin-step active" data-step="1">
+          <div class="k"><span class="chdot dc"></span>01 — Render</div>
+          <h2>The model takes shape.</h2>
+          <p>Color-aware geometry is generated from your image, layer by layer, using the CMYK material plan.</p>
+        </div>
+        <div class="pin-step" data-step="2">
+          <div class="k"><span class="chdot dm"></span>02 — Export</div>
+          <h2>A slicer-ready file is generated.</h2>
+          <p>The model, colors, and material layout are packed into a multi-material 3MF file.</p>
+        </div>
+        <div class="pin-step" data-step="3">
+          <div class="k"><span class="chdot dy"></span>03 — Download</div>
+          <h2>Saved and ready to slice.</h2>
+          <p>Open the exported file in your slicer and send the print to your multi-material FDM printer.</p>
+        </div>
+      </div>
+      <div class="pin-rail" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div class="pin-stage" aria-hidden="true">
+      <div class="export-rig">
+        <div class="ex-model">
+          <span class="ex-fill"></span>
+          <span class="ex-scan"></span>
+        </div>
+        <div class="ex-file">
+          <span class="ext">3MF</span>
+          <span class="fmeta">
+            <span class="fname">my-print.3mf</span>
+            <span class="fbar"><i></i></span>
+          </span>
+          <span class="fsize">24.6 MB</span>
+        </div>
+        <div class="ex-dl">
+          <span class="ring"><span class="arr">↑</span></span>
+          <span class="dlbl">Downloaded</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="included">
   <div class="wrap">
