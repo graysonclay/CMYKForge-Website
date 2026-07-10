@@ -105,7 +105,7 @@
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduceMotion){
     document.documentElement.classList.add('js-anim');
-    var revealSel = 'section h2, section > .wrap > .section-tag, section > .wrap > .lead, .card, .product, .fstep, .pstep, .sysrow, .folder, .tnode, .video-showcase, .matrix-wrap, .betaform, .faq-item, .finalcta, .process, .timeline, .placeholder, .colorviz';
+    var revealSel = 'section h2, section > .wrap > .section-tag, section > .wrap > .lead, .card, .product, .fstep, .pstep, .wstep, .sysrow, .folder, .tnode, .video-showcase, .matrix-wrap, .betaform, .faq-item, .finalcta, .process, .timeline, .placeholder, .colorviz, .prod-hero-media';
     var revealEls = Array.prototype.slice.call(document.querySelectorAll(revealSel))
       .filter(function(el){ return !el.closest('.hero') && !el.closest('.pinned'); });
     revealEls.forEach(function(el){ el.classList.add('reveal'); });
