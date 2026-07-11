@@ -21,8 +21,6 @@
       <a href="index.html">Home</a>
       <a href="shop.html" class="active" aria-current="page">Shop</a>
       <a href="about.html">About Us</a>
-      <a href="#" data-wip="Login" class="nav-cta">Login</a>
-      <a href="#" data-wip="Cart" class="nav-cart">Cart<span class="dot" aria-hidden="true"></span></a>
     </nav>
     <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -40,7 +38,6 @@
       <p class="prod-sub">The local-first workflow for full-spectrum color FDM printing.</p>
       <div class="prod-hero-btns">
         <a href="#beta" class="btn btn-primary">Buy Standard</a>
-        <a href="#" data-wip="Documentation" class="btn btn-ghost">View Documentation</a>
       </div>
       <div class="chips">
         <span class="chip">No AI</span>
@@ -48,6 +45,7 @@
         <span class="chip">CMYK / CMYKW</span>
         <span class="chip">3MF Export</span>
       </div>
+      <p class="hero-foot" style="margin-top:18px">In active beta development — details may change before release.</p>
     </div>
     <div class="prod-hero-media art" role="img" aria-label="CMYKForge Standard product artwork — CMYK drop mark in a gradient ring"></div>
   </div>
@@ -367,14 +365,6 @@
 </section>
 
 
-<section id="compatibility">
-  <div class="wrap">
-    <span class="section-tag">Compatibility</span>
-    <h2>Compatibility</h2>
-    <p class="lead">CMYKForge Standard is designed to fit into practical multi-material FDM workflows — supported color workflows, export formats, and printer requirements are outlined below.</p>
-  </div>
-</section>
-
 <section id="requirements">
   <div class="wrap">
     <span class="section-tag">Requirements</span>
@@ -401,11 +391,8 @@
         <tbody>
           <tr><td>Image-based color models</td><td><span class="yes">Supported</span></td><td class="note-c">Built around photos, artwork, logos, and designs.</td></tr>
           <tr><td>CMYK / CMYKW material planning</td><td><span class="yes">Supported</span></td><td class="note-c">Uses cyan, magenta, yellow, black, and optional white workflows.</td></tr>
-          <tr><td>AI generation</td><td><span class="no">Not included</span></td><td class="note-c">Reserved for future optional versions.</td></tr>
-          <tr><td>Cloud processing</td><td><span class="no">Not required</span></td><td class="note-c">Standard is designed around a local-first workflow.</td></tr>
           <tr><td>3MF export</td><td><span class="plan">Planned / supported where compatible</span></td><td class="note-c">Best direction for multi-material workflows.</td></tr>
           <tr><td>STL / OBJ export</td><td><span class="yes">Supported direction</span></td><td class="note-c">Useful for broader model compatibility.</td></tr>
-          <tr><td>Business workflow tools</td><td><span class="no">Future version</span></td><td class="note-c">Planned for CMYKForge Business.</td></tr>
         </tbody>
       </table>
     </div>
@@ -439,44 +426,20 @@
     <p class="lead">Quick answers about CMYKForge Standard, the workflow, and future product plans.</p>
     <div class="faq">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Does CMYKForge Standard include AI?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a"><p>No. CMYKForge Standard is the local-first, non-AI version of CMYKForge. It does not include cloud AI or local AI by default. Optional AI tools may come later through separate versions or upgrades.</p></div>
-      </div>
-      <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>Does CMYKForge replace my slicer?</span><span class="ico" aria-hidden="true">+</span></button>
         <div class="faq-a"><p>No. CMYKForge prepares color-aware model files that are intended to be opened and processed in compatible slicer software.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>What file formats does CMYKForge support?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a"><p>CMYKForge Standard is designed around slicer-compatible export workflows, including 3MF, STL, and OBJ where supported. 3MF is especially important for multi-material workflows.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>Will the printed colors be perfect?</span><span class="ico" aria-hidden="true">+</span></button>
         <div class="faq-a"><p>No software can guarantee perfect printed color. Final results depend on printer setup, filament behavior, slicer settings, calibration, lighting, layer height, and material properties. CMYKForge is designed to reduce guesswork and improve color planning.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>What filaments is CMYKForge designed for?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a"><p>CMYKForge is designed around cyan, magenta, yellow, black, and optional white filament workflows for multi-material FDM printers.</p></div>
-      </div>
-      <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>Why do filament profiles matter?</span><span class="ico" aria-hidden="true">+</span></button>
         <div class="faq-a"><p>Filament profiles help CMYKForge make better color and material decisions by using information about the actual materials selected for a project.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Does CMYKForge Standard require the internet?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a"><p>CMYKForge Standard is designed as a local-first workflow and should not require cloud processing for core generation features.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Is CMYKForge still in development?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a"><p>Yes. CMYKForge is still being developed, and features, workflows, export behavior, and availability may change as the software improves.</p></div>
-      </div>
-      <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>How many beta testers are planned first?</span><span class="ico" aria-hidden="true">+</span></button>
         <div class="faq-a"><p>The first CMYKForge Standard beta group is planned around 15 testers so feedback stays manageable and useful.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Will there be other CMYKForge versions?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a"><p>Yes. CMYKForge Standard is planned as the first version. Future versions may include Local AI, Local AI Plus, Business, and optional cloud-assisted tools.</p></div>
       </div>
     </div>
   </div>
@@ -492,7 +455,6 @@
       <div class="btns">
         <a href="#beta" class="btn btn-primary">Get CMYKForge Standard</a>
       </div>
-      <p class="small-note">CMYKForge Standard is in development. Features, workflows, availability, and export behavior may change as the software improves.</p>
     </div>
   </div>
 </section>
