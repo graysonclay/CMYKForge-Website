@@ -209,32 +209,49 @@
     var swatchEl = document.getElementById('evSwatch');
     var hexEl = document.getElementById('evHex');
     var bars = { c:document.getElementById('evBarC'), m:document.getElementById('evBarM'),
-                 y:document.getElementById('evBarY'), k:document.getElementById('evBarK') };
+                 y:document.getElementById('evBarY'), k:document.getElementById('evBarK'),
+                 w:document.getElementById('evBarW') };
     var vals = { c:document.getElementById('evValC'), m:document.getElementById('evValM'),
-                 y:document.getElementById('evValY'), k:document.getElementById('evValK') };
-    function hexToCmyk(hex){
+                 y:document.getElementById('evValY'), k:document.getElementById('evValK'),
+                 w:document.getElementById('evValW') };
+    // Normalized CMYK+W filament blend: split the colour into cyan, magenta,
+    // yellow, black, and white fractions, then normalize so they always total
+    // exactly 100% (largest-remainder rounding keeps the displayed sum at 100).
+    function hexToBlend(hex){
       var r = parseInt(hex.slice(1,3),16)/255,
           g = parseInt(hex.slice(3,5),16)/255,
           b = parseInt(hex.slice(5,7),16)/255;
-      var k = 1 - Math.max(r,g,b);
-      if (k >= 0.9999) return { c:0, m:0, y:0, k:100 };
-      return {
-        c: Math.round((1-r-k)/(1-k)*100),
-        m: Math.round((1-g-k)/(1-k)*100),
-        y: Math.round((1-b-k)/(1-k)*100),
-        k: Math.round(k*100)
+      var k = 1 - Math.max(r,g,b);          // shared darkness -> black
+      var parts = {
+        c: (1-r) - k,                        // channel density beyond black
+        m: (1-g) - k,
+        y: (1-b) - k,
+        k: k,
+        w: Math.min(r,g,b)                   // shared lightness -> white
       };
+      var keys = ['c','m','y','k','w'];
+      var total = keys.reduce(function(s,ch){ return s + parts[ch]; }, 0) || 1;
+      var exact = keys.map(function(ch){ return parts[ch] / total * 100; });
+      var floors = exact.map(Math.floor);
+      var left = 100 - floors.reduce(function(s,v){ return s + v; }, 0);
+      keys.map(function(ch,i){ return { i:i, rem: exact[i] - floors[i] }; })
+        .sort(function(a,b){ return b.rem - a.rem; })
+        .slice(0, left)
+        .forEach(function(o){ floors[o.i]++; });
+      var out = {};
+      keys.forEach(function(ch,i){ out[ch] = floors[i]; });
+      return out;
     }
     function select(btn){
       demo.querySelectorAll('.ev-sw.sel').forEach(function(s){ s.classList.remove('sel'); s.setAttribute('aria-pressed','false'); });
       btn.classList.add('sel');
       btn.setAttribute('aria-pressed','true');
       var hex = btn.getAttribute('data-hex');
-      var mix = hexToCmyk(hex);
+      var mix = hexToBlend(hex);
       swatchEl.style.background = hex;
       swatchEl.style.boxShadow = '0 8px 22px -8px ' + hex + ', inset 0 1px 0 rgba(255,255,255,.35)';
       hexEl.textContent = hex.toUpperCase();
-      ['c','m','y','k'].forEach(function(ch){
+      ['c','m','y','k','w'].forEach(function(ch){
         bars[ch].style.width = mix[ch] + '%';
         vals[ch].textContent = mix[ch] + '%';
       });

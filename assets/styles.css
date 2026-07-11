@@ -1149,6 +1149,12 @@
   .ev-sw.sel{
     box-shadow:0 0 0 2px var(--bg), 0 0 0 4px #fff;transform:scale(1.1);position:relative;z-index:1;
   }
+  .ev-total{
+    display:flex;justify-content:space-between;margin-top:4px;padding-top:10px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;
+  }
+  .ev-total span{color:var(--text);font-weight:700}
   .ev-result{display:flex;align-items:center;gap:18px}
   .ev-side{display:flex;flex-direction:column;align-items:center;gap:7px;flex-shrink:0}
   .ev-side .ev-swatch{transition:background .3s var(--ease), box-shadow .3s var(--ease)}
