@@ -76,20 +76,76 @@
           <div class="note">Image creation is not AI powered in apps across all versions.</div>
         </div>
       </div>
-      <div class="engine-viz" role="img" aria-label="Diagram of the Color Engine: a sampled image color broken down into cyan, magenta, yellow, black, and optional white filament amounts">
-        <div class="ev-top" aria-hidden="true">
-          <div class="ev-img"><span class="ev-picker"></span></div>
-          <span class="ev-arrow">→</span>
-          <div class="ev-swatch"></div>
+      <div class="engine-viz" id="engineDemo" aria-label="Interactive demo: pick one of 50 colors to see its CMYK mix">
+        <div class="ev-head">
+          <span class="ev-title">Try the color engine</span>
+          <span class="ev-sub">Pick any color to see its CMYK mix.</span>
         </div>
-        <div class="ev-rows" aria-hidden="true">
-          <div class="ev-row"><span class="ev-ch" style="color:var(--cyan)">C</span><span class="ev-track"><i style="width:12%;background:var(--cyan)"></i></span><span class="ev-val">12%</span></div>
-          <div class="ev-row"><span class="ev-ch" style="color:var(--magenta)">M</span><span class="ev-track"><i style="width:56%;background:var(--magenta)"></i></span><span class="ev-val">56%</span></div>
-          <div class="ev-row"><span class="ev-ch" style="color:var(--yellow)">Y</span><span class="ev-track"><i style="width:84%;background:var(--yellow)"></i></span><span class="ev-val">84%</span></div>
-          <div class="ev-row"><span class="ev-ch" style="color:#8a93a3">K</span><span class="ev-track"><i style="width:7%;background:#3a4150"></i></span><span class="ev-val">7%</span></div>
-          <div class="ev-row"><span class="ev-ch" style="color:#e9edf3">W</span><span class="ev-track"><i style="width:18%;background:#e9edf3"></i></span><span class="ev-val ev-opt">18% · optional</span></div>
+        <div class="ev-grid" aria-label="50 sample colors">
+        <button type="button" class="ev-sw" data-hex="#f59999" style="background:#f59999" aria-label="Select color #f59999"></button>
+        <button type="button" class="ev-sw" data-hex="#f5d099" style="background:#f5d099" aria-label="Select color #f5d099"></button>
+        <button type="button" class="ev-sw" data-hex="#e3f599" style="background:#e3f599" aria-label="Select color #e3f599"></button>
+        <button type="button" class="ev-sw" data-hex="#abf599" style="background:#abf599" aria-label="Select color #abf599"></button>
+        <button type="button" class="ev-sw" data-hex="#99f5be" style="background:#99f5be" aria-label="Select color #99f5be"></button>
+        <button type="button" class="ev-sw" data-hex="#99f5f5" style="background:#99f5f5" aria-label="Select color #99f5f5"></button>
+        <button type="button" class="ev-sw" data-hex="#99bef5" style="background:#99bef5" aria-label="Select color #99bef5"></button>
+        <button type="button" class="ev-sw" data-hex="#ab99f5" style="background:#ab99f5" aria-label="Select color #ab99f5"></button>
+        <button type="button" class="ev-sw" data-hex="#e399f5" style="background:#e399f5" aria-label="Select color #e399f5"></button>
+        <button type="button" class="ev-sw" data-hex="#f599d0" style="background:#f599d0" aria-label="Select color #f599d0"></button>
+        <button type="button" class="ev-sw" data-hex="#ee4f4f" style="background:#ee4f4f" aria-label="Select color #ee4f4f"></button>
+        <button type="button" class="ev-sw" data-hex="#eeae4f" style="background:#eeae4f" aria-label="Select color #eeae4f"></button>
+        <button type="button" class="ev-sw" data-hex="#ceee4f" style="background:#ceee4f" aria-label="Select color #ceee4f"></button>
+        <button type="button" class="ev-sw" data-hex="#6eee4f" style="background:#6eee4f" aria-label="Select color #6eee4f"></button>
+        <button type="button" class="ev-sw" data-hex="#4fee8e" style="background:#4fee8e" aria-label="Select color #4fee8e"></button>
+        <button type="button" class="ev-sw" data-hex="#4feeee" style="background:#4feeee" aria-label="Select color #4feeee"></button>
+        <button type="button" class="ev-sw" data-hex="#4f8eee" style="background:#4f8eee" aria-label="Select color #4f8eee"></button>
+        <button type="button" class="ev-sw" data-hex="#6e4fee" style="background:#6e4fee" aria-label="Select color #6e4fee"></button>
+        <button type="button" class="ev-sw" data-hex="#ce4fee" style="background:#ce4fee" aria-label="Select color #ce4fee"></button>
+        <button type="button" class="ev-sw" data-hex="#ee4fae" style="background:#ee4fae" aria-label="Select color #ee4fae"></button>
+        <button type="button" class="ev-sw" data-hex="#e81717" style="background:#e81717" aria-label="Select color #e81717"></button>
+        <button type="button" class="ev-sw" data-hex="#e89417" data-default="1" style="background:#e89417" aria-label="Select color #e89417"></button>
+        <button type="button" class="ev-sw" data-hex="#bee817" style="background:#bee817" aria-label="Select color #bee817"></button>
+        <button type="button" class="ev-sw" data-hex="#41e817" style="background:#41e817" aria-label="Select color #41e817"></button>
+        <button type="button" class="ev-sw" data-hex="#17e86b" style="background:#17e86b" aria-label="Select color #17e86b"></button>
+        <button type="button" class="ev-sw" data-hex="#17e8e8" style="background:#17e8e8" aria-label="Select color #17e8e8"></button>
+        <button type="button" class="ev-sw" data-hex="#176be8" style="background:#176be8" aria-label="Select color #176be8"></button>
+        <button type="button" class="ev-sw" data-hex="#4117e8" style="background:#4117e8" aria-label="Select color #4117e8"></button>
+        <button type="button" class="ev-sw" data-hex="#be17e8" style="background:#be17e8" aria-label="Select color #be17e8"></button>
+        <button type="button" class="ev-sw" data-hex="#e81794" style="background:#e81794" aria-label="Select color #e81794"></button>
+        <button type="button" class="ev-sw" data-hex="#b01111" style="background:#b01111" aria-label="Select color #b01111"></button>
+        <button type="button" class="ev-sw" data-hex="#b07111" style="background:#b07111" aria-label="Select color #b07111"></button>
+        <button type="button" class="ev-sw" data-hex="#91b011" style="background:#91b011" aria-label="Select color #91b011"></button>
+        <button type="button" class="ev-sw" data-hex="#31b011" style="background:#31b011" aria-label="Select color #31b011"></button>
+        <button type="button" class="ev-sw" data-hex="#11b051" style="background:#11b051" aria-label="Select color #11b051"></button>
+        <button type="button" class="ev-sw" data-hex="#11b0b0" style="background:#11b0b0" aria-label="Select color #11b0b0"></button>
+        <button type="button" class="ev-sw" data-hex="#1151b0" style="background:#1151b0" aria-label="Select color #1151b0"></button>
+        <button type="button" class="ev-sw" data-hex="#3111b0" style="background:#3111b0" aria-label="Select color #3111b0"></button>
+        <button type="button" class="ev-sw" data-hex="#9111b0" style="background:#9111b0" aria-label="Select color #9111b0"></button>
+        <button type="button" class="ev-sw" data-hex="#b01171" style="background:#b01171" aria-label="Select color #b01171"></button>
+        <button type="button" class="ev-sw" data-hex="#790c0c" style="background:#790c0c" aria-label="Select color #790c0c"></button>
+        <button type="button" class="ev-sw" data-hex="#794d0c" style="background:#794d0c" aria-label="Select color #794d0c"></button>
+        <button type="button" class="ev-sw" data-hex="#63790c" style="background:#63790c" aria-label="Select color #63790c"></button>
+        <button type="button" class="ev-sw" data-hex="#22790c" style="background:#22790c" aria-label="Select color #22790c"></button>
+        <button type="button" class="ev-sw" data-hex="#0c7937" style="background:#0c7937" aria-label="Select color #0c7937"></button>
+        <button type="button" class="ev-sw" data-hex="#0c7979" style="background:#0c7979" aria-label="Select color #0c7979"></button>
+        <button type="button" class="ev-sw" data-hex="#0c3779" style="background:#0c3779" aria-label="Select color #0c3779"></button>
+        <button type="button" class="ev-sw" data-hex="#220c79" style="background:#220c79" aria-label="Select color #220c79"></button>
+        <button type="button" class="ev-sw" data-hex="#630c79" style="background:#630c79" aria-label="Select color #630c79"></button>
+        <button type="button" class="ev-sw" data-hex="#790c4d" style="background:#790c4d" aria-label="Select color #790c4d"></button>
         </div>
-        <div class="ev-lbl">Image color → filament plan <span class="ev-note">(illustrative values)</span></div>
+        <div class="ev-result">
+          <div class="ev-side">
+            <div class="ev-swatch" id="evSwatch"></div>
+            <span class="ev-hex" id="evHex">#000000</span>
+          </div>
+          <div class="ev-rows">
+            <div class="ev-row"><span class="ev-ch" style="color:var(--cyan)">C</span><span class="ev-track"><i id="evBarC" style="background:var(--cyan)"></i></span><span class="ev-val" id="evValC">0%</span></div>
+            <div class="ev-row"><span class="ev-ch" style="color:var(--magenta)">M</span><span class="ev-track"><i id="evBarM" style="background:var(--magenta)"></i></span><span class="ev-val" id="evValM">0%</span></div>
+            <div class="ev-row"><span class="ev-ch" style="color:var(--yellow)">Y</span><span class="ev-track"><i id="evBarY" style="background:var(--yellow)"></i></span><span class="ev-val" id="evValY">0%</span></div>
+            <div class="ev-row"><span class="ev-ch" style="color:#8a93a3">K</span><span class="ev-track"><i id="evBarK" style="background:#3a4150"></i></span><span class="ev-val" id="evValK">0%</span></div>
+          </div>
+        </div>
+        <div class="ev-lbl">Standard CMYK conversion for illustration — CMYKForge plans real materials from your filament profiles.</div>
       </div>
     </div>
   </div>
