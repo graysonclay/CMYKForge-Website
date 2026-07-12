@@ -1240,3 +1240,66 @@
   }
   .ex-dl .arr{font-size:26px;font-weight:700;color:var(--text);line-height:1}
   .ex-dl .dlbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  /* =====================================================================
+     Brevo newsletter form — scoped to the #beta section only.
+     Visual skin over the official embed; no Brevo structure, names,
+     ids, or behavior are altered by these rules.
+  ===================================================================== */
+  #beta .sib-form{padding:0;margin-top:40px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  #beta .sib-form-container{max-width:540px;margin:0 auto}
+  #beta #sib-container{
+    width:100%;padding:30px 28px;margin:0 auto;
+    background:linear-gradient(180deg, rgba(26,30,41,.66), rgba(13,16,24,.72)) !important;
+    border:1px solid rgba(255,255,255,.12) !important;
+    border-radius:var(--radius) !important;
+    -webkit-backdrop-filter:blur(16px) saturate(1.12);
+    backdrop-filter:blur(16px) saturate(1.12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 30px 64px -30px rgba(0,0,0,.8);
+  }
+  #beta .sib-form-block p{margin:0}
+  #beta .sib-form-block, #beta .entry__label, #beta .entry__specification,
+  #beta .sib-form-message-panel, #beta .sib-form-block__button{font-family:inherit !important}
+  #beta #sib-container .input{
+    width:100%;max-width:100%;
+    background:rgba(255,255,255,.05) !important;
+    border:1px solid rgba(255,255,255,.16) !important;
+    border-radius:12px !important;
+    color:var(--text) !important;
+    padding:13px 16px !important;
+    font-size:15px !important;
+    font-family:inherit !important;
+    box-shadow:none !important;
+  }
+  #beta #sib-container .input:focus{
+    outline:none !important;
+    border-color:var(--cyan) !important;
+    background:rgba(37,182,230,.07) !important;
+  }
+  #beta #sib-container input::placeholder{color:var(--soft) !important;font-family:inherit !important}
+  #beta .entry__label{margin-bottom:8px}
+  #beta .entry__specification{margin-top:10px;line-height:1.55}
+  #beta .entry__error{margin-top:8px;padding:0}
+  #beta .entry__error:not(:empty){padding:10px 14px;border-width:1px;border-style:solid}
+  #beta .sib-form-block__button{
+    width:100%;justify-content:center;
+    background:linear-gradient(100deg, var(--cyan), var(--magenta)) !important;
+    border-radius:12px !important;
+    padding:14px 24px !important;
+    letter-spacing:.02em;
+    cursor:pointer;
+    box-shadow:0 8px 30px rgba(37,182,230,.25);
+    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  #beta .sib-form-block__button:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(232,71,158,.35)}
+  #beta .sib-form-message-panel{margin:0 auto 16px;padding:12px 16px;border-width:1px;border-style:solid;font-family:inherit !important}
+  #beta .sib-form-message-panel__text{align-items:center}
+  /* Graceful degradation if Brevo's CDN stylesheet is slow/blocked:
+     size the loader icon, keep the honeypot hidden, collapse the empty
+     error label. All three mirror sib-styles.css defaults. */
+  #beta .sib-form-block__button svg.icon{width:1em;height:1em;fill:currentColor;vertical-align:-2px;margin-right:8px}
+  #beta .input--hidden{display:none}
+  #beta .entry__error:empty{display:none}
+  @media(max-width:680px){
+    #beta #sib-container{padding:24px 18px}
+  }
