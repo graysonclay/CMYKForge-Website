@@ -1277,6 +1277,18 @@
     background:rgba(37,182,230,.07) !important;
   }
   #beta #sib-container input::placeholder{color:var(--soft) !important;font-family:inherit !important}
+  /* Brevo's sib-styles.css paints the field wrapper solid white; strip it so the
+     dark input (and its light text) stay readable on the glass panel. */
+  #beta #sib-container .entry__field{
+    background:transparent !important;
+    border:0 !important;
+    border-radius:12px !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+    margin:0 !important;
+    display:block !important;
+  }
+  #beta #sib-container .entry__field:focus-within{box-shadow:none !important}
   #beta .entry__label{margin-bottom:8px}
   #beta .entry__specification{margin-top:10px;line-height:1.55}
   #beta .entry__error{margin-top:8px;padding:0}
