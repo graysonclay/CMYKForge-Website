@@ -1139,6 +1139,7 @@
   .ev-head{display:flex;flex-direction:column;gap:3px}
   .ev-title{font-weight:700;font-size:16px;color:var(--text)}
   .ev-sub{font-size:13px;color:var(--muted)}
+  .ev-disclaimer{margin-top:6px;font-size:12px;line-height:1.5;color:var(--soft);border-left:2px solid var(--yellow);padding-left:9px}
   .ev-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
   .ev-sw{
     aspect-ratio:1/1;border-radius:7px;border:1px solid rgba(255,255,255,.14);

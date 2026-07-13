@@ -59,22 +59,8 @@
     showcase.pause();
   }
 
-  // Beta form — harmless placeholder interaction (no backend)
-  var betaForm = document.getElementById('betaForm');
-  var betaMsg = document.getElementById('betaMsg');
-  if (betaForm && betaMsg) betaForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    var email = document.getElementById('betaEmail').value.trim();
-    if (!email || email.indexOf('@') === -1){
-      betaMsg.style.color = 'var(--magenta)';
-      betaMsg.textContent = 'Please enter a valid email address.';
-      return;
-    }
-    betaMsg.style.color = 'var(--cyan)';
-    betaMsg.textContent = 'Thanks — beta update signup placeholder received.';
-    console.log('Beta signup placeholder:', email);
-    betaForm.reset();
-  });
+  // (The old placeholder beta form was replaced by the live Brevo embed on
+  //  standard.html#beta. No local form handler or email logging remains.)
 
   // ===== Scroll progress bar =====
   var progress = document.getElementById('scrollProgress');
@@ -174,32 +160,55 @@
   window.addEventListener('resize', queueDrive);
   driveScroll();
 
-  // ===== "Still in the works" notice for not-yet-published sections =====
+  // ===== "Planned for a future release" notice for unannounced products =====
   (function(){
     var modal = document.getElementById('wipModal');
     if (!modal) return;
     var tagEl = document.getElementById('wipTag');
     var titleEl = document.getElementById('wipTitle');
     var textEl = document.getElementById('wipText');
-    function openModal(section){
-      tagEl.textContent = (section ? section + ' — ' : '') + 'coming soon';
-      titleEl.textContent = (section ? section : 'This section') + ' is still in the works';
-      textEl.textContent = "We're still building this part of CMYKForge. The home page is live — the rest is on the way. Check back soon.";
+    var closeBtn = document.getElementById('wipClose');
+    var lastFocused = null;
+    function focusable(){
+      return Array.prototype.slice.call(
+        modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+      ).filter(function(el){ return el.offsetParent !== null; });
+    }
+    function openModal(name){
+      var label = name || 'This section';
+      tagEl.textContent = (name ? name + ' — ' : '') + 'planned';
+      titleEl.textContent = label + ' is planned for a future release';
+      textEl.textContent = label + " is planned for a future release. Detailed features, pricing, and availability have not been announced yet.";
+      lastFocused = document.activeElement;
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
-      requestAnimationFrame(function(){ modal.classList.add('open'); });
+      requestAnimationFrame(function(){
+        modal.classList.add('open');
+        if (closeBtn) closeBtn.focus();   // move keyboard focus into the modal
+      });
     }
     function closeModal(){
       modal.classList.remove('open');
       document.body.style.overflow = '';
       setTimeout(function(){ modal.hidden = true; }, 260);
+      if (lastFocused && lastFocused.focus) lastFocused.focus();  // return focus
     }
     document.addEventListener('click', function(e){
       var trigger = e.target.closest('[data-wip]');
       if (trigger){ e.preventDefault(); openModal(trigger.getAttribute('data-wip')); return; }
       if (e.target === modal || e.target.id === 'wipClose'){ closeModal(); }
     });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+    document.addEventListener('keydown', function(e){
+      if (modal.hidden) return;
+      if (e.key === 'Escape'){ closeModal(); return; }
+      if (e.key === 'Tab'){                 // trap Tab / Shift+Tab inside the modal
+        var f = focusable();
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    });
   })();
 
   // ===== Interactive color-engine demo: pick a color, see its CMYK mix =====

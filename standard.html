@@ -124,8 +124,9 @@
       </div>
       <div class="engine-viz" id="engineDemo" aria-label="Interactive demo: pick one of 50 colors to see its CMYK mix">
         <div class="ev-head">
-          <span class="ev-title">Try the color engine</span>
+          <span class="ev-title">Explore CMYK Color Separation</span>
           <span class="ev-sub">Pick any color to see its CMYK mix.</span>
+          <span class="ev-disclaimer">Illustrative color breakdown — not a prediction of final printed color.</span>
         </div>
         <div class="ev-grid" aria-label="50 sample colors">
         <button type="button" class="ev-sw" data-hex="#f59999" style="background:#f59999" aria-label="Select color #f59999"></button>
@@ -634,14 +635,14 @@
 
 <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
-<div class="wip-overlay" id="wipModal" role="dialog" aria-modal="true" aria-labelledby="wipTitle" hidden>
+<div class="wip-overlay" id="wipModal" role="dialog" aria-modal="true" aria-labelledby="wipTitle" aria-describedby="wipText" hidden>
   <div class="wip-modal">
     <div class="wip-icon" aria-hidden="true"></div>
     <span class="pill pill-soon" id="wipTag">Coming soon</span>
-    <h3 id="wipTitle">This section is still in the works</h3>
-    <p id="wipText">We're still building this part of CMYKForge. The home page is live — the rest is on the way.</p>
+    <h3 id="wipTitle">This section is planned for a future release</h3>
+    <p id="wipText">Detailed features, pricing, and availability have not been announced yet.</p>
     <div class="wip-actions">
-      <button class="btn btn-primary" id="wipClose" type="button">Back to home</button>
+      <button class="btn btn-primary" id="wipClose" type="button">Close</button>
       <a class="btn btn-ghost" href="mailto:admin@cmykforge.com">Contact us</a>
     </div>
   </div>
