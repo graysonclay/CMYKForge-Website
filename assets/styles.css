@@ -1151,6 +1151,8 @@
   .progress-card figcaption span{font-size:13px;line-height:1.55;color:var(--muted)}
   .progress-mini{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media (max-width:720px){ .progress-mini{grid-template-columns:1fr} }
+  .creator-photo{margin:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--panel2);max-width:340px}
+  .creator-photo img{display:block;width:100%;height:auto}
   .ev-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
   .ev-sw{
     aspect-ratio:1/1;border-radius:7px;border:1px solid rgba(255,255,255,.14);
