@@ -62,20 +62,21 @@
   // (The old placeholder beta form was replaced by the live Brevo embed on
   //  standard.html#beta. No local form handler or email logging remains.)
 
-  // ===== Scroll progress bar =====
+  // ===== Scroll progress bar (only if present on this page) =====
   var progress = document.getElementById('scrollProgress');
   function onScrollProgress(){
+    if (!progress) return;
     var h = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
   }
 
-  // ===== Back to top =====
+  // ===== Back to top (only if present on this page) =====
   var toTop = document.getElementById('toTop');
-  toTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+  if (toTop) toTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
 
   window.addEventListener('scroll', function(){
     onScrollProgress();
-    if (window.scrollY > 640) toTop.classList.add('show'); else toTop.classList.remove('show');
+    if (toTop){ if (window.scrollY > 640) toTop.classList.add('show'); else toTop.classList.remove('show'); }
   });
   onScrollProgress();
 
