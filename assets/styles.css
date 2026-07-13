@@ -684,6 +684,25 @@
             mask:radial-gradient(circle at center,transparent 42%,#000 44%);
   }
   .card-media.ph .lbl{letter-spacing:.14em;text-transform:uppercase}
+  /* Restrained product-identity panel for future editions (no fake screenshots) */
+  .card-media.ident{
+    display:flex;align-items:center;justify-content:center;
+    background:
+      repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 10px,transparent 10px 20px),
+      linear-gradient(180deg,var(--panel2),#0c0f16);
+  }
+  .card-media.ident .ident-dots{display:flex;gap:12px}
+  .card-media.ident .ident-dots .chdot{width:16px;height:16px;opacity:.85}
+
+  /* Shop hierarchy: one prominent Standard card, lower-key future editions */
+  .products-primary{grid-template-columns:1fr;max-width:640px}
+  .future-editions{margin-top:60px}
+  .future-title{font-size:22px;margin:0 0 6px}
+  .products-future{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
+  .products-future .product{padding:18px}
+  .products-future .product h3{font-size:16px}
+  .products-future .card-media.ident{aspect-ratio:16/7;margin-bottom:14px}
+  .products-future .product .desc{font-size:13px}
 
   /* Shared copy styles for single-statement pinned sections */
   .pin-title{font-size:clamp(30px,4.4vw,52px);margin-bottom:16px;text-wrap:balance}
