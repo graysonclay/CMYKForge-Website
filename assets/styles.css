@@ -1348,3 +1348,52 @@
   @media(max-width:680px){
     #beta #sib-container{padding:24px 18px}
   }
+
+  /* =====================================================================
+     Glass intensity tiers + purposeful accents (restraint pass)
+     Later-in-file overrides only. Reduces the amount of strong blur/glow so
+     the important surfaces stand out. Three levels:
+       L1 strong  — nav, hero visual, featured product, color demo, final CTA
+       L2 light   — general cards, systems, workflow steps, social cards
+       L3 solid   — FAQ, notes, requirement cards, compatibility, mini-cards
+  ===================================================================== */
+
+  /* L2 — light glass: reduce blur (~10px) and use more opaque surfaces */
+  .card, .product, .sysrow, .pstep, .fstep, .folder, .wstep, .social-button{
+    -webkit-backdrop-filter:blur(10px) saturate(1.08);
+    backdrop-filter:blur(10px) saturate(1.08);
+    background:linear-gradient(180deg, rgba(24,28,38,.86), rgba(14,17,24,.9));
+    border-color:rgba(255,255,255,.10);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 16px 36px -26px rgba(0,0,0,.7);
+  }
+
+  /* L3 — solid charcoal, little/no blur, for smaller/technical surfaces */
+  .faq-item, .note,
+  #requirements .card, #included .card,
+  .matrix-wrap{
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+    background:#13161e;
+    border-color:rgba(255,255,255,.08);
+    box-shadow:none;
+  }
+  .note{background:#141822}
+
+  /* L1 — keep the strongest optical glass on the signature surfaces */
+  .product.featured, .finalcta, .shop-feature, .engine-viz, #beta #sib-container{
+    -webkit-backdrop-filter:blur(16px) saturate(1.15);
+    backdrop-filter:blur(16px) saturate(1.15);
+  }
+  .product.featured{
+    background:linear-gradient(180deg, rgba(30,35,48,.6), rgba(13,16,24,.64));
+    border-color:rgba(37,182,230,.4);
+  }
+
+  /* P4 — stop rotating hover accent colour by card position; keep it restrained.
+     Purposeful CMYK accents remain on the .accent / .accent-top role markers. */
+  .grid > .card:hover,
+  .grid > .card:nth-child(3n+2):hover,
+  .grid > .card:nth-child(3n):hover{
+    border-color:rgba(255,255,255,.18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 22px 46px -26px rgba(0,0,0,.75);
+  }
