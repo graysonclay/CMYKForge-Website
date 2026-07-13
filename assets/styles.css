@@ -1140,6 +1140,17 @@
   .ev-title{font-weight:700;font-size:16px;color:var(--text)}
   .ev-sub{font-size:13px;color:var(--muted)}
   .ev-disclaimer{margin-top:6px;font-size:12px;line-height:1.5;color:var(--soft);border-left:2px solid var(--yellow);padding-left:9px}
+
+  /* Real CMYKForge Progress — reserved real-media frames (hidden until real assets exist) */
+  .progress-grid{margin-top:40px}
+  .progress-card{margin:0;background:var(--panel2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .progress-media{aspect-ratio:4/3;background:#0e1118;display:block}
+  .progress-media img{display:block;width:100%;height:100%;object-fit:cover}
+  .progress-card figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:5px}
+  .progress-card figcaption strong{font-size:15px;color:var(--text)}
+  .progress-card figcaption span{font-size:13px;line-height:1.55;color:var(--muted)}
+  .progress-mini{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media (max-width:720px){ .progress-mini{grid-template-columns:1fr} }
   .ev-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
   .ev-sw{
     aspect-ratio:1/1;border-radius:7px;border:1px solid rgba(255,255,255,.14);
