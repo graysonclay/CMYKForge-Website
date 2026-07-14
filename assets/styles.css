@@ -1332,6 +1332,14 @@
   #beta .entry__label{display:block;width:100%}
   #beta #sib-container input{text-align:center}
   #beta #sib-container input::placeholder{text-align:center}
+  /* Belt-and-suspenders: keep the whole newsletter panel horizontally centered */
+  #beta .sib-form{display:block;text-align:center}
+  #beta .sib-form-container,
+  #beta #sib-container{margin-left:auto !important;margin-right:auto !important}
+  /* Homepage newsletter band */
+  .newsletter-section{padding-top:0}
+  .newsletter-band{text-align:center}
+  .newsletter-band .section-tag{margin:0 auto 14px}
   #beta .entry__specification{margin-top:10px;line-height:1.55}
   #beta .entry__error{margin-top:8px;padding:0}
   #beta .entry__error:not(:empty){padding:10px 14px;border-width:1px;border-style:solid}

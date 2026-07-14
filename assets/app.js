@@ -179,7 +179,7 @@
       var label = name || 'This section';
       tagEl.textContent = (name ? name + ' — ' : '') + 'planned';
       titleEl.textContent = label + ' is planned for a future release';
-      textEl.textContent = label + " is planned for a future release. Detailed features, pricing, and availability have not been announced yet.";
+      textEl.textContent = label + " is planned for a future release. Detailed features, pricing, and availability have not been announced yet. Join the newsletter to hear when it's ready.";
       lastFocused = document.activeElement;
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
