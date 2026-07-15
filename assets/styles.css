@@ -1448,3 +1448,14 @@
   .partner-card figcaption{display:flex;flex-direction:column;gap:5px}
   .partner-card figcaption strong{font-size:15px;color:var(--text)}
   .partner-card figcaption span{font-size:13px;color:var(--muted);line-height:1.5}
+
+  /* ===== Cursor-reactive hero spotlight (subtle; JS toggles .spotlight) ===== */
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(560px circle at var(--mx,50%) var(--my,30%),
+      rgba(37,182,230,.10), rgba(232,71,158,.05) 40%, transparent 62%);
+    opacity:0;transition:opacity .35s var(--ease);
+  }
+  .hero.spotlight::after{opacity:1}
+  .hero .wrap{position:relative;z-index:1}
+  @media (prefers-reduced-motion: reduce){ .hero::after{display:none} }

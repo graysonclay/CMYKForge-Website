@@ -114,6 +114,21 @@
     revealEls.forEach(function(el){ revealIO.observe(el); });
   }
 
+  // ===== Cursor-reactive hero spotlight (pointer devices only, motion-safe) =====
+  (function(){
+    var hero = document.querySelector('.hero');
+    if (!hero) return;
+    if (window.matchMedia && (window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        || !window.matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      hero.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      hero.classList.add('spotlight');
+    });
+    hero.addEventListener('pointerleave', function(){ hero.classList.remove('spotlight'); });
+  })();
+
   // ===== Scroll-driven pinned visuals + hero parallax (Apple-style) =====
   var heroVisual = document.querySelector('.hero-visual');
   var pinnedSections = Array.prototype.slice.call(document.querySelectorAll('.pinned'));
