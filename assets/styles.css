@@ -1439,3 +1439,12 @@
   #release-roadmap .timeline{grid-template-columns:repeat(4,1fr)}
   @media(max-width:860px){ #release-roadmap .timeline{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:560px){ #release-roadmap .timeline{grid-template-columns:1fr} }
+
+  /* ===== Worked With / Featured Creators (reserved, hidden until real) ===== */
+  .partner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin-top:40px}
+  .partner-card{margin:0;background:#13161e;border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center}
+  .partner-logo{width:88px;height:88px;margin:0 auto 14px;border-radius:16px;overflow:hidden;background:#0e1118;display:flex;align-items:center;justify-content:center}
+  .partner-logo img{width:100%;height:100%;object-fit:contain}
+  .partner-card figcaption{display:flex;flex-direction:column;gap:5px}
+  .partner-card figcaption strong{font-size:15px;color:var(--text)}
+  .partner-card figcaption span{font-size:13px;color:var(--muted);line-height:1.5}
