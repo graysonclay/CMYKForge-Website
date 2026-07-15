@@ -1163,8 +1163,8 @@
   /* Real CMYKForge Progress — reserved real-media frames (hidden until real assets exist) */
   .progress-grid{margin-top:40px}
   .progress-card{margin:0;background:var(--panel2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-  .progress-media{aspect-ratio:4/3;background:#0e1118;display:block}
-  .progress-media img{display:block;width:100%;height:100%;object-fit:cover}
+  .progress-media{aspect-ratio:1/1;background:#fff;display:block}
+  .progress-media img{display:block;width:100%;height:100%;object-fit:contain}
   .progress-card figcaption{padding:16px 18px;display:flex;flex-direction:column;gap:5px}
   .progress-card figcaption strong{font-size:15px;color:var(--text)}
   .progress-card figcaption span{font-size:13px;line-height:1.55;color:var(--muted)}
@@ -1471,7 +1471,7 @@
   .progress-media{position:relative}
   .progress-media .sim-badge{position:absolute;top:10px;left:10px;z-index:2;
     font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
-    padding:4px 9px;border-radius:999px;color:var(--yellow);
-    background:rgba(246,201,69,.14);border:1px solid rgba(246,201,69,.5);
+    padding:5px 10px;border-radius:999px;color:#f6c945;
+    background:rgba(15,17,23,.82);border:1px solid rgba(246,201,69,.7);
     -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
   .progress-card .step-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:700}
