@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CMYKForge Dev Log — development progress updates for the local-first color FDM printing workflow.">
+<link rel="canonical" href="https://cmykforge.org/devlog.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CMYKForge">
+<meta property="og:title" content="Dev Log — CMYKForge">
+<meta property="og:description" content="Development progress updates for CMYKForge, the local-first color FDM printing workflow.">
+<meta property="og:url" content="https://cmykforge.org/devlog.html">
+<meta property="og:image" content="https://cmykforge.org/assets/images/cmykforge-logo.png">
+<meta property="og:image:width" content="256">
+<meta property="og:image:height" content="256">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dev Log — CMYKForge">
+<meta name="twitter:description" content="Development progress updates for CMYKForge.">
+<meta name="twitter:image" content="https://cmykforge.org/assets/images/cmykforge-logo.png">
+<title>Dev Log — CMYKForge</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="CMYKForge home">
+      <span class="brand-logo" role="img" aria-label="CMYKForge logo"></span>
+      <span class="brand-word">CMYKForge</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Us</a>
+      <a href="devlog.html" class="active" aria-current="page">Dev Log</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+<section id="devlog">
+  <div class="wrap">
+    <span class="section-tag">Dev Log</span>
+    <h2>Development Progress</h2>
+    <p class="lead">Real updates on how CMYKForge is coming together. New entries are added as the work happens — subscribe to the <a href="standard.html#newsletter">newsletter</a> to get them by email.</p>
+
+    <!-- ============================================================
+         HOW TO ADD AN ENTRY (newest first):
+           Copy one <li class="dlog-entry"> block below, put it at the TOP
+           of the <ol>, and set:
+             - <time datetime="YYYY-MM-DD">  (machine date)
+             - the visible date label
+             - the <span class="dlog-tag ..."> status (progress | milestone | note)
+             - a short heading and one or two honest sentences.
+         Keep it truthful — only log things that actually happened.
+    ============================================================ -->
+    <ol class="dlog" reversed>
+      <li class="dlog-entry">
+        <div class="dlog-when"><time datetime="2026-07">Jul 2026</time></div>
+        <div class="dlog-body">
+          <span class="dlog-tag milestone">Milestone</span>
+          <h3>Newsletter is live</h3>
+          <p>The CMYKForge newsletter is open. You can now subscribe to follow development, beta information, print tests, and feature announcements — with double opt-in confirmation.</p>
+        </div>
+      </li>
+      <li class="dlog-entry">
+        <div class="dlog-when"><time datetime="2026-07">Jul 2026</time></div>
+        <div class="dlog-body">
+          <span class="dlog-tag progress">Progress</span>
+          <h3>Website live at cmykforge.org</h3>
+          <p>The CMYKForge site is online — home, the Standard product page, shop, and about — with the interactive CMYK color-separation demo and the workflow walkthroughs.</p>
+        </div>
+      </li>
+      <li class="dlog-entry">
+        <div class="dlog-when"><time datetime="2026-07">Ongoing</time></div>
+        <div class="dlog-body">
+          <span class="dlog-tag note">In progress</span>
+          <h3>CMYKForge Standard in active beta development</h3>
+          <p>Work continues on the local-first workflow: image analysis, CMYK / CMYKW material planning, model generation, preview, printability checks, and slicer-compatible export. Tested with real printers, slicers, filaments, and prints.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="finalcta newsletter-band" style="margin-top:48px">
+      <div class="cmyk-bar" aria-hidden="true"></div>
+      <h2>Follow the progress</h2>
+      <p class="lead center">Get new dev log entries and beta news by email.</p>
+      <div class="btns" style="justify-content:center">
+        <a href="standard.html#newsletter" class="btn btn-primary">Join the Newsletter</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand" style="font-size:22px"><span class="brand-logo lg" role="img" aria-label="CMYKForge logo"></span><span class="brand-word">CMYKForge</span></div>
+        <p class="foot-desc">Full-spectrum color software for multi-material FDM image reproduction.</p>
+        <p class="foot-slogan">Print what you see. More colors than filament.</p>
+        <div class="footer-social">
+          <a href="#" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About Us</a>
+        <a href="standard.html">CMYKForge Standard</a>
+        <a href="devlog.html">Dev Log</a>
+        <a href="standard.html#newsletter">Join the Newsletter</a>
+        <a href="mailto:admin@cmykforge.org">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="beta-terms.html">Beta Terms</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:admin@cmykforge.org">admin@cmykforge.org</a>
+        <p class="foot-desc" style="margin-top:10px">For beta interest and general questions.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CMYKForge. All rights reserved.</span>
+      <span class="disc">CMYKForge is in development. Features, workflows, and availability may change before release.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<script src="assets/app.js"></script>
+</body>
+</html>
