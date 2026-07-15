@@ -1459,3 +1459,19 @@
   .hero.spotlight::after{opacity:1}
   .hero .wrap{position:relative;z-index:1}
   @media (prefers-reduced-motion: reduce){ .hero::after{display:none} }
+
+  /* Planned-edition cards are buttons (not fake #-links); normalize button chrome */
+  button.product{-webkit-appearance:none;appearance:none;font:inherit;color:inherit;
+    text-align:left;width:100%;cursor:pointer;display:flex;flex-direction:column}
+
+  /* Header primary CTA (compact) */
+  .nav-links .nav-cta{padding:9px 16px;font-size:14px;line-height:1;margin-left:8px}
+
+  /* Evidence sequence: simulated badge + step tag */
+  .progress-media{position:relative}
+  .progress-media .sim-badge{position:absolute;top:10px;left:10px;z-index:2;
+    font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    padding:4px 9px;border-radius:999px;color:var(--yellow);
+    background:rgba(246,201,69,.14);border:1px solid rgba(246,201,69,.5);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .progress-card .step-tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:700}

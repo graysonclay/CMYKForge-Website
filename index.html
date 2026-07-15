@@ -40,6 +40,7 @@
       <a href="index.html" class="active" aria-current="page">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About Us</a>
+      <a class="btn btn-primary nav-cta" href="standard.html#newsletter">Get Beta Updates</a>
     </nav>
     <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -51,13 +52,13 @@
 <section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="badge"><span class="pulse" aria-hidden="true"></span>Limited Standard beta planned</span>
+      <span class="badge"><span class="pulse" aria-hidden="true"></span>CMYKForge Standard — in development</span>
       <div class="eyebrow">CMYKForge</div>
       <h1>Print What<br>You See.</h1>
       <p class="slogan"><span class="grad">More colors than filament.</span></p>
       <p class="body">CMYKForge makes full-spectrum color FDM printing more predictable, more visual, and easier to understand. Start with an image, prepare a CMYK-based material strategy, preview the result, and generate files for multi-material printing workflows.</p>
       <div class="hero-btns">
-        <a href="shop.html" class="btn btn-primary">Shop CMYKForge</a>
+        <a href="standard.html#newsletter" class="btn btn-primary">Get Beta Updates</a>
         <a href="standard.html" class="btn btn-ghost">View Standard</a>
         <a href="#what" class="watch-link" id="watchPreview">
           <span class="play" aria-hidden="true"></span>
@@ -100,38 +101,39 @@
 ============================================================ -->
 <section id="real-progress" class="progress-section" hidden aria-label="Real CMYKForge progress">
   <div class="wrap">
-    <span class="section-tag">Real progress</span>
-    <h2>Real CMYKForge Progress</h2>
-    <p class="lead">CMYKForge is being tested through real software builds, slicer workflows, and physical multi-material prints. These examples will be updated as the beta develops.</p>
+    <span class="section-tag">Evidence</span>
+    <h2>From Image to Real Print</h2>
+    <p class="lead">The same project shown three ways: the original image, the CMYKForge color preview, and a real physical print. The preview is a simulation — not a photograph — and printed results depend on calibration and filament behavior.</p>
     <div class="grid g3 progress-grid">
       <figure class="progress-card">
         <div class="progress-media">
-          <img src="assets/images/real-progress/app-build.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="Screenshot of the current CMYKForge development build">
+          <img src="assets/images/real-progress/original-image.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="Original source image used as input to CMYKForge">
         </div>
         <figcaption>
-          <strong>Current App Build</strong>
-          <!-- CAPTION TEMPLATE — review before publishing -->
-          <span>A real screenshot from the current CMYKForge development build.</span>
+          <span class="step-tag">1 · Original</span>
+          <strong>Original Image</strong>
+          <span>The source photo or artwork you start from.</span>
         </figcaption>
       </figure>
       <figure class="progress-card">
         <div class="progress-media">
-          <img src="assets/images/real-progress/slicer-result.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="A CMYKForge-generated model opened in a multi-material slicer">
+          <span class="sim-badge">Simulated</span>
+          <img src="assets/images/real-progress/cmykforge-preview.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="CMYKForge simulated color preview of the expected print">
         </div>
         <figcaption>
-          <strong>Slicer Result</strong>
-          <!-- CAPTION TEMPLATE — review before publishing -->
-          <span>A CMYKForge-generated model opened in a multi-material slicing workflow.</span>
+          <span class="step-tag">2 · Preview</span>
+          <strong>CMYKForge Preview</strong>
+          <span>A simulated preview of the expected print — not a photograph of a real print.</span>
         </figcaption>
       </figure>
       <figure class="progress-card">
         <div class="progress-media">
-          <img src="assets/images/real-progress/physical-print.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="A real physical print produced from a CMYKForge-generated project">
+          <img src="assets/images/real-progress/physical-print.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="A real physical print produced from the CMYKForge project">
         </div>
         <figcaption>
+          <span class="step-tag">3 · Printed</span>
           <strong>Physical Print</strong>
-          <!-- CAPTION TEMPLATE — review before publishing -->
-          <span>A real physical print produced from a CMYKForge-generated project.</span>
+          <span>A real physical print of the same project. Result depends on calibration and filament.</span>
         </figcaption>
       </figure>
     </div>
@@ -315,7 +317,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5"><span>Is CMYKForge still in development?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Yes. CMYKForge is in active beta development, and features, workflows, export behavior, and availability may change as the software improves. Join the beta list to follow progress.</p></div>
+        <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Yes. CMYKForge is in active development, and features, workflows, export behavior, and availability may change as the software improves. Join the beta list to follow progress.</p></div>
       </div>
     </div>
   </div>
@@ -382,8 +384,8 @@
       <h2>Start with the Core CMYKForge Workflow</h2>
       <p class="lead center">CMYKForge Standard is the base version of CMYKForge for creators who want a local-first, non-AI workflow for preparing image-based color 3D prints.</p>
       <div class="btns">
-        <a href="standard.html" class="btn btn-primary">View Standard</a>
-        <a href="standard.html#newsletter" class="btn btn-ghost">Join the Newsletter</a>
+        <a href="standard.html#newsletter" class="btn btn-primary">Get Beta Updates</a>
+        <a href="standard.html" class="btn btn-ghost">View Standard</a>
       </div>
     </div>
   </div>
@@ -398,7 +400,7 @@
       <h2>Join the CMYKForge Newsletter</h2>
       <p class="lead center">Get development progress, beta information, print tests, and feature announcements — one place to follow CMYKForge as it develops.</p>
       <div class="btns" style="justify-content:center">
-        <a href="standard.html#newsletter" class="btn btn-primary">Join the Newsletter</a>
+        <a href="standard.html#newsletter" class="btn btn-primary">Get Beta Updates</a>
       </div>
     </div>
   </div>
@@ -424,7 +426,7 @@
         <a href="standard.html">CMYKForge Standard</a>
         <a href="devlog.html">Dev Log</a>
         <a href="about.html#roadmap">AI Roadmap</a>
-        <a href="standard.html#newsletter">Join the Newsletter</a>
+        <a href="standard.html#newsletter">Get Beta Updates</a>
         <a href="mailto:admin@cmykforge.org">Contact</a>
       </div>
       <div class="foot-col">
@@ -455,7 +457,7 @@
     <h3 id="wipTitle">This section is planned for a future release</h3>
     <p id="wipText">Detailed features, pricing, and availability have not been announced yet.</p>
     <div class="wip-actions">
-      <a class="btn btn-primary" href="standard.html#newsletter">Join the Newsletter</a>
+      <a class="btn btn-primary" href="standard.html#newsletter">Get Beta Updates</a>
       <button class="btn btn-ghost" id="wipClose" type="button">Close</button>
     </div>
   </div>
