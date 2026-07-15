@@ -11,9 +11,9 @@ section (hidden on the live site until real assets exist).
 
 | Filename              | Shown as         | Where it appears                                   |
 |-----------------------|------------------|----------------------------------------------------|
-| `original-image.webp` | Original Image    | `index.html` + `standard.html` evidence block (step 1) |
-| `cmykforge-preview.webp` | CMYKForge Preview (SIMULATED) | evidence block (step 2) — labelled "Simulated" |
-| `physical-print.webp` | Physical Print    | `index.html` + `standard.html` evidence block (step 3) |
+| `original-image.png` | Original Image    | `index.html` + `standard.html` evidence block (step 1) |
+| `cmykforge-preview.png` | CMYKForge Preview (SIMULATED) | evidence block (step 2) — labelled "Simulated" |
+| `physical-print.jpg` | Physical Print    | `index.html` + `standard.html` evidence block (step 3) |
 | `creator-photo.webp`  | Creator photo     | `about.html` → "About the Creator" (hidden until added) |
 
 ## Recommended specs
