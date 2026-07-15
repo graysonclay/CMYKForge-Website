@@ -85,21 +85,13 @@
   </div>
 </section>
 
-<!-- ================= REAL CMYKFORGE PROGRESS =================
-     Reserved for GENUINE evidence only: a real app screenshot, a real slicer
-     result, and a real physical print. It stays hidden from the public site
-     until those files exist.
-
-     TO ENABLE:
-       1. Add real images to assets/images/real-progress/
-          (app-build.webp, slicer-result.webp, physical-print.webp).
-       2. Remove the `hidden` attribute on the <section> below.
-       3. Update each <img alt="..."> to describe the real image.
-       4. Rewrite the captions marked "CAPTION TEMPLATE" for the real content.
-     Do NOT enable with stock photos, mockups, or generated images.
-     See assets/images/real-progress/README.md for full instructions.
+<!-- ================= REAL CMYKFORGE PROGRESS (live) =================
+     Genuine evidence: original image, CMYKForge simulated preview, and a real
+     physical print. Files live in assets/images/real-progress/. The preview is
+     clearly labelled "Simulated" so it is never mistaken for a photographed print.
+     To swap in newer real assets, replace the files and keep the honest labels.
 ============================================================ -->
-<section id="real-progress" class="progress-section" hidden aria-label="Real CMYKForge progress">
+<section id="real-progress" class="progress-section" aria-label="Real CMYKForge progress">
   <div class="wrap">
     <span class="section-tag">Evidence</span>
     <h2>From Image to Real Print</h2>
@@ -107,7 +99,7 @@
     <div class="grid g3 progress-grid">
       <figure class="progress-card">
         <div class="progress-media">
-          <img src="assets/images/real-progress/original-image.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="Original source image used as input to CMYKForge">
+          <img src="assets/images/real-progress/original-image.png" width="1400" height="1050" loading="lazy" decoding="async" alt="Original source image used as input to CMYKForge">
         </div>
         <figcaption>
           <span class="step-tag">1 · Original</span>
@@ -118,7 +110,7 @@
       <figure class="progress-card">
         <div class="progress-media">
           <span class="sim-badge">Simulated</span>
-          <img src="assets/images/real-progress/cmykforge-preview.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="CMYKForge simulated color preview of the expected print">
+          <img src="assets/images/real-progress/cmykforge-preview.png" width="1400" height="1050" loading="lazy" decoding="async" alt="CMYKForge simulated color preview of the expected print">
         </div>
         <figcaption>
           <span class="step-tag">2 · Preview</span>
@@ -128,7 +120,7 @@
       </figure>
       <figure class="progress-card">
         <div class="progress-media">
-          <img src="assets/images/real-progress/physical-print.webp" width="1400" height="1050" loading="lazy" decoding="async" alt="A real physical print produced from the CMYKForge project">
+          <img src="assets/images/real-progress/physical-print.jpg" width="1400" height="1050" loading="lazy" decoding="async" alt="A real physical print produced from the CMYKForge project">
         </div>
         <figcaption>
           <span class="step-tag">3 · Printed</span>
