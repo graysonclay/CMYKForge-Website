@@ -1434,3 +1434,8 @@
   .dlog-tag.note{color:var(--yellow);background:rgba(246,201,69,.1);border:1px solid rgba(246,201,69,.4)}
   .dlog-body h3{font-size:17px;margin:0 0 6px}
   .dlog-body p{color:var(--muted);font-size:14px;line-height:1.6;margin:0}
+
+  /* Release roadmap has four phases (the AI Roadmap timeline has five) */
+  #release-roadmap .timeline{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:860px){ #release-roadmap .timeline{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:560px){ #release-roadmap .timeline{grid-template-columns:1fr} }
