@@ -157,6 +157,34 @@
     revealEls.forEach(function(el){ revealIO.observe(el); });
   }
 
+  // ===== Hero compare slider: real original vs real physical print =====
+  (function(){
+    var cmp = document.getElementById('heroCompare');
+    if (!cmp) return;
+    var range = cmp.querySelector('.cmp-range');
+    function setPos(pct){
+      pct = Math.max(0, Math.min(100, pct));
+      cmp.style.setProperty('--pos', pct + '%');
+      if (range.value != pct) range.value = pct;
+    }
+    // range input drives it (keyboard + assistive tech + drag, since it overlays the card)
+    range.addEventListener('input', function(){ setPos(+range.value); });
+    // direct pointer tracking for a 1:1 drag feel
+    function fromEvent(e){
+      var r = cmp.getBoundingClientRect();
+      setPos((e.clientX - r.left) / r.width * 100);
+    }
+    cmp.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      cmp.setPointerCapture(e.pointerId);
+      fromEvent(e);
+    });
+    cmp.addEventListener('pointermove', function(e){
+      if (cmp.hasPointerCapture && cmp.hasPointerCapture(e.pointerId)) fromEvent(e);
+    });
+    setPos(50);
+  })();
+
   // ===== Cursor-reactive hero spotlight (pointer devices only, motion-safe) =====
   (function(){
     var hero = document.querySelector('.hero');
