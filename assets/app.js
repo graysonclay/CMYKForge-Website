@@ -8,6 +8,21 @@
     youtube: 'https://www.youtube.com/@CMYKForge'        // CMYKForge channel
   };
   // ============================================================
+  //  EDIT ME — "Latest from CMYKForge" video section (index.html)
+  //  mode 'latest'  -> automatically embeds the channel's NEWEST upload
+  //                    via the uploads playlist (UU + channel id). No API
+  //                    key or backend needed; updates by itself.
+  //  mode 'video'   -> pins one specific video; set videoId below.
+  //  To pin a video: change mode to 'video' and paste the 11-char id
+  //  from the watch URL (youtube.com/watch?v=XXXXXXXXXXX).
+  // ============================================================
+  var YT_CONFIG = {
+    mode: 'latest',
+    uploadsPlaylist: 'UUTCiZCn0ITbsFN-emVXjIUQ',  // UU + channel id (auto-newest)
+    videoId: 'RBGMRvxuz4E',                        // used only when mode==='video'
+    channelUrl: 'https://www.youtube.com/@CMYKForge'
+  };
+  // ============================================================
 
   // Sticky header shadow on scroll
   var header = document.querySelector('header.site');
@@ -286,6 +301,46 @@
     });
     var start = demo.querySelector('.ev-sw[data-default]') || demo.querySelector('.ev-sw');
     if (start) select(start);
+  })();
+
+  // ===== "Latest from CMYKForge" — lazy YouTube embed (config: YT_CONFIG, top of file) =====
+  (function(){
+    var mount = document.getElementById('ytLatest');
+    if (!mount) return;
+    // Wire the channel buttons from the single config location
+    document.querySelectorAll('[data-yt-channel]').forEach(function(a){
+      var sub = a.hasAttribute('data-yt-subscribe');
+      a.setAttribute('href', YT_CONFIG.channelUrl + (sub ? '?sub_confirmation=1' : ''));
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+    // Build the embed src: uploads playlist auto-plays the newest video first
+    var src = (YT_CONFIG.mode === 'video')
+      ? 'https://www.youtube-nocookie.com/embed/' + YT_CONFIG.videoId
+      : 'https://www.youtube-nocookie.com/embed/videoseries?list=' + YT_CONFIG.uploadsPlaylist;
+    function inject(){
+      if (mount.dataset.loaded) return;
+      mount.dataset.loaded = '1';
+      var f = document.createElement('iframe');
+      f.src = src;
+      f.title = 'Latest video from the CMYKForge YouTube channel';
+      f.loading = 'lazy';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      mount.appendChild(f);
+    }
+    // Inject only when the section approaches the viewport (true lazy-load)
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting){ inject(); io.disconnect(); }
+        });
+      }, { rootMargin: '400px 0px' });
+      io.observe(mount);
+    } else {
+      inject(); // very old browsers: load immediately
+    }
   })();
 
   // ===== Wire up social links from the SOCIAL_LINKS config at the top of this file =====
