@@ -68,9 +68,28 @@
 
   // Respect reduced-motion for the showcase video
   var showcase = document.getElementById('showcaseVideo');
-  if (showcase && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  var showcaseReduced = showcase && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (showcaseReduced){
     showcase.removeAttribute('loop');
     showcase.pause();
+  }
+
+  // Auto-play the showcase video (muted) once its section heading is readable;
+  // pause again when the reader scrolls away. Skipped under reduced-motion.
+  if (showcase && !showcaseReduced && 'IntersectionObserver' in window){
+    var showcaseHeading = document.querySelector('#what h2') || showcase;
+    var showcaseIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){
+          showcase.muted = true; // required for browsers to allow autoplay
+          var pr = showcase.play();
+          if (pr && pr.catch) pr.catch(function(){}); // ignore autoplay rejections
+        } else if (!showcase.paused){
+          showcase.pause();
+        }
+      });
+    }, { threshold: 0.6 });
+    showcaseIO.observe(showcaseHeading);
   }
 
   // (The old placeholder beta form was replaced by the live Brevo embed on
