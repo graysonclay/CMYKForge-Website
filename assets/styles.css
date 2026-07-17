@@ -1524,3 +1524,6 @@
   /* Kickstarter card in the Follow section — green accent to match the band */
   .social-kickstarter .social-ic{color:#05ce78;border-color:rgba(5,206,120,.35)}
   .social-kickstarter:hover{border-color:rgba(5,206,120,.5)}
+
+  /* Official Kickstarter mark inside the band button */
+  .ks-logo{width:1.15em;height:1.15em;margin-right:9px;vertical-align:-3px}
