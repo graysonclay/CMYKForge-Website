@@ -74,22 +74,31 @@
     showcase.pause();
   }
 
-  // Auto-play the showcase video (muted) once its section heading is readable;
+  // Auto-play the showcase video (muted) as its section scrolls into view;
   // pause again when the reader scrolls away. Skipped under reduced-motion.
+  // Safari note: Safari only allows muted autoplay while the VIDEO ELEMENT
+  // itself is visible, and a too-early play() is rejected. So we observe the
+  // video (not just the heading) and keep retrying on scroll until it sticks.
   if (showcase && !showcaseReduced && 'IntersectionObserver' in window){
-    var showcaseHeading = document.querySelector('#what h2') || showcase;
+    var showcaseWant = false;   // true while the video should be playing
+    function tryPlayShowcase(){
+      if (!showcaseWant || !showcase.paused) return;
+      showcase.muted = true;    // required for browsers to allow autoplay
+      var pr = showcase.play();
+      if (pr && pr.catch) pr.catch(function(){ /* rejected (e.g. Safari while barely visible) — scroll handler retries */ });
+    }
     var showcaseIO = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if (en.isIntersecting){
-          showcase.muted = true; // required for browsers to allow autoplay
-          var pr = showcase.play();
-          if (pr && pr.catch) pr.catch(function(){}); // ignore autoplay rejections
-        } else if (!showcase.paused){
-          showcase.pause();
-        }
+        showcaseWant = en.isIntersecting;
+        if (en.isIntersecting) tryPlayShowcase();
+        else if (!showcase.paused) showcase.pause();
       });
-    }, { threshold: 0.6 });
-    showcaseIO.observe(showcaseHeading);
+    }, { threshold: 0.01 });
+    showcaseIO.observe(showcase);
+    // Retry while scrolling: succeeds as soon as Safari deems the video visible.
+    window.addEventListener('scroll', tryPlayShowcase, { passive: true });
+    // Retry once media data is ready (covers preload="metadata" races).
+    showcase.addEventListener('loadeddata', tryPlayShowcase);
   }
 
   // (The old placeholder beta form was replaced by the live Brevo embed on
