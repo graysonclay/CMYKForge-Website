@@ -1527,3 +1527,32 @@
 
   /* Official Kickstarter mark inside the band button */
   .ks-logo{width:1.15em;height:1.15em;margin-right:9px;vertical-align:-3px}
+
+  /* ===== Kickstarter live announcement bar (top of every page) ===== */
+  .ks-announce{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:#05ce78;color:#04110b;text-decoration:none;
+    font-size:14px;font-weight:600;padding:10px 16px;line-height:1.3;
+    transition:background .2s var(--ease);
+  }
+  .ks-announce:hover{background:#06e485}
+  .ks-announce .ksa-k{
+    display:inline-grid;place-items:center;flex:none;width:20px;height:20px;
+    border-radius:5px;background:#04110b;color:#05ce78;font-weight:800;font-size:12px;
+  }
+  .ks-announce .ksa-arrow{transition:transform .2s var(--ease)}
+  .ks-announce:hover .ksa-arrow{transform:translateX(3px)}
+  @media(max-width:560px){ .ks-announce{font-size:12.5px;padding:9px 12px;gap:8px} }
+
+  /* Announcement bar: mobile-menu fix — anchor the dropdown to the header
+     (not the viewport) and hide it with fade+visibility so it can never
+     bleed over the bar above the header. */
+  @media(max-width:680px){
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      transform:translateY(-10px);opacity:0;visibility:hidden;
+      transition:transform .3s var(--ease), opacity .3s var(--ease), visibility .3s;
+      max-height:calc(100vh - 70px);
+    }
+    .nav-links.open{transform:none;opacity:1;visibility:visible}
+  }
