@@ -1520,3 +1520,7 @@
     border-radius:6px;background:#04110b;color:#05ce78;
     font-weight:800;font-size:.85em;line-height:1;
   }
+
+  /* Kickstarter card in the Follow section — green accent to match the band */
+  .social-kickstarter .social-ic{color:#05ce78;border-color:rgba(5,206,120,.35)}
+  .social-kickstarter:hover{border-color:rgba(5,206,120,.5)}
