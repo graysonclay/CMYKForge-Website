@@ -1735,3 +1735,5 @@
   .social-instagram .social-ic{background:linear-gradient(45deg,rgba(254,218,117,.16),rgba(250,126,30,.16),rgba(214,41,118,.16),rgba(150,47,191,.16),rgba(79,91,213,.16));border-color:rgba(214,41,118,.4)}
   .social-instagram:hover .social-ic{background:linear-gradient(45deg,rgba(254,218,117,.28),rgba(250,126,30,.28),rgba(214,41,118,.28),rgba(150,47,191,.28),rgba(79,91,213,.28))}
   .social-instagram:hover{border-color:rgba(214,41,118,.6)}
+  .social-facebook .social-ic{color:#1877f2;border-color:rgba(24,119,242,.35)}
+  .social-facebook:hover{border-color:rgba(24,119,242,.5)}

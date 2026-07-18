@@ -7,7 +7,8 @@
   var SOCIAL_LINKS = {
     youtube:   'https://www.youtube.com/@CMYKForge',      // CMYKForge channel
     tiktok:    'https://www.tiktok.com/@cmykforge',       // @cmykforge
-    instagram: 'https://www.instagram.com/cmykforge/'     // @cmykforge
+    instagram: 'https://www.instagram.com/cmykforge/',    // @cmykforge
+    facebook:  'https://www.facebook.com/profile.php?id=61592027522383'  // CMYKForge page
   };
   // ============================================================
   //  EDIT ME — "Latest from CMYKForge" video section (index.html)
