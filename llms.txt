@@ -1,0 +1,17 @@
+# CMYKForge
+
+> CMYKForge is local-first software in active development for preparing image-based, multi-material color FDM 3D printing workflows.
+
+CMYKForge Standard focuses on CMYK and optional white filament planning, color-aware model generation, previews, printability checks, and slicer-compatible export. Features, compatibility, and availability may change before release.
+
+## Core pages
+
+- [Home](https://cmykforge.org/): Product overview, real-print evidence, methodology, and frequently asked questions.
+- [CMYKForge Standard](https://cmykforge.org/standard.html): Detailed workflow, current capabilities, requirements, compatibility, and beta updates.
+- [Products](https://cmykforge.org/shop.html): Current and planned CMYKForge product editions.
+- [About](https://cmykforge.org/about.html): Mission, development approach, and roadmap.
+- [Development log](https://cmykforge.org/devlog.html): Dated project updates and milestones.
+
+## Contact
+
+- Email: admin@cmykforge.org

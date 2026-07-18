@@ -1,0 +1,17 @@
+{
+  "name": "CMYKForge",
+  "short_name": "CMYKForge",
+  "description": "Full-spectrum color software for multi-material FDM image reproduction.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#07080B",
+  "theme_color": "#07080B",
+  "icons": [
+    {
+      "src": "/assets/images/cmykforge-logo.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}

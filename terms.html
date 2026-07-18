@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="CMYKForge website terms — draft, pending review.">
-<meta name="robots" content="noindex">
-<link rel="canonical" href="https://cmykforge.org/terms.html">
 <title>Terms — CMYKForge</title>
+<meta name="description" content="CMYKForge website terms — draft, pending review.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://cmykforge.org/terms.html">
+<meta name="theme-color" content="#07080B">
 <!-- ============================================================
      DRAFT LEGAL PAGE — REQUIRES OWNER REVIEW BEFORE COMMERCIAL LAUNCH.
      Placeholder terms describing only the informational website as it exists
@@ -14,11 +15,16 @@
      purchase terms, licenses, warranties, or liability language here until
      there is a real product transaction to govern and the text is reviewed.
 ============================================================ -->
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon.png">
+<link rel="apple-touch-icon" sizes="256x256" href="/assets/images/cmykforge-logo.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- Kickstarter live announcement bar (remove this block when the campaign ends) -->
 <a class="ks-announce" href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer">
@@ -28,23 +34,24 @@
 </a>
 <header class="site" id="top">
   <div class="wrap nav">
-    <a href="index.html" class="brand" aria-label="CMYKForge home">
+    <a href="/" class="brand" aria-label="CMYKForge home">
       <span class="brand-logo" role="img" aria-label="CMYKForge logo"></span>
       <span class="brand-word">CMYKForge</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About Us</a>
+      <a href="devlog.html">Dev Log</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="burger" id="burger" type="button" aria-label="Open main menu" aria-expanded="false" aria-controls="navLinks">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </div>
 </header>
 
-<main>
-<section>
+<main id="main-content" tabindex="-1">
+<section class="legal-page">
   <div class="wrap" style="max-width:800px">
     <span class="section-tag">Terms</span>
     <h1>Terms</h1>
@@ -54,7 +61,7 @@
     <p class="lead" style="margin-top:16px">Information on this website is provided as-is and may change as CMYKForge develops. Features, availability, and timelines described here are not commitments.</p>
     <p class="lead" style="margin-top:16px">Full terms of service will be published and reviewed before any product purchase, download, or account system becomes available.</p>
 
-    <h3 style="margin-top:28px">Contact</h3>
+    <h2 style="margin-top:28px">Contact</h2>
     <p class="lead">Questions about this page: <a href="mailto:admin@cmykforge.org">admin@cmykforge.org</a>.</p>
 
     <p class="note" style="margin-top:32px">This draft will be expanded and reviewed before any commercial launch.</p>

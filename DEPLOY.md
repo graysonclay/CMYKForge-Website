@@ -8,10 +8,8 @@ Squarespace — only its DNS changes.
 > Note: this is a custom HTML site, so it does **not** run inside the Squarespace website
 > builder. Squarespace stays as the domain registrar; GitHub Pages serves the pages.
 
-**Home-only launch:** for now only the **home page** is published. The Shop, About, Login,
-and Cart links show a "still in the works" notice instead of opening, and any direct link
-to an unpublished path lands on a matching `404.html` notice. When you're ready to publish
-the rest, flip `WIP` off in the build and re-generate the other pages (ask and I'll do it).
+The public site includes the home, shop, CMYKForge Standard, about, and development log
+pages. Draft legal pages remain marked `noindex` until their content is reviewed.
 
 **Domain (`cmykforge.org`) is pre-filled:** a `CNAME` file containing `cmykforge.org` is
 already in the repo, so GitHub Pages will pick up the custom domain automatically once
@@ -24,8 +22,9 @@ Pages is enabled — you mainly need to add the DNS records at Squarespace (step
 1. Merge this branch into `main` (open the PR and merge it).
 2. In the repo on GitHub: **Settings → Pages**.
 3. Under **Build and deployment → Source**, choose **GitHub Actions**.
-   - The included workflow (`.github/workflows/deploy-pages.yml`) publishes the repo
-     root on every push to `main`. You can also run it manually from the **Actions** tab
+   - The included workflow (`.github/workflows/deploy-pages.yml`) validates the source,
+     creates the production-only `_site` artifact, and publishes it on every push to
+     `main`. You can also run it manually from the **Actions** tab
      ("Deploy to GitHub Pages" → *Run workflow*).
 4. Wait for the green check in **Actions**. Your site is now live at
    `https://graysonclay.github.io/cmykforge-website/`.
@@ -98,10 +97,12 @@ remain.
 - **Nameservers.** Keep the domain on Squarespace's default nameservers and just edit the
   DNS records as above. (Only switch nameservers if you intend to manage DNS elsewhere,
   e.g. Cloudflare.)
-- **`cmykforge-website.html`** is kept as a redirect to `/` (`index.html`) so any old
+- **`cmykforge-website.html`** is kept as a compatibility redirect to `/` so any old
   link to it still lands on the home page.
-- **Updating the site:** push to `main` (or merge a PR). The Pages workflow redeploys
-  automatically — no Squarespace changes needed after the first setup.
+- **Validate before publishing:** run `npm ci && npm run build`. The same checks run in
+  GitHub Actions before the Pages artifact is uploaded.
+- **Updating the site:** push to `main` (or merge a PR). The quality and Pages workflows
+  run automatically — no Squarespace changes are needed after the first setup.
 
 ## Alternatives (if you'd rather not use GitHub Pages)
 

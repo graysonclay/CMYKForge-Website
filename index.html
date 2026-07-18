@@ -3,33 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMYKForge — Print What You See</title>
 <meta name="description" content="CMYKForge — full-spectrum color software for multi-material FDM image reproduction. Print what you see. More colors than filament.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://cmykforge.org/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="CMYKForge">
 <meta property="og:title" content="CMYKForge — Print What You See">
 <meta property="og:description" content="CMYKForge — full-spectrum color software for multi-material FDM image reproduction. Print what you see. More colors than filament.">
 <meta property="og:url" content="https://cmykforge.org/">
 <meta property="og:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
+<meta property="og:image:secure_url" content="https://cmykforge.org/assets/images/brand-banner.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CMYKForge — Print What You See">
 <meta name="twitter:description" content="CMYKForge — full-spectrum color software for multi-material FDM image reproduction. Print what you see. More colors than filament.">
 <meta name="twitter:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
-<title>CMYKForge — Print What You See</title>
-<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<meta name="twitter:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
+<meta name="theme-color" content="#07080B">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon.png">
+<link rel="apple-touch-icon" sizes="256x256" href="/assets/images/cmykforge-logo.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Organization", "name": "CMYKForge", "url": "https://cmykforge.org/", "logo": "https://cmykforge.org/assets/images/cmykforge-logo.png", "description": "Color software for multi-material FDM image reproduction."}
-</script>
-<script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "WebSite", "name": "CMYKForge", "url": "https://cmykforge.org/"}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cmykforge.org/#organization",
+      "name": "CMYKForge",
+      "url": "https://cmykforge.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cmykforge.org/assets/images/cmykforge-logo.png",
+        "width": 256,
+        "height": 256
+      },
+      "description": "Color software for multi-material FDM image reproduction."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://cmykforge.org/#website",
+      "url": "https://cmykforge.org/",
+      "name": "CMYKForge",
+      "publisher": {"@id": "https://cmykforge.org/#organization"},
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://cmykforge.org/#webpage",
+      "url": "https://cmykforge.org/",
+      "name": "CMYKForge — Print What You See",
+      "description": "CMYKForge — full-spectrum color software for multi-material FDM image reproduction. Print what you see. More colors than filament.",
+      "isPartOf": {"@id": "https://cmykforge.org/#website"},
+      "about": {"@id": "https://cmykforge.org/#organization"},
+      "primaryImageOfPage": {"@id": "https://cmykforge.org/#primaryimage"},
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://cmykforge.org/#primaryimage",
+      "url": "https://cmykforge.org/assets/images/brand-banner.jpg",
+      "contentUrl": "https://cmykforge.org/assets/images/brand-banner.jpg",
+      "width": 1600,
+      "height": 900
+    }
+  ]
+}
 </script>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- Kickstarter live announcement bar (remove this block when the campaign ends) -->
 <a class="ks-announce" href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer">
@@ -41,23 +93,24 @@
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="site" id="top">
   <div class="wrap nav">
-    <a href="index.html" class="brand" aria-label="CMYKForge home">
+    <a href="/" class="brand" aria-label="CMYKForge home">
       <span class="brand-logo" role="img" aria-label="CMYKForge logo"></span>
       <span class="brand-word">CMYKForge</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href="index.html" class="active" aria-current="page">Home</a>
+      <a href="/" class="active" aria-current="page">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About Us</a>
+      <a href="devlog.html">Dev Log</a>
       <a class="btn btn-primary nav-cta" href="standard.html#newsletter">Get Beta Updates</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="burger" id="burger" type="button" aria-label="Open main menu" aria-expanded="false" aria-controls="navLinks">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
 <section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
@@ -81,9 +134,9 @@
       <!-- Real proof, front and center: drag between the source image and the
            actual physical print of the same project. Both images are genuine. -->
       <div class="compare" id="heroCompare">
-        <img class="cmp-under" src="assets/images/real-progress/physical-print.jpg" width="1200" height="1200" alt="Real physical print of the color wheel project" decoding="async">
+        <img class="cmp-under" src="assets/images/real-progress/physical-print.avif" width="1200" height="1200" alt="Real physical print of the color wheel project" decoding="async" fetchpriority="high">
         <div class="cmp-over" aria-hidden="true">
-          <img src="assets/images/real-progress/original-image.png" width="1200" height="1200" alt="" decoding="async">
+          <img src="assets/images/real-progress/original-image.avif" width="1200" height="1200" alt="" decoding="async" fetchpriority="high">
         </div>
         <div class="cmp-handle" aria-hidden="true"><span></span></div>
         <span class="cmp-tag cmp-tag-l">Original</span>
@@ -114,12 +167,12 @@
       </ul>
     </div>
     <figure class="video-showcase story-media" aria-label="Cinematic CMYKForge product preview video">
-      <video controls muted loop playsinline preload="metadata"
+      <video controls muted loop playsinline preload="metadata" width="900" height="720"
              poster="assets/images/showcase-poster.jpg" id="showcaseVideo">
-        <source src="cmykforge-showcase.mov" type="video/quicktime">
+        <source src="cmykforge-showcase.mp4" type="video/mp4">
         <div class="video-fallback">
           Your browser can’t play this video format.
-          <a href="cmykforge-showcase.mov">Download the cinematic preview</a> instead.
+          <a href="cmykforge-showcase.mp4">Download the cinematic preview</a> instead.
         </div>
       </video>
       <figcaption class="video-cap">
@@ -234,24 +287,24 @@
     <p class="lead">Quick answers about CMYKForge Standard, the workflow, and future product plans.</p>
     <div class="faq">
       <div class="faq-item">
-        <button class="faq-q" id="faq-q-1" aria-expanded="false" aria-controls="faq-a-1"><span>Does CMYKForge Standard include AI?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1"><p>No. CMYKForge Standard is the local-first, non-AI version of CMYKForge. It does not include cloud AI or local AI by default. Optional AI tools may come later through separate versions or upgrades.</p></div>
+        <button class="faq-q" id="faq-q-1" type="button" aria-expanded="false" aria-controls="faq-a-1"><span>Does CMYKForge Standard include AI?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-q-1" aria-hidden="true"><p>No. CMYKForge Standard is the local-first, non-AI version of CMYKForge. It does not include cloud AI or local AI by default. Optional AI tools may come later through separate versions or upgrades.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="faq-q-2" aria-expanded="false" aria-controls="faq-a-2"><span>Will the printed colors be perfect?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2"><p>No software can guarantee perfect printed color. Final results depend on printer setup, filament behavior, slicer settings, calibration, lighting, layer height, and material properties. CMYKForge is designed to reduce guesswork and improve color planning.</p></div>
+        <button class="faq-q" id="faq-q-2" type="button" aria-expanded="false" aria-controls="faq-a-2"><span>Will the printed colors be perfect?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-q-2" aria-hidden="true"><p>No software can guarantee perfect printed color. Final results depend on printer setup, filament behavior, slicer settings, calibration, lighting, layer height, and material properties. CMYKForge is designed to reduce guesswork and improve color planning.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="faq-q-3" aria-expanded="false" aria-controls="faq-a-3"><span>What file formats does CMYKForge support?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3"><p>CMYKForge Standard is designed around slicer-compatible export workflows. 3MF is the primary export target for multi-material color workflows; STL and OBJ are planned for broader compatibility, where supported.</p></div>
+        <button class="faq-q" id="faq-q-3" type="button" aria-expanded="false" aria-controls="faq-a-3"><span>What file formats does CMYKForge support?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-q-3" aria-hidden="true"><p>CMYKForge Standard is designed around slicer-compatible export workflows. 3MF is the primary export target for multi-material color workflows; STL and OBJ are planned for broader compatibility, where supported.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="faq-q-4" aria-expanded="false" aria-controls="faq-a-4"><span>Does CMYKForge replace my slicer?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4"><p>No. CMYKForge prepares color-aware model files that are intended to be opened and processed in compatible slicer software.</p></div>
+        <button class="faq-q" id="faq-q-4" type="button" aria-expanded="false" aria-controls="faq-a-4"><span>Does CMYKForge replace my slicer?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-q-4" aria-hidden="true"><p>No. CMYKForge prepares color-aware model files that are intended to be opened and processed in compatible slicer software.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" id="faq-q-5" aria-expanded="false" aria-controls="faq-a-5"><span>Is CMYKForge still in development?</span><span class="ico" aria-hidden="true">+</span></button>
-        <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5"><p>Yes. CMYKForge is in active development, and features, workflows, export behavior, and availability may change as the software improves. Join the beta list to follow progress.</p></div>
+        <button class="faq-q" id="faq-q-5" type="button" aria-expanded="false" aria-controls="faq-a-5"><span>Is CMYKForge still in development?</span><span class="ico" aria-hidden="true">+</span></button>
+        <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-q-5" aria-hidden="true"><p>Yes. CMYKForge is in active development, and features, workflows, export behavior, and availability may change as the software improves. Join the beta list to follow progress.</p></div>
       </div>
     </div>
   </div>
@@ -284,7 +337,7 @@
     <h2>Follow CMYKForge</h2>
     <p class="lead">Follow development updates, print tests, beta news, and behind-the-scenes progress.</p>
     <div class="social-links">
-      <a class="social-button social-youtube" data-social="youtube" href="#" aria-label="CMYKForge on YouTube">
+      <a class="social-button social-youtube" data-social="youtube" href="https://www.youtube.com/@CMYKForge">
         <span class="social-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3-5.2 3Z"/></svg>
         </span>
@@ -294,7 +347,7 @@
         </span>
         <span class="social-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="social-button social-kickstarter" href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer" aria-label="CMYKForge on Kickstarter">
+      <a class="social-button social-kickstarter" href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer">
         <span class="social-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.168 0c-3.2 0-5.797 2.579-5.797 5.758v12.484C1.371 21.42 3.968 24 7.168 24c1.981 0 3.716-.978 4.768-2.479l.794.79c2.26 2.245 5.943 2.245 8.203 0a5.724 5.724 0 001.696-4.075 5.724 5.724 0 00-1.696-4.074l-2.182-2.168 2.182-2.156a5.724 5.724 0 001.696-4.074 5.724 5.724 0 00-1.696-4.074c-2.26-2.246-5.942-2.246-8.203 0l-.794.789A5.797 5.797 0 007.168 0Z"/></svg>
         </span>
@@ -304,7 +357,7 @@
         </span>
         <span class="social-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="social-button social-tiktok" data-social="tiktok" href="#" aria-label="CMYKForge on TikTok">
+      <a class="social-button social-tiktok" data-social="tiktok" href="https://www.tiktok.com/@cmykforge">
         <span class="social-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
         </span>
@@ -314,7 +367,7 @@
         </span>
         <span class="social-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="social-button social-instagram" data-social="instagram" href="#" aria-label="CMYKForge on Instagram">
+      <a class="social-button social-instagram" data-social="instagram" href="https://www.instagram.com/cmykforge/">
         <span class="social-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><defs><linearGradient id="igGrad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#feda75"/><stop offset=".25" stop-color="#fa7e1e"/><stop offset=".5" stop-color="#d62976"/><stop offset=".75" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><path fill="url(#igGrad)" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
         </span>
@@ -324,7 +377,7 @@
         </span>
         <span class="social-arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="social-button social-facebook" data-social="facebook" href="#" aria-label="CMYKForge on Facebook">
+      <a class="social-button social-facebook" data-social="facebook" href="https://www.facebook.com/profile.php?id=61592027522383">
         <span class="social-ic" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
         </span>
@@ -338,38 +391,7 @@
   </div>
 </section>
 
-<!-- ================= WORKED WITH / FEATURED CREATORS =================
-     Reserved social-proof section. Hidden until there are REAL partners or
-     creators to show. Do NOT populate with stock logos or invented names.
-     TO ENABLE:
-       1. Add real logos/photos to assets/images/partners/
-       2. Remove the `hidden` attribute on the <section> below.
-       3. Replace the example .partner-card blocks with real name/image/alt
-          (and a real link if they have one); delete unused examples.
-     See assets/images/partners/README.md.
-================================================================= -->
-<section id="partners" hidden aria-label="Creators and partners CMYKForge has worked with">
-  <div class="wrap">
-    <span class="section-tag">Worked with</span>
-    <h2>Creators &amp; Partners</h2>
-    <p class="lead">Makers, studios, and creators helping test CMYKForge with real printers and real prints.</p>
-    <div class="partner-grid">
-      <!-- EXAMPLE card — replace with a real partner/creator before enabling -->
-      <figure class="partner-card">
-        <div class="partner-logo"><img src="assets/images/partners/partner-1.webp" width="400" height="400" loading="lazy" decoding="async" alt="Partner name logo"></div>
-        <figcaption><strong>Partner Name</strong><span>How they work with CMYKForge.</span></figcaption>
-      </figure>
-      <figure class="partner-card">
-        <div class="partner-logo"><img src="assets/images/partners/partner-2.webp" width="400" height="400" loading="lazy" decoding="async" alt="Partner name logo"></div>
-        <figcaption><strong>Partner Name</strong><span>How they work with CMYKForge.</span></figcaption>
-      </figure>
-      <figure class="partner-card">
-        <div class="partner-logo"><img src="assets/images/partners/partner-3.webp" width="400" height="400" loading="lazy" decoding="async" alt="Partner name logo"></div>
-        <figcaption><strong>Partner Name</strong><span>How they work with CMYKForge.</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+<!-- Add a creators and partners section only after real, approved collaborators and assets exist. -->
 
 <!-- ================= LATEST FROM CMYKFORGE (YouTube) =================
      Embeds the channel's newest upload automatically via the uploads
@@ -418,16 +440,16 @@
         <p class="foot-desc">Full-spectrum color software for multi-material FDM image reproduction.</p>
         <p class="foot-slogan">Print what you see. More colors than filament.</p>
         <div class="footer-social">
-          <a href="#" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
-          <a href="#" data-social="tiktok" aria-label="CMYKForge on TikTok">TikTok</a>
-          <a href="#" data-social="instagram" aria-label="CMYKForge on Instagram">Instagram</a>
-          <a href="#" data-social="facebook" aria-label="CMYKForge on Facebook">Facebook</a>
+          <a href="https://www.youtube.com/@CMYKForge" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
+          <a href="https://www.tiktok.com/@cmykforge" data-social="tiktok" aria-label="CMYKForge on TikTok">TikTok</a>
+          <a href="https://www.instagram.com/cmykforge/" data-social="instagram" aria-label="CMYKForge on Instagram">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61592027522383" data-social="facebook" aria-label="CMYKForge on Facebook">Facebook</a>
           <a href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer" aria-label="CMYKForge on Kickstarter">Kickstarter</a>
         </div>
       </div>
       <div class="foot-col">
-        <h4>Explore</h4>
-        <a href="index.html">Home</a>
+        <h2 class="foot-heading">Explore</h2>
+        <a href="/">Home</a>
         <a href="shop.html">Shop</a>
         <a href="about.html">About Us</a>
         <a href="standard.html">CMYKForge Standard</a>
@@ -437,13 +459,13 @@
         <a href="mailto:admin@cmykforge.org">Contact</a>
       </div>
       <div class="foot-col">
-        <h4>Legal</h4>
+        <h2 class="foot-heading">Legal</h2>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms</a>
         <a href="beta-terms.html">Beta Terms</a>
       </div>
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h2 class="foot-heading">Contact</h2>
         <a href="mailto:admin@cmykforge.org">admin@cmykforge.org</a>
         <p class="foot-desc" style="margin-top:10px">For beta interest and general questions.</p>
       </div>
@@ -455,13 +477,13 @@
   </div>
 </footer>
 
-<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
 
 <div class="wip-overlay" id="wipModal" role="dialog" aria-modal="true" aria-labelledby="wipTitle" aria-describedby="wipText" hidden>
   <div class="wip-modal">
     <div class="wip-icon" aria-hidden="true"></div>
     <span class="pill pill-soon" id="wipTag">Coming soon</span>
-    <h3 id="wipTitle">This section is planned for a future release</h3>
+    <h2 id="wipTitle">This section is planned for a future release</h2>
     <p id="wipText">Detailed features, pricing, and availability have not been announced yet.</p>
     <div class="wip-actions">
       <a class="btn btn-primary" href="standard.html#newsletter">Get Beta Updates</a>

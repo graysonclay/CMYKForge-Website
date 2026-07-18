@@ -3,27 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — CMYKForge</title>
 <meta name="description" content="About CMYKForge — building a better workflow for full-spectrum color FDM printing. Local-first CMYK/CMYKW color 3D printing for multi-material FDM printers.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://cmykforge.org/about.html">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="CMYKForge">
 <meta property="og:title" content="About — CMYKForge">
 <meta property="og:description" content="About CMYKForge — building a better workflow for full-spectrum color FDM printing. Local-first CMYK/CMYKW color 3D printing for multi-material FDM printers.">
 <meta property="og:url" content="https://cmykforge.org/about.html">
 <meta property="og:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
+<meta property="og:image:secure_url" content="https://cmykforge.org/assets/images/brand-banner.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About — CMYKForge">
 <meta name="twitter:description" content="About CMYKForge — building a better workflow for full-spectrum color FDM printing. Local-first CMYK/CMYKW color 3D printing for multi-material FDM printers.">
 <meta name="twitter:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
-<title>About — CMYKForge</title>
-<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<meta name="twitter:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
+<meta name="theme-color" content="#07080B">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon.png">
+<link rel="apple-touch-icon" sizes="256x256" href="/assets/images/cmykforge-logo.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://cmykforge.org/about.html#webpage",
+  "url": "https://cmykforge.org/about.html",
+  "name": "About — CMYKForge",
+  "description": "About CMYKForge — building a better workflow for full-spectrum color FDM printing. Local-first CMYK/CMYKW color 3D printing for multi-material FDM printers.",
+  "isPartOf": {"@id": "https://cmykforge.org/#website"},
+  "about": {"@id": "https://cmykforge.org/#organization"},
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- Kickstarter live announcement bar (remove this block when the campaign ends) -->
 <a class="ks-announce" href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer">
@@ -35,42 +59,43 @@
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="site" id="top">
   <div class="wrap nav">
-    <a href="index.html" class="brand" aria-label="CMYKForge home">
+    <a href="/" class="brand" aria-label="CMYKForge home">
       <span class="brand-logo" role="img" aria-label="CMYKForge logo"></span>
       <span class="brand-word">CMYKForge</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html" class="active" aria-current="page">About Us</a>
+      <a href="devlog.html">Dev Log</a>
       <a class="btn btn-primary nav-cta" href="standard.html#newsletter">Get Beta Updates</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="burger" id="burger" type="button" aria-label="Open main menu" aria-expanded="false" aria-controls="navLinks">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <!-- 1 + 2. About hero + main text -->
 <section id="about-us">
   <div class="wrap">
     <span class="section-tag">About</span>
-    <h2>About CMYKForge</h2>
+    <h1>About CMYKForge</h1>
     <p class="lead">Building a better workflow for full-spectrum color FDM printing.</p>
     <p class="lead" style="margin-top:20px">CMYKForge is built around a simple belief: color 3D printing should be easier to understand, easier to preview, and easier to improve.</p>
     <p class="lead" style="margin-top:14px">Today, image-based color FDM printing often depends on trial and error. Loaded filament colors, slicer behavior, material translucency, layer thickness, printer calibration, and export settings can all change the final result. CMYKForge brings those decisions into one clearer workflow.</p>
     <p class="lead" style="margin-top:14px">The goal is to help creators move from a flat image to a color-aware 3D printable model using CMYK-style material planning, filament profiles, model generation, preview tools, printability checks, and slicer-compatible export.</p>
     <p class="lead" style="margin-top:14px">CMYKForge Standard is the first step in that vision: a local-first, non-AI version focused on the core workflow. Future versions may add optional AI assistance, deeper calibration tools, and professional workflow features, but the foundation remains the same — give creators more control over color before the print begins.</p>
     <div class="process" style="margin-top:40px">
-      <div class="pstep"><div class="accent" style="background:var(--cyan)"></div><h4>Image</h4><p>Start with a photo, artwork, logo, or design.</p></div>
+      <div class="pstep"><div class="accent" style="background:var(--cyan)"></div><h3>Image</h3><p>Start with a photo, artwork, logo, or design.</p></div>
       <div class="parrow" aria-hidden="true">→</div>
-      <div class="pstep"><div class="accent" style="background:var(--magenta)"></div><h4>Color</h4><p>Plan a CMYK-style material strategy.</p></div>
+      <div class="pstep"><div class="accent" style="background:var(--magenta)"></div><h3>Color</h3><p>Plan a CMYK-style material strategy.</p></div>
       <div class="parrow" aria-hidden="true">→</div>
-      <div class="pstep"><div class="accent" style="background:var(--yellow)"></div><h4>Model</h4><p>Generate color-aware layered geometry.</p></div>
+      <div class="pstep"><div class="accent" style="background:var(--yellow)"></div><h3>Model</h3><p>Generate color-aware layered geometry.</p></div>
       <div class="parrow" aria-hidden="true">→</div>
-      <div class="pstep"><div class="accent" style="background:linear-gradient(90deg,var(--cyan),var(--magenta))"></div><h4>Export</h4><p>Prepare slicer-compatible files.</p></div>
+      <div class="pstep"><div class="accent" style="background:linear-gradient(90deg,var(--cyan),var(--magenta))"></div><h3>Export</h3><p>Prepare slicer-compatible files.</p></div>
     </div>
   </div>
 </section>
@@ -113,16 +138,10 @@
         <div class="feature-line" style="margin-top:22px"><span class="chdot dm" aria-hidden="true"></span>Built to fill a gap in practical color FDM printing.</div>
       </div>
       <figure class="creator-print">
-        <img src="assets/images/print-cutout.png" width="500" height="500" alt="A real CMYKForge test print of the color wheel, cut out on a plain background" loading="lazy" decoding="async">
+        <img src="assets/images/print-cutout.avif" width="500" height="500" alt="A real CMYKForge test print of the color wheel, cut out on a plain background" loading="lazy" decoding="async">
         <figcaption>A real CMYKForge test print</figcaption>
       </figure>
-      <!-- CREATOR PHOTO: reserved for a real, approved photograph only.
-           Add assets/images/real-progress/creator-photo.webp, then remove the
-           `hidden` attribute below and update the alt text. Do not use a stock
-           photo or generated portrait. -->
-      <figure class="creator-photo" hidden>
-        <img src="assets/images/real-progress/creator-photo.webp" width="900" height="1100" loading="lazy" decoding="async" alt="Photograph of the CMYKForge creator">
-      </figure>
+      <!-- Add a creator portrait only after a real, approved photograph is available. -->
     </div>
   </div>
 </section>
@@ -152,38 +171,38 @@
     <span class="section-tag">Roadmap</span>
     <h2>AI Roadmap</h2>
     <p class="lead">CMYKForge Standard is the non-AI foundation. Future versions are planned to add optional AI assistance and professional tools while keeping the core color workflow useful on its own.</p>
-    <div class="timeline">
-      <div class="tnode now">
+    <ol class="timeline" aria-label="Planned CMYKForge editions">
+      <li class="tnode now">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">In development</span>
-        <h4>CMYKForge Standard</h4>
+        <h3>CMYKForge Standard</h3>
         <p>The local-first, non-AI core color workflow. No cloud AI or local AI required.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Planned</span>
-        <h4>Local AI</h4>
+        <h3>Local AI</h3>
         <p>Optional local AI assistance for color guidance and workflow suggestions.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Planned</span>
-        <h4>Local AI Plus</h4>
+        <h3>Local AI Plus</h3>
         <p>Deeper optional local AI optimization and print guidance.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Planned</span>
-        <h4>Business</h4>
+        <h3>Business</h3>
         <p>Professional workflow, profile management, and multi-project tools.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Future concept</span>
-        <h4>Cloud AI</h4>
+        <h3>Cloud AI</h3>
         <p>A possible optional cloud-assisted analysis path. Not part of Standard.</p>
-      </div>
-    </div>
+      </li>
+    </ol>
     <div style="margin-top:26px;max-width:820px;color:var(--soft);font-size:13.5px;border-left:2px solid var(--yellow);padding-left:14px">AI features are optional and never required for the core CMYKForge workflow. Availability, naming, and timing may change as the platform develops.</div>
   </div>
 </section>
@@ -225,16 +244,16 @@
         <p class="foot-desc">Full-spectrum color software for multi-material FDM image reproduction.</p>
         <p class="foot-slogan">Print what you see. More colors than filament.</p>
         <div class="footer-social">
-          <a href="#" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
-          <a href="#" data-social="tiktok" aria-label="CMYKForge on TikTok">TikTok</a>
-          <a href="#" data-social="instagram" aria-label="CMYKForge on Instagram">Instagram</a>
-          <a href="#" data-social="facebook" aria-label="CMYKForge on Facebook">Facebook</a>
+          <a href="https://www.youtube.com/@CMYKForge" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
+          <a href="https://www.tiktok.com/@cmykforge" data-social="tiktok" aria-label="CMYKForge on TikTok">TikTok</a>
+          <a href="https://www.instagram.com/cmykforge/" data-social="instagram" aria-label="CMYKForge on Instagram">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61592027522383" data-social="facebook" aria-label="CMYKForge on Facebook">Facebook</a>
           <a href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer" aria-label="CMYKForge on Kickstarter">Kickstarter</a>
         </div>
       </div>
       <div class="foot-col">
-        <h4>Explore</h4>
-        <a href="index.html">Home</a>
+        <h2 class="foot-heading">Explore</h2>
+        <a href="/">Home</a>
         <a href="shop.html">Shop</a>
         <a href="about.html">About Us</a>
         <a href="standard.html">CMYKForge Standard</a>
@@ -244,13 +263,13 @@
         <a href="mailto:admin@cmykforge.org">Contact</a>
       </div>
       <div class="foot-col">
-        <h4>Legal</h4>
+        <h2 class="foot-heading">Legal</h2>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms</a>
         <a href="beta-terms.html">Beta Terms</a>
       </div>
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h2 class="foot-heading">Contact</h2>
         <a href="mailto:admin@cmykforge.org">admin@cmykforge.org</a>
         <p class="foot-desc" style="margin-top:10px">For beta interest and general questions.</p>
       </div>
@@ -262,13 +281,13 @@
   </div>
 </footer>
 
-<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
 
 <div class="wip-overlay" id="wipModal" role="dialog" aria-modal="true" aria-labelledby="wipTitle" aria-describedby="wipText" hidden>
   <div class="wip-modal">
     <div class="wip-icon" aria-hidden="true"></div>
     <span class="pill pill-soon" id="wipTag">Coming soon</span>
-    <h3 id="wipTitle">This section is planned for a future release</h3>
+    <h2 id="wipTitle">This section is planned for a future release</h2>
     <p id="wipText">Detailed features, pricing, and availability have not been announced yet.</p>
     <div class="wip-actions">
       <a class="btn btn-primary" href="standard.html#newsletter">Get Beta Updates</a>

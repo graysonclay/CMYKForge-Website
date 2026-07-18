@@ -27,27 +27,62 @@
   };
   // ============================================================
 
-  // Sticky header shadow on scroll
+  // Sticky header, progress, and back-to-top state share one animation-frame
+  // update so a fast scroll cannot trigger several layout reads per event.
   var header = document.querySelector('header.site');
-  window.addEventListener('scroll', function(){
-    if (window.scrollY > 12) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
-  });
+  var progress = document.getElementById('scrollProgress');
+  var toTop = document.getElementById('toTop');
+  var scrollUiQueued = false;
+  function updateScrollUi(){
+    scrollUiQueued = false;
+    var y = window.scrollY;
+    if (header) header.classList.toggle('scrolled', y > 12);
+    if (progress){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
+    if (toTop) toTop.classList.toggle('show', y > 640);
+  }
+  function queueScrollUi(){
+    if (!scrollUiQueued){
+      scrollUiQueued = true;
+      requestAnimationFrame(updateScrollUi);
+    }
+  }
+  window.addEventListener('scroll', queueScrollUi, { passive:true });
+  window.addEventListener('resize', queueScrollUi);
+  updateScrollUi();
 
   // Mobile menu toggle
   var burger = document.getElementById('burger');
   var navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', function(){
-    var open = navLinks.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  // Close menu when a link is tapped (mobile)
-  navLinks.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){
+  if (burger && navLinks){
+    function closeMenu(){
       navLinks.classList.remove('open');
-      burger.setAttribute('aria-expanded','false');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open main menu');
+    }
+    burger.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close main menu' : 'Open main menu');
     });
-  });
+    // Close menu when a link is tapped (mobile)
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && navLinks.classList.contains('open')){
+        closeMenu();
+        burger.focus();
+      }
+    });
+    document.addEventListener('click', function(e){
+      if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !burger.contains(e.target)){
+        closeMenu();
+      }
+    });
+  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(function(btn){
@@ -59,11 +94,13 @@
       document.querySelectorAll('.faq-item').forEach(function(i){
         i.classList.remove('open');
         i.querySelector('.faq-a').style.maxHeight = null;
+        i.querySelector('.faq-a').setAttribute('aria-hidden','true');
         i.querySelector('.faq-q').setAttribute('aria-expanded','false');
       });
       if (!isOpen){
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.setAttribute('aria-hidden','false');
         btn.setAttribute('aria-expanded','true');
       }
     });
@@ -84,11 +121,16 @@
   // video (not just the heading) and keep retrying on scroll until it sticks.
   if (showcase && !showcaseReduced && 'IntersectionObserver' in window){
     var showcaseWant = false;   // true while the video should be playing
+    var showcasePlayPending = false;
     function tryPlayShowcase(){
-      if (!showcaseWant || !showcase.paused) return;
+      if (!showcaseWant || !showcase.paused || showcasePlayPending) return;
       showcase.muted = true;    // required for browsers to allow autoplay
       var pr = showcase.play();
-      if (pr && pr.catch) pr.catch(function(){ /* rejected (e.g. Safari while barely visible) — scroll handler retries */ });
+      if (pr && pr.then){
+        showcasePlayPending = true;
+        pr.then(function(){ showcasePlayPending = false; })
+          .catch(function(){ showcasePlayPending = false; /* Safari may reject while barely visible; scroll retries */ });
+      }
     }
     var showcaseIO = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
@@ -107,23 +149,10 @@
   // (The old placeholder beta form was replaced by the live Brevo embed on
   //  standard.html#beta. No local form handler or email logging remains.)
 
-  // ===== Scroll progress bar (only if present on this page) =====
-  var progress = document.getElementById('scrollProgress');
-  function onScrollProgress(){
-    if (!progress) return;
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
-  }
-
   // ===== Back to top (only if present on this page) =====
-  var toTop = document.getElementById('toTop');
-  if (toTop) toTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
-
-  window.addEventListener('scroll', function(){
-    onScrollProgress();
-    if (toTop){ if (window.scrollY > 640) toTop.classList.add('show'); else toTop.classList.remove('show'); }
+  if (toTop) toTop.addEventListener('click', function(){
+    window.scrollTo({ top:0, behavior:reduceMotion ? 'auto' : 'smooth' });
   });
-  onScrollProgress();
 
   // ===== Watch preview → scroll to the video and play it (muted) =====
   var watch = document.getElementById('watchPreview');
@@ -240,7 +269,9 @@
       var lit = p * (words.length + lead * 2) - lead;
       words.forEach(function(w, i){
         var t = Math.max(0, Math.min(1, lit - i));
-        w.style.opacity = (0.16 + t * 0.84).toFixed(3);
+        // Keep every word above the WCAG large-text contrast threshold while
+        // preserving the progressive illumination effect.
+        w.style.opacity = (0.42 + t * 0.58).toFixed(3);
       });
     });
   }
@@ -258,6 +289,11 @@
     var textEl = document.getElementById('wipText');
     var closeBtn = document.getElementById('wipClose');
     var lastFocused = null;
+    var inertSiblings = Array.prototype.slice.call(document.body.children)
+      .filter(function(el){ return el !== modal && el.tagName !== 'SCRIPT'; });
+    function setPageInert(value){
+      inertSiblings.forEach(function(el){ el.inert = value; });
+    }
     function focusable(){
       return Array.prototype.slice.call(
         modal.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
@@ -270,6 +306,7 @@
       textEl.textContent = label + " is planned for a future release. Detailed features, pricing, and availability have not been announced yet. Join the newsletter to hear when it's ready.";
       lastFocused = document.activeElement;
       modal.hidden = false;
+      setPageInert(true);
       document.body.style.overflow = 'hidden';
       requestAnimationFrame(function(){
         modal.classList.add('open');
@@ -279,7 +316,8 @@
     function closeModal(){
       modal.classList.remove('open');
       document.body.style.overflow = '';
-      setTimeout(function(){ modal.hidden = true; }, 260);
+      setPageInert(false);
+      setTimeout(function(){ modal.hidden = true; }, reduceMotion ? 0 : 260);
       if (lastFocused && lastFocused.focus) lastFocused.focus();  // return focus
     }
     document.addEventListener('click', function(e){

@@ -3,27 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — CMYKForge</title>
 <meta name="description" content="Shop CMYKForge — a growing family of full-spectrum color 3D printing software, starting with the local-first CMYKForge Standard.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://cmykforge.org/shop.html">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="CMYKForge">
 <meta property="og:title" content="Shop — CMYKForge">
 <meta property="og:description" content="Shop CMYKForge — a growing family of full-spectrum color 3D printing software, starting with the local-first CMYKForge Standard.">
 <meta property="og:url" content="https://cmykforge.org/shop.html">
 <meta property="og:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
+<meta property="og:image:secure_url" content="https://cmykforge.org/assets/images/brand-banner.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Shop — CMYKForge">
 <meta name="twitter:description" content="Shop CMYKForge — a growing family of full-spectrum color 3D printing software, starting with the local-first CMYKForge Standard.">
 <meta name="twitter:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
-<title>Shop — CMYKForge</title>
-<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<meta name="twitter:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
+<meta name="theme-color" content="#07080B">
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/images/favicon.png">
+<link rel="apple-touch-icon" sizes="256x256" href="/assets/images/cmykforge-logo.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://cmykforge.org/shop.html#webpage",
+  "url": "https://cmykforge.org/shop.html",
+  "name": "Shop — CMYKForge",
+  "description": "Shop CMYKForge — a growing family of full-spectrum color 3D printing software, starting with the local-first CMYKForge Standard.",
+  "isPartOf": {"@id": "https://cmykforge.org/#website"},
+  "about": {"@id": "https://cmykforge.org/#organization"},
+  "inLanguage": "en"
+}
+</script>
 </head>
 <body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <!-- Kickstarter live announcement bar (remove this block when the campaign ends) -->
 <a class="ks-announce" href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer">
@@ -35,31 +59,33 @@
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="site" id="top">
   <div class="wrap nav">
-    <a href="index.html" class="brand" aria-label="CMYKForge home">
+    <a href="/" class="brand" aria-label="CMYKForge home">
       <span class="brand-logo" role="img" aria-label="CMYKForge logo"></span>
       <span class="brand-word">CMYKForge</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <a href="shop.html" class="active" aria-current="page">Shop</a>
       <a href="about.html">About Us</a>
+      <a href="devlog.html">Dev Log</a>
       <a class="btn btn-primary nav-cta" href="standard.html#newsletter">Get Beta Updates</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="burger" id="burger" type="button" aria-label="Open main menu" aria-expanded="false" aria-controls="navLinks">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
   </div>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <section id="shop">
   <div class="wrap">
     <span class="section-tag">Shop</span>
     <div class="shop-head">
-      <h2>CMYKForge Products</h2>
+      <h1>CMYKForge Products</h1>
       <p class="lead">Choose the version of CMYKForge that best matches your workflow.</p>
     </div>
+    <h2 class="sr-only" id="available-product">Available product</h2>
     <div class="products products-primary" style="margin-top:44px">
       <a class="product featured" href="standard.html">
         <div class="card-media banner" role="img" aria-label="CMYKForge — Print What You See brand artwork"></div>
@@ -70,33 +96,33 @@
     </div>
 
     <div class="future-editions">
-      <h3 class="future-title">Future CMYKForge Editions</h3>
+      <h2 class="future-title">Future CMYKForge Editions</h2>
       <p class="lead">Planned editions beyond Standard. Details will be announced later.</p>
       <div class="products products-future">
-        <button type="button" class="product soon" data-wip="CMYKForge Local AI">
+        <article class="product soon">
           <div class="card-media ident" aria-hidden="true"><span class="ident-dots"><i class="chdot dc"></i><i class="chdot dm"></i><i class="chdot dy"></i></span></div>
           <div class="phead"><h3>CMYKForge Local AI</h3><span class="pill pill-soon">Planned</span></div>
           <p class="desc">Optional local AI assistance for the CMYKForge workflow.</p>
-          <span class="btn btn-ghost is-soft">Details coming later</span>
-        </button>
-        <button type="button" class="product soon" data-wip="CMYKForge Local AI Plus">
+          <button type="button" class="btn btn-ghost is-soft" data-wip="CMYKForge Local AI">Details coming later</button>
+        </article>
+        <article class="product soon">
           <div class="card-media ident" aria-hidden="true"><span class="ident-dots"><i class="chdot dc"></i><i class="chdot dm"></i><i class="chdot dy"></i></span></div>
           <div class="phead"><h3>CMYKForge Local AI Plus</h3><span class="pill pill-soon">Planned</span></div>
           <p class="desc">An expanded local AI edition for advanced creators.</p>
-          <span class="btn btn-ghost is-soft">Details coming later</span>
-        </button>
-        <button type="button" class="product soon" data-wip="CMYKForge Business">
+          <button type="button" class="btn btn-ghost is-soft" data-wip="CMYKForge Local AI Plus">Details coming later</button>
+        </article>
+        <article class="product soon">
           <div class="card-media ident" aria-hidden="true"><span class="ident-dots"><i class="chdot dc"></i><i class="chdot dm"></i><i class="chdot dy"></i></span></div>
           <div class="phead"><h3>CMYKForge Business</h3><span class="pill pill-soon">Planned</span></div>
           <p class="desc">A workflow-management edition for studios and print farms.</p>
-          <span class="btn btn-ghost is-soft">Details coming later</span>
-        </button>
-        <button type="button" class="product future" data-wip="CMYKForge Cloud AI">
+          <button type="button" class="btn btn-ghost is-soft" data-wip="CMYKForge Business">Details coming later</button>
+        </article>
+        <article class="product future">
           <div class="card-media ident" aria-hidden="true"><span class="ident-dots"><i class="chdot dc"></i><i class="chdot dm"></i><i class="chdot dy"></i></span></div>
           <div class="phead"><h3>CMYKForge Cloud AI</h3><span class="pill pill-future">Future Concept</span></div>
           <p class="desc">An optional cloud-assisted edition, still a concept.</p>
-          <span class="btn btn-ghost is-soft">Details coming later</span>
-        </button>
+          <button type="button" class="btn btn-ghost is-soft" data-wip="CMYKForge Cloud AI">Details coming later</button>
+        </article>
       </div>
     </div>
     <p class="shop-note">CMYKForge is a growing family of color 3D printing tools. CMYKForge Standard is first, in active development — the other editions follow.</p>
@@ -109,32 +135,32 @@
     <span class="section-tag">Roadmap</span>
     <h2>Release Roadmap</h2>
     <p class="lead">Where CMYKForge is today and what comes next. These are development phases, not fixed dates — timing may change as the work progresses.</p>
-    <div class="timeline">
-      <div class="tnode now">
+    <ol class="timeline" aria-label="CMYKForge release phases">
+      <li class="tnode now">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Now</span>
-        <h4>In Development</h4>
+        <h3>In Development</h3>
         <p>Building the local-first CMYKForge Standard workflow and testing with real printers and prints.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Next</span>
-        <h4>Limited Beta</h4>
+        <h3>Limited Beta</h3>
         <p>A small group of testers helps refine color results, export reliability, and workflow clarity.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Planned</span>
-        <h4>Standard 1.0</h4>
+        <h3>Standard 1.0</h3>
         <p>The first full release of CMYKForge Standard, shaped by beta feedback.</p>
-      </div>
-      <div class="tnode">
+      </li>
+      <li class="tnode">
         <div class="dot" aria-hidden="true"></div>
         <span class="tag">Later</span>
-        <h4>Future Editions</h4>
+        <h3>Future Editions</h3>
         <p>Optional AI editions and professional tools build on the Standard foundation.</p>
-      </div>
-    </div>
+      </li>
+    </ol>
     <div style="margin-top:26px;max-width:820px;color:var(--soft);font-size:13.5px;border-left:2px solid var(--yellow);padding-left:14px">
       Phases, naming, and timing may change as CMYKForge develops. <a href="standard.html#newsletter" style="color:var(--cyan);text-decoration:underline">Join the newsletter</a> to hear about each step.
     </div>
@@ -150,16 +176,16 @@
         <p class="foot-desc">Full-spectrum color software for multi-material FDM image reproduction.</p>
         <p class="foot-slogan">Print what you see. More colors than filament.</p>
         <div class="footer-social">
-          <a href="#" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
-          <a href="#" data-social="tiktok" aria-label="CMYKForge on TikTok">TikTok</a>
-          <a href="#" data-social="instagram" aria-label="CMYKForge on Instagram">Instagram</a>
-          <a href="#" data-social="facebook" aria-label="CMYKForge on Facebook">Facebook</a>
+          <a href="https://www.youtube.com/@CMYKForge" data-social="youtube" aria-label="CMYKForge on YouTube">YouTube</a>
+          <a href="https://www.tiktok.com/@cmykforge" data-social="tiktok" aria-label="CMYKForge on TikTok">TikTok</a>
+          <a href="https://www.instagram.com/cmykforge/" data-social="instagram" aria-label="CMYKForge on Instagram">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61592027522383" data-social="facebook" aria-label="CMYKForge on Facebook">Facebook</a>
           <a href="https://www.kickstarter.com/projects/cmykforge/cmykforge-a-new-way-to-3d-print-images" target="_blank" rel="noopener noreferrer" aria-label="CMYKForge on Kickstarter">Kickstarter</a>
         </div>
       </div>
       <div class="foot-col">
-        <h4>Explore</h4>
-        <a href="index.html">Home</a>
+        <h2 class="foot-heading">Explore</h2>
+        <a href="/">Home</a>
         <a href="shop.html">Shop</a>
         <a href="about.html">About Us</a>
         <a href="standard.html">CMYKForge Standard</a>
@@ -169,13 +195,13 @@
         <a href="mailto:admin@cmykforge.org">Contact</a>
       </div>
       <div class="foot-col">
-        <h4>Legal</h4>
+        <h2 class="foot-heading">Legal</h2>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms</a>
         <a href="beta-terms.html">Beta Terms</a>
       </div>
       <div class="foot-col">
-        <h4>Contact</h4>
+        <h2 class="foot-heading">Contact</h2>
         <a href="mailto:admin@cmykforge.org">admin@cmykforge.org</a>
         <p class="foot-desc" style="margin-top:10px">For beta interest and general questions.</p>
       </div>
@@ -187,13 +213,13 @@
   </div>
 </footer>
 
-<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
 
 <div class="wip-overlay" id="wipModal" role="dialog" aria-modal="true" aria-labelledby="wipTitle" aria-describedby="wipText" hidden>
   <div class="wip-modal">
     <div class="wip-icon" aria-hidden="true"></div>
     <span class="pill pill-soon" id="wipTag">Coming soon</span>
-    <h3 id="wipTitle">This section is planned for a future release</h3>
+    <h2 id="wipTitle">This section is planned for a future release</h2>
     <p id="wipText">Detailed features, pricing, and availability have not been announced yet.</p>
     <div class="wip-actions">
       <a class="btn btn-primary" href="standard.html#newsletter">Get Beta Updates</a>
