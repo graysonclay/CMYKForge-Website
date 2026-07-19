@@ -36,6 +36,14 @@
 .pro-lead{color:var(--muted);font-size:clamp(16px,1.8vw,19px);line-height:1.7;max-width:640px}
 .pro-lead .dim{color:var(--soft)}
 
+/* Pro pages use a clean, engineered caption crossfade: opacity only,
+   outgoing step gone before the incoming one lands. No blur. */
+.pro-page .pin-step{
+  filter:none;transform:none;
+  transition:opacity .22s var(--ease-inout);
+}
+.pro-page .pin-step.active{transition:opacity .4s var(--ease-inout) .16s}
+
 /* Placeholder marker — visible until the owner confirms final copy */
 .pro-tbc{
   display:inline-block;margin-left:10px;padding:3px 10px;border-radius:6px;
@@ -128,8 +136,8 @@
 .pro-sep{height:360vh}
 .pro-sep-stage{
   --sa:clamp(0,calc(var(--p,0)*2.4),1);
-  --sb:clamp(0,calc((var(--p,0) - .52)*4),1);
-  --sc:clamp(0,calc((var(--p,0) - .78)*5),1);
+  --sb:clamp(0,calc((var(--p,0) - .48)*5),1);
+  --sc:clamp(0,calc((var(--p,0) - .74)*5),1);
   position:relative;width:min(66%,380px);aspect-ratio:1/1;
 }
 .pro-sep-stage img{
@@ -144,7 +152,9 @@
 .pro-chan{
   position:absolute;top:8%;height:84%;width:26%;border-radius:12px;
   border:1px solid rgba(255,255,255,.14);z-index:-1;
-  --out:calc(var(--sa)*(1 - var(--sb)));
+  --gone:clamp(0,calc((var(--p,0) - .40)*6),1);
+  --out:calc(var(--sa)*(1 - var(--gone)));
+  opacity:calc(1 - var(--gone));
 }
 .pro-chan-c{left:0;transform:translateX(calc(var(--out)*-78%)) rotate(calc(var(--out)*-5deg));background:linear-gradient(170deg,#2ea5cf,#15719b)}
 .pro-chan-m{left:25%;transform:translateX(calc(var(--out)*-46%)) rotate(calc(var(--out)*-2.5deg));background:linear-gradient(170deg,#d2447f,#9c2a63)}
@@ -159,20 +169,21 @@
    5. FILAMENT PROFILE — pinned; real UI, data labels arrive
    ============================================================ */
 .pro-profile{height:300vh}
+
 .pro-profile-stage{
   --fa:clamp(0,calc(var(--p,0)*3),1);
   --fb:clamp(0,calc((var(--p,0) - .2)*3),1);
   --fc:clamp(0,calc((var(--p,0) - .4)*3),1);
   --fd:clamp(0,calc((var(--p,0) - .6)*3),1);
   --fe:clamp(0,calc((var(--p,0) - .78)*4),1);
-  position:relative;width:min(80%,440px);
+  position:relative;width:min(58%,340px);margin-right:auto;
 }
 .pro-profile-stage .pro-ui{
   width:100%;height:auto;border-radius:16px;border:1px solid var(--pro-hairline);
   box-shadow:0 30px 80px -30px rgba(0,0,0,.9);display:block;
 }
 .pro-profile-stage .pro-ui-2{
-  position:absolute;right:-14%;bottom:-12%;width:52%;height:auto;border-radius:14px;
+  position:absolute;right:-6%;bottom:-22%;width:48%;height:auto;border-radius:14px;
   border:1px solid var(--pro-hairline);box-shadow:0 24px 60px -22px rgba(0,0,0,.9);
   opacity:var(--fe);transform:translateY(calc((1 - var(--fe))*18px));
 }
@@ -186,10 +197,10 @@
   content:"";position:absolute;right:100%;top:12px;width:14px;height:1px;
   background:var(--pro-hairline);margin-right:4px;
 }
-.pro-datum-1{top:6%;opacity:var(--fa);transform:translateX(calc((1 - var(--fa))*10px))}
-.pro-datum-2{top:30%;opacity:var(--fb);transform:translateX(calc((1 - var(--fb))*10px))}
-.pro-datum-3{top:54%;opacity:var(--fc);transform:translateX(calc((1 - var(--fc))*10px))}
-.pro-datum-4{top:78%;opacity:var(--fd);transform:translateX(calc((1 - var(--fd))*10px))}
+.pro-datum-1{top:8%;opacity:var(--fa);transform:translateX(calc((1 - var(--fa))*10px))}
+.pro-datum-2{top:32%;opacity:var(--fb);transform:translateX(calc((1 - var(--fb))*10px))}
+.pro-datum-3{top:56%;opacity:var(--fc);transform:translateX(calc((1 - var(--fc))*10px))}
+.pro-datum-4{top:80%;opacity:var(--fd);transform:translateX(calc((1 - var(--fd))*10px))}
 
 /* ============================================================
    6. WORKFLOW TRANSFORMATION — pinned; one file evolves
@@ -287,28 +298,51 @@
   .pro-points b{flex-basis:150px}
 }
 @media(max-width:760px){
-  /* shorten cinematic travel on phones */
-  .pro-sep-tag{white-space:normal;width:92%;text-align:center;line-height:1.5}
-  .pro-profile-stage{width:min(88%,440px)}
-  /* single-column pinned scenes, stage above copy (same idiom as the
-     shared wheel/layers sections) */
-  .pro-sep .pin-wrap,.pro-profile .pin-wrap,.pro-flow .pin-wrap{
-    grid-template-columns:1fr;gap:22px;align-content:center;
+  /* On phones the cinematic scenes become clean static editorial stages —
+     the same treatment reduced-motion gets. Pinned scroll-scrubbing at
+     390px produces dead scroll and colliding text; Apple unpins too. */
+  .pro-brand,.pro-sep,.pro-profile,.pro-flow{height:auto}
+  .pro-brand .pin-wrap,.pro-sep .pin-wrap,.pro-profile .pin-wrap,.pro-flow .pin-wrap{
+    position:relative;height:auto;grid-template-columns:1fr;gap:30px;
+    padding-top:56px;padding-bottom:56px;overflow:visible;
   }
-  .pro-sep .pin-stage,.pro-profile .pin-stage,.pro-flow .pin-stage{height:40vh;order:-1}
-  .pro-sep .pin-steps,.pro-profile .pin-steps,.pro-flow .pin-steps{min-height:170px}
-  .pro-sep-stage{width:min(60vw,300px)}
-  .pro-flow-file{width:min(52vw,240px)}
-  .pro-flow-stage{width:min(88vw,340px)}
-  .pro-brand{height:190vh}
-  .pro-sep{height:240vh}
-  .pro-profile{height:200vh}
-  .pro-flow{height:240vh}
-  .pro-datum{position:static;transform:none;opacity:1;margin-top:10px}
-  .pro-profile-labels{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
-  .pro-profile-stage .pro-ui-2{position:static;width:70%;margin:16px auto 0;display:block}
-  .pro-sep-stage{width:min(78%,320px)}
-  .pro-points li{flex-direction:column;gap:6px}
+  .pro-brand .pin-stage,.pro-sep .pin-stage,.pro-profile .pin-stage,.pro-flow .pin-stage{
+    --p:1;height:auto;order:-1;
+  }
+  .pro-sep .pin-steps,.pro-profile .pin-steps,.pro-flow .pin-steps{
+    position:static;min-height:0;display:grid;gap:26px;
+  }
+  .pro-sep .pin-step,.pro-profile .pin-step,.pro-flow .pin-step{
+    position:relative;opacity:1;transform:none;
+  }
+  .pro-sep .pin-rail,.pro-profile .pin-rail,.pro-flow .pin-rail{display:none}
+  /* Brand: settled mark + single closing line */
+  .pro-brand .pin-wrap{padding-top:40px;padding-bottom:40px}
+  .pro-brand-copy{min-height:0;margin-top:26px}
+  .pro-brand-copy .pin-step{position:relative;opacity:1;transform:none}
+  .pro-brand-copy .pin-step:first-child{display:none}
+  .pro-brand-mark{width:min(58vw,230px)}
+  /* Separation: final print shown; caption sits in flow under the image */
+  .pro-sep-stage{width:min(72vw,300px);margin:0 auto}
+  .pro-sep-tag{position:static;transform:none;display:block;margin-top:14px;
+    white-space:normal;text-align:center;line-height:1.5;width:auto}
+  .pro-chan{display:none}
+  /* Profile: UI image, then labels as a tidy two-column grid */
+  .pro-profile-stage{width:min(88%,440px);margin:0 auto !important}
+  .pro-profile-labels{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;margin-top:18px}
+  .pro-datum{position:static;transform:none;opacity:1}
+  .pro-datum::before{display:none}
+  .pro-profile-stage .pro-ui-2{position:static;width:70%;margin:16px auto 0;display:block;opacity:1;transform:none}
+  /* Workflow: static card shows the printed result; steps read as a list */
+  .pro-flow-stage{width:min(88vw,340px);margin:0 auto}
+  .pro-flow-file{width:min(64vw,260px);margin:0 auto}
+  .pro-flow-word{display:none}
+  .pro-flow-word-7{display:block;opacity:1}
+  .pro-flow .pin-step h2{font-size:22px;margin-bottom:6px}
+  .pro-flow .pin-steps{gap:18px}
+  /* Precision list stacks vertically */
+  .pro-points li{flex-direction:column;gap:8px}
+  .pro-points b{flex:none}
   .pro-points .pro-status{margin-left:0;align-self:flex-start}
 }
 @media(prefers-reduced-motion:reduce){
@@ -328,13 +362,13 @@
    scene scrubs cleanly in both directions (word n visible in its 1/7th). */
 .pro-flow-label{display:grid}
 .pro-flow-word{grid-area:1/1;transition:none;white-space:nowrap;text-align:center}
-.pro-flow-word-1{opacity:calc(1 - clamp(0,(var(--p,0) - .12)*16,1))}
-.pro-flow-word-2{opacity:calc(clamp(0,(var(--p,0) - .13)*16,1) - clamp(0,(var(--p,0) - .27)*16,1))}
-.pro-flow-word-3{opacity:calc(clamp(0,(var(--p,0) - .28)*16,1) - clamp(0,(var(--p,0) - .41)*16,1))}
-.pro-flow-word-4{opacity:calc(clamp(0,(var(--p,0) - .42)*16,1) - clamp(0,(var(--p,0) - .55)*16,1))}
-.pro-flow-word-5{opacity:calc(clamp(0,(var(--p,0) - .56)*16,1) - clamp(0,(var(--p,0) - .69)*16,1))}
-.pro-flow-word-6{opacity:calc(clamp(0,(var(--p,0) - .70)*16,1) - clamp(0,(var(--p,0) - .83)*16,1))}
-.pro-flow-word-7{opacity:clamp(0,(var(--p,0) - .84)*16,1)}
+.pro-flow-word-1{opacity:calc(1 - clamp(0,(var(--p,0) - .10)*40,1))}
+.pro-flow-word-2{opacity:calc(clamp(0,(var(--p,0) - .13)*40,1) - clamp(0,(var(--p,0) - .24)*40,1))}
+.pro-flow-word-3{opacity:calc(clamp(0,(var(--p,0) - .27)*40,1) - clamp(0,(var(--p,0) - .38)*40,1))}
+.pro-flow-word-4{opacity:calc(clamp(0,(var(--p,0) - .41)*40,1) - clamp(0,(var(--p,0) - .52)*40,1))}
+.pro-flow-word-5{opacity:calc(clamp(0,(var(--p,0) - .55)*40,1) - clamp(0,(var(--p,0) - .66)*40,1))}
+.pro-flow-word-6{opacity:calc(clamp(0,(var(--p,0) - .69)*40,1) - clamp(0,(var(--p,0) - .80)*40,1))}
+.pro-flow-word-7{opacity:clamp(0,(var(--p,0) - .86)*40,1)}
 .pro-flow-img-src{opacity:calc(1 - clamp(0,(var(--p,0) - .1)*10,1))}
 .pro-flow-img-print{opacity:clamp(0,(var(--p,0) - .84)*10,1)}
 @media(prefers-reduced-motion:reduce){
