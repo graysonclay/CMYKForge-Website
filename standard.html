@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=20260719c">
+<link rel="stylesheet" href="assets/styles.css?v=20260720">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -562,11 +562,82 @@
   <div class="wrap">
     <span class="section-tag">Requirements</span>
     <h2>What You'll Need</h2>
-    <div class="grid g4" style="margin-top:36px">
-      <div class="card accent-top"><h3>Multi-Material FDM Printer</h3><p>Best suited for printers that can use multiple filament colors.</p></div>
-      <div class="card accent-top"><h3>CMYK or CMYKW Filaments</h3><p>Designed around cyan, magenta, yellow, black, and optional white workflows.</p></div>
-      <div class="card accent-top"><h3>Compatible Slicer</h3><p>Generated files are intended to be opened and prepared in slicer software.</p></div>
-      <div class="card accent-top"><h3>Calibration Matters</h3><p>Final results depend on printer setup, filament behavior, layer settings, and slicer settings.</p></div>
+    <div class="tabs" data-tabs style="margin-top:28px">
+      <div class="tab-list" role="tablist" aria-label="Requirement categories">
+        <button class="tab-btn" id="reqtab-printer" type="button" role="tab" aria-selected="true" aria-controls="reqpanel-printer">Printer &amp; Filament</button>
+        <button class="tab-btn" id="reqtab-mac" type="button" role="tab" aria-selected="false" aria-controls="reqpanel-mac" tabindex="-1">macOS</button>
+        <button class="tab-btn" id="reqtab-win" type="button" role="tab" aria-selected="false" aria-controls="reqpanel-win" tabindex="-1">Windows</button>
+      </div>
+
+      <div class="tab-panel" id="reqpanel-printer" role="tabpanel" aria-labelledby="reqtab-printer">
+        <span class="section-tag" style="margin-top:22px">Printer &amp; Filament</span>
+        <div class="grid g4" style="margin-top:18px">
+          <div class="card accent-top"><h3>Multi-Material FDM Printer</h3><p>Best suited for printers that can use multiple filament colors.</p></div>
+          <div class="card accent-top"><h3>CMYK or CMYKW Filaments</h3><p>Designed around cyan, magenta, yellow, black, and optional white workflows.</p></div>
+          <div class="card accent-top"><h3>Compatible Slicer</h3><p>Generated files are intended to be opened and prepared in slicer software.</p></div>
+          <div class="card accent-top"><h3>Calibration Matters</h3><p>Final results depend on printer setup, filament behavior, layer settings, and slicer settings.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="reqpanel-mac" role="tabpanel" aria-labelledby="reqtab-mac" hidden>
+        <span class="section-tag" style="margin-top:22px">macOS Requirements</span>
+        <div class="grid g2" style="margin-top:18px">
+          <div class="card accent-top">
+            <h3>Minimum</h3>
+            <ul class="req-list">
+              <li>Apple Silicon Mac (M1 or newer)</li>
+              <li>8 GB unified memory</li>
+              <li>2 GB available storage</li>
+              <li>macOS Sonoma (14) or newer</li>
+            </ul>
+          </div>
+          <div class="card accent-top">
+            <h3>Recommended</h3>
+            <ul class="req-list">
+              <li>Apple Silicon Mac</li>
+              <li>8 GB or more unified memory</li>
+              <li>SSD with at least 5 GB free</li>
+              <li>macOS Sequoia (15) or newer</li>
+            </ul>
+          </div>
+        </div>
+        <div class="note" style="margin-top:22px;max-width:820px">CMYKForge is optimized for Apple Silicon and takes advantage of the efficiency and performance of modern Apple chips.</div>
+      </div>
+
+      <div class="tab-panel" id="reqpanel-win" role="tabpanel" aria-labelledby="reqtab-win" hidden>
+        <span class="section-tag" style="margin-top:22px">Windows Requirements</span>
+        <div class="grid g2" style="margin-top:18px">
+          <div class="card accent-top">
+            <h3>Minimum</h3>
+            <ul class="req-list">
+              <li>Windows 10 (64-bit)</li>
+              <li>Intel Core i5 8th Gen / AMD Ryzen 5 3000 series or newer</li>
+              <li>8 GB RAM</li>
+              <li>2 GB available storage</li>
+            </ul>
+          </div>
+          <div class="card accent-top">
+            <h3>Recommended</h3>
+            <ul class="req-list">
+              <li>Windows 11 (64-bit)</li>
+              <li>Intel Core i7 10th Gen+ or AMD Ryzen 7 5000 series+</li>
+              <li>16 GB RAM or more</li>
+              <li>SSD with at least 5 GB free</li>
+            </ul>
+          </div>
+        </div>
+        <div class="note" style="margin-top:22px;max-width:820px">CMYKForge performs best on systems with SSD storage and modern multi-core processors.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:34px">
+      <h3>Notes</h3>
+      <ul class="req-list" style="margin-top:12px">
+        <li>No dedicated GPU is required for standard use.</li>
+        <li>Internet is not required for the Standard edition after installation.</li>
+        <li>Future Local AI features may recommend additional memory and storage.</li>
+        <li>Requirements may change slightly during beta development.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -789,7 +860,7 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260719b"></script>
+<script src="assets/app.js?v=20260720"></script>
 <!-- Begin Brevo Form (scripts) -->
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';

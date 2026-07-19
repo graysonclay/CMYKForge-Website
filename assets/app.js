@@ -606,3 +606,37 @@
     });
     updatePaddles();
   })();
+
+  // ===== Reusable accessible tabs ([data-tabs]) =====
+  // Roving tabindex, arrow-key navigation with wrap, Home/End support.
+  // Without JS the first panel stays visible and the rest are hidden.
+  (function(){
+    var groups = Array.prototype.slice.call(document.querySelectorAll('[data-tabs]'));
+    groups.forEach(function(group){
+      var tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"]'));
+      if (!tabs.length) return;
+      function select(tab, focus){
+        tabs.forEach(function(t){
+          var on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          var panel = document.getElementById(t.getAttribute('aria-controls'));
+          if (panel) panel.hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+      tabs.forEach(function(tab){
+        tab.addEventListener('click', function(){ select(tab, false); });
+      });
+      group.querySelector('[role="tablist"]').addEventListener('keydown', function(e){
+        var i = tabs.indexOf(document.activeElement);
+        if (i === -1) return;
+        var next = null;
+        if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+        else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === 'Home') next = tabs[0];
+        else if (e.key === 'End') next = tabs[tabs.length - 1];
+        if (next){ e.preventDefault(); select(next, true); }
+      });
+    });
+  })();
