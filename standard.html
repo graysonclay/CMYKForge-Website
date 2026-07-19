@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=20260720b">
+<link rel="stylesheet" href="assets/styles.css?v=20260721">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -128,6 +128,7 @@
     <div class="subnav-links">
       <a href="#overview">Overview</a>
       <a href="#spectrum">Full Spectrum</a>
+      <a href="#highlights">Highlights</a>
       <a href="#colorsystems">Color Engine</a>
       <a href="#systems">Systems</a>
       <a href="#workflow">Workflow</a>
@@ -181,6 +182,45 @@
     </div>
     <p class="spectrum-name" id="spectrumName" aria-live="polite">Process Cyan</p>
     <p class="spectrum-note">Printed color varies with filament, calibration, and lighting.</p>
+  </div>
+</section>
+
+<section id="highlights">
+  <div class="wrap">
+    <span class="kick kick-c">Highlights</span>
+    <h2 class="chapter-h">Get the highlights.</h2>
+    <div class="rail-wrap">
+      <div class="rail" tabindex="0" role="group" aria-label="CMYKForge Standard highlights — scrollable list">
+        <a class="hl-card" href="#real-progress">
+          <span class="hl-media"><img src="assets/images/real-progress/physical-print.avif" width="1200" height="1200" alt="Real physical print of the color wheel project" loading="lazy" decoding="async"></span>
+          <span class="hl-body"><strong>Real prints, really photographed</strong><span>Unretouched results, shown next to the original image.</span></span>
+        </a>
+        <a class="hl-card" href="#spectrum">
+          <span class="hl-media hl-media-fan" aria-hidden="true"><i class="mfp mfp-c"></i><i class="mfp mfp-m"></i><i class="mfp mfp-y"></i><i class="mfp mfp-k"></i><i class="mfp mfp-w"></i></span>
+          <span class="hl-body"><strong>Full Spectrum color</strong><span>Five filament channels, every color between them.</span></span>
+        </a>
+        <a class="hl-card" href="#colorsystems">
+          <span class="hl-media"><img src="assets/images/app-ui/color-profile.avif" width="500" height="500" alt="Color profile selector from the current build" loading="lazy" decoding="async"></span>
+          <span class="hl-body"><strong>The Color Engine</strong><span>CMYK-style planning from your actual filaments.</span></span>
+        </a>
+        <a class="hl-card" href="#offline">
+          <span class="hl-media hl-media-glyph" aria-hidden="true"><span class="hl-glyph">⌂</span></span>
+          <span class="hl-body"><strong>Offline by design</strong><span>Local-first. No cloud processing of your images.</span></span>
+        </a>
+        <a class="hl-card" href="#exportstory">
+          <span class="hl-media"><img src="assets/images/app-ui/print-settings.avif" width="381" height="655" alt="Print settings panel from the current build" loading="lazy" decoding="async"></span>
+          <span class="hl-body"><strong>Slicer-ready 3MF export</strong><span>3MF, STL, and OBJ for real slicer workflows.</span></span>
+        </a>
+        <a class="hl-card" href="local-ai.html">
+          <span class="hl-media"><img src="assets/images/localai-logo.avif" width="1000" height="1000" alt="CMYKForge Local AI logo" loading="lazy" decoding="async"></span>
+          <span class="hl-body"><strong>Optional AI, later <span class="pill pill-soon">Planned</span></strong><span>A future edition — a long way out, never required.</span></span>
+        </a>
+      </div>
+      <div class="rail-paddles">
+        <button class="rail-paddle" type="button" aria-label="Scroll to previous highlights">&#8249;</button>
+        <button class="rail-paddle" type="button" aria-label="Scroll to next highlights">&#8250;</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -335,8 +375,8 @@
     <span class="kick kick-c">Offline by design</span>
     <h2 class="chapter-h">Offline by Design</h2>
     <p class="lead" style="margin-top:12px">CMYKForge Standard is the local-first version. <span class="dim">Preparing image-based models, working with filament profiles, previewing expected results, and generating slicer-compatible files — without cloud processing or AI tools.</span></p>
-    <div class="grid g3" style="margin-top:40px">
-      <div class="card"><h3>No Cloud Processing</h3><p>The generation workflow is designed around local use.</p></div>
+    <div class="bento" style="margin-top:40px">
+      <div class="card bento-big"><h3>No Cloud Processing</h3><p>The generation workflow is designed around local use.</p></div>
       <div class="card"><h3>No AI Required</h3><p>Does not depend on cloud AI or local AI models by default.</p></div>
       <div class="card"><h3>Optional AI Path</h3><p>Optional AI tools may be added later through a separate edition.</p></div>
     </div>
@@ -804,6 +844,44 @@
 </section>
 
 
+<section id="principles">
+  <div class="wrap">
+    <span class="kick kick-y">Principles</span>
+    <h2 class="chapter-h">The principles behind the work.</h2>
+    <div class="grid g3" style="margin-top:36px">
+      <div class="card" data-reveal><h3>Honest Previews</h3><p>On-screen previews are always labeled as simulations — never passed off as photographs. <a href="about.html#why">More about the approach</a>.</p></div>
+      <div class="card" data-reveal><h3>Local-First</h3><p>The Standard workflow is designed around local use, so your images stay on your machine.</p></div>
+      <div class="card" data-reveal><h3>Tested on Real Prints</h3><p>Claims follow physical prints on real hardware — not renders. <a href="about.html#status">Current status</a>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="explore-editions">
+  <div class="wrap">
+    <span class="kick kick-m">Keep exploring</span>
+    <h2 class="chapter-h">Keep exploring CMYKForge.</h2>
+    <div class="grid g3" style="margin-top:36px">
+      <div class="card accent-top" data-reveal>
+        <h3>CMYKForge Standard</h3>
+        <span class="pill pill-beta" style="margin:8px 0 10px;display:inline-block">Currently viewing</span>
+        <p>The local-first, non-AI core color workflow — in active development.</p>
+      </div>
+      <div class="card accent-top" data-reveal>
+        <h3>CMYKForge Local AI</h3>
+        <span class="pill pill-soon" style="margin:8px 0 10px;display:inline-block">Planned</span>
+        <p>Optional local AI assistance for the workflow — a long way out.</p>
+        <p style="margin-top:12px"><a class="btn btn-ghost" href="local-ai.html">Early preview</a></p>
+      </div>
+      <div class="card accent-top" data-reveal>
+        <h3>All Editions</h3>
+        <span class="pill pill-soon" style="margin:8px 0 10px;display:inline-block">The lineup</span>
+        <p>See the full planned CMYKForge family and the release roadmap.</p>
+        <p style="margin-top:12px"><a class="btn btn-ghost" href="shop.html">Visit the shop</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="final">
   <div class="wrap">
     <div class="finalcta">
@@ -877,7 +955,7 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260720b"></script>
+<script src="assets/app.js?v=20260721"></script>
 <!-- Begin Brevo Form (scripts) -->
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';

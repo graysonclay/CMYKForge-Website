@@ -577,34 +577,35 @@
     stats.forEach(function(el){ io.observe(el); });
   })();
 
-  // ===== Feature rail (What's Included): paddle buttons + keyboard =====
+  // ===== Feature rails: paddle buttons + keyboard (any .rail-wrap) =====
   (function(){
-    var rail = document.getElementById('includedRail');
-    if (!rail) return;
-    var prev = document.getElementById('railPrev');
-    var next = document.getElementById('railNext');
-    if (!prev || !next) return;
     var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function step(){
-      var card = rail.querySelector('.card');
-      return card ? card.getBoundingClientRect().width + 20 : 340;
-    }
-    function updatePaddles(){
-      prev.disabled = rail.scrollLeft <= 4;
-      next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
-    }
-    function go(dir){
-      rail.scrollBy({ left: dir * step(), behavior: rm ? 'auto' : 'smooth' });
-    }
-    prev.addEventListener('click', function(){ go(-1); });
-    next.addEventListener('click', function(){ go(1); });
-    rail.addEventListener('scroll', updatePaddles, { passive:true });
-    window.addEventListener('resize', updatePaddles);
-    rail.addEventListener('keydown', function(e){
-      if (e.key === 'ArrowRight'){ e.preventDefault(); go(1); }
-      else if (e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); }
+    Array.prototype.slice.call(document.querySelectorAll('.rail-wrap')).forEach(function(wrap){
+      var rail = wrap.querySelector('.rail');
+      var paddles = wrap.querySelectorAll('.rail-paddle');
+      if (!rail || paddles.length < 2) return;
+      var prev = paddles[0], next = paddles[1];
+      function step(){
+        var card = rail.querySelector('.card, .hl-card');
+        return card ? card.getBoundingClientRect().width + 20 : 340;
+      }
+      function updatePaddles(){
+        prev.disabled = rail.scrollLeft <= 4;
+        next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
+      }
+      function go(dir){
+        rail.scrollBy({ left: dir * step(), behavior: rm ? 'auto' : 'smooth' });
+      }
+      prev.addEventListener('click', function(){ go(-1); });
+      next.addEventListener('click', function(){ go(1); });
+      rail.addEventListener('scroll', updatePaddles, { passive:true });
+      window.addEventListener('resize', updatePaddles);
+      rail.addEventListener('keydown', function(e){
+        if (e.key === 'ArrowRight'){ e.preventDefault(); go(1); }
+        else if (e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); }
+      });
+      updatePaddles();
     });
-    updatePaddles();
   })();
 
   // ===== Reusable accessible tabs ([data-tabs]) =====

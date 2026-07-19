@@ -2118,3 +2118,47 @@
     .fanplate.sel{border:3px solid Highlight}
     .spectrum-word{background:none;-webkit-text-fill-color:CanvasText}
   }
+
+  /* ============================================================
+     "Get the highlights." media cards + bento grid
+     ============================================================ */
+  .hl-card{
+    flex:0 0 min(340px,80vw);scroll-snap-align:start;display:flex;flex-direction:column;
+    border-radius:20px;border:1px solid var(--border);overflow:hidden;text-decoration:none;
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    transition:transform .3s var(--ease),border-color .3s var(--ease);
+  }
+  .hl-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22)}
+  .hl-media{
+    display:grid;place-items:center;aspect-ratio:16/11;overflow:hidden;
+    background:rgba(255,255,255,.02);position:relative;
+  }
+  .hl-media img{width:100%;height:100%;object-fit:cover;display:block}
+  .hl-media-glyph .hl-glyph{font-size:64px;color:var(--cyan);opacity:.85}
+  .hl-body{display:flex;flex-direction:column;gap:6px;padding:18px 20px 20px}
+  .hl-body strong{color:var(--text);font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .hl-body span{color:var(--soft);font-size:13.5px;line-height:1.55}
+  .hl-body strong .pill{font-size:10px;padding:3px 9px}
+  /* mini plate fan inside a highlight card */
+  .hl-media-fan{position:relative}
+  .mfp{
+    position:absolute;left:50%;top:24%;width:26%;aspect-ratio:3/4;border-radius:10px;
+    border:1px solid rgba(255,255,255,.16);box-shadow:0 12px 30px -12px rgba(0,0,0,.8);
+  }
+  .mfp-c{transform:translateX(-50%) translateX(-64%) rotate(-16deg) translateY(10px);background:linear-gradient(160deg,#3fc6f0,#1a8fc0)}
+  .mfp-m{transform:translateX(-50%) translateX(-32%) rotate(-8deg) translateY(3px);background:linear-gradient(160deg,#f065b1,#c22e7e)}
+  .mfp-y{transform:translateX(-50%);background:linear-gradient(160deg,#ffd75e,#dca92c);z-index:2}
+  .mfp-k{transform:translateX(-50%) translateX(32%) rotate(8deg) translateY(3px);background:linear-gradient(160deg,#2a3040,#0b0e15)}
+  .mfp-w{transform:translateX(-50%) translateX(64%) rotate(16deg) translateY(10px);background:linear-gradient(160deg,#ffffff,#c9ced8)}
+
+  .bento{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:20px}
+  .bento-big{
+    grid-row:1 / span 2;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
+  }
+  .bento-big::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(420px 320px at 18% 20%,rgba(37,182,230,.10),transparent 65%);
+  }
+  .bento-big h3{font-size:24px}
+  @media(max-width:680px){.bento{grid-template-columns:1fr}.bento-big{grid-row:auto}}
+  @media(forced-colors:active){.hl-card{border:1px solid LinkText}}
