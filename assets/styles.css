@@ -2183,3 +2183,6 @@
     .bento-big-inner{flex-direction:column-reverse;align-items:flex-start}
     .bento-badge{width:140px;margin:0 auto}
   }
+
+  /* Shop card media for CMYKForge Pro (mirrors .card-media.banner) */
+  .card-media.pro-media{background:url("images/pro-logo.avif") center/cover no-repeat #050608}
