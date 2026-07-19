@@ -509,3 +509,100 @@
       if (a && a.classList.contains('is-pending')) e.preventDefault();
     });
   })();
+
+  // ===== Product sub-nav (standard.html): stick after hero, scroll-spy =====
+  (function(){
+    var subnav = document.getElementById('subnav');
+    if (!subnav) return;
+    var hero = document.querySelector('.prod-hero') || document.querySelector('.hero');
+    var stickQueued = false;
+    function updateStick(){
+      stickQueued = false;
+      var past = hero ? window.scrollY > hero.offsetTop + hero.offsetHeight - 120 : window.scrollY > 480;
+      subnav.classList.toggle('stuck', past);
+      document.body.classList.toggle('subnav-active', past);
+    }
+    window.addEventListener('scroll', function(){
+      if (!stickQueued){ stickQueued = true; requestAnimationFrame(updateStick); }
+    }, { passive:true });
+    updateStick();
+    // Scroll-spy: highlight the link of the section currently in view
+    var links = Array.prototype.slice.call(subnav.querySelectorAll('a[href^="#"]'));
+    var targets = links
+      .map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+    if ('IntersectionObserver' in window && targets.length){
+      var spy = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (!en.isIntersecting) return;
+          links.forEach(function(a){
+            a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id);
+          });
+        });
+      }, { rootMargin: '-30% 0px -55% 0px' });
+      targets.forEach(function(t){ spy.observe(t); });
+    }
+  })();
+
+  // ===== Big-stat band: count numerals up on first reveal (motion-safe) =====
+  (function(){
+    var stats = Array.prototype.slice.call(document.querySelectorAll('.stat-n[data-count]'));
+    if (!stats.length) return;
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function finalText(el){ return el.getAttribute('data-count') + (el.getAttribute('data-suffix') || ''); }
+    if (rm || !('IntersectionObserver' in window)){
+      stats.forEach(function(el){ el.textContent = finalText(el); });
+      return;
+    }
+    function count(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var t0 = null, DUR = 900;
+      function frame(ts){
+        if (!t0) t0 = ts;
+        var t = Math.min((ts - t0) / DUR, 1);
+        var eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        count(en.target);
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.5 });
+    stats.forEach(function(el){ io.observe(el); });
+  })();
+
+  // ===== Feature rail (What's Included): paddle buttons + keyboard =====
+  (function(){
+    var rail = document.getElementById('includedRail');
+    if (!rail) return;
+    var prev = document.getElementById('railPrev');
+    var next = document.getElementById('railNext');
+    if (!prev || !next) return;
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function step(){
+      var card = rail.querySelector('.card');
+      return card ? card.getBoundingClientRect().width + 20 : 340;
+    }
+    function updatePaddles(){
+      prev.disabled = rail.scrollLeft <= 4;
+      next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 4;
+    }
+    function go(dir){
+      rail.scrollBy({ left: dir * step(), behavior: rm ? 'auto' : 'smooth' });
+    }
+    prev.addEventListener('click', function(){ go(-1); });
+    next.addEventListener('click', function(){ go(1); });
+    rail.addEventListener('scroll', updatePaddles, { passive:true });
+    window.addEventListener('resize', updatePaddles);
+    rail.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight'){ e.preventDefault(); go(1); }
+      else if (e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); }
+    });
+    updatePaddles();
+  })();

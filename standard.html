@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=20260719">
+<link rel="stylesheet" href="assets/styles.css?v=20260719b">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -111,7 +111,7 @@
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="/">Home</a>
-      <a href="shop.html" class="active" aria-current="location">Shop</a>
+      <a href="shop.html">Shop</a>
       <a href="about.html">About Us</a>
       <a href="devlog.html">Dev Log</a>
       <a class="btn btn-primary nav-cta" href="standard.html#newsletter">Get Beta Updates</a>
@@ -121,6 +121,21 @@
     </button>
   </div>
 </header>
+
+<nav class="subnav" id="subnav" aria-label="CMYKForge Standard sections">
+  <div class="subnav-inner">
+    <span class="subnav-name">CMYKForge Standard</span>
+    <div class="subnav-links">
+      <a href="#overview">Overview</a>
+      <a href="#colorsystems">Color Engine</a>
+      <a href="#systems">Systems</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#included">What&#8217;s Included</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-primary subnav-cta" href="#newsletter">Get Beta Updates</a>
+  </div>
+</nav>
 
 <main id="main-content" tabindex="-1">
 
@@ -139,7 +154,8 @@
         <span class="chip">CMYK / CMYKW</span>
         <span class="chip">3MF Export</span>
       </div>
-      <p class="hero-foot" style="margin-top:18px" data-hi>In active development — beta not open yet. Details may change before release.</p>
+      <p class="avail-line" data-hi>In active development — beta not open yet.
+        <span class="avail-sub">Details may change before release. Join the newsletter to follow progress.</span></p>
     </div>
     <div class="ui-collage" data-hi role="group" aria-label="Interface panels from the current CMYKForge build">
       <!-- Real UI components from the current development build -->
@@ -179,9 +195,9 @@
 
 <section id="colorsystems">
   <div class="wrap">
-    <span class="section-tag">Color engine</span>
-    <h2>The Color Engine</h2>
-    <p class="lead">CMYKForge Standard is designed around a color-focused generation workflow. The software analyzes image color, prepares CMYK-style material strategies, and helps translate visual information into printable model data for multi-material FDM printers.</p>
+    <span class="kick kick-c">Color engine</span>
+    <h2 class="chapter-h">The Color Engine</h2>
+    <p class="lead">CMYKForge Standard is designed around a color-focused generation workflow. <span class="dim">The software analyzes image color, prepares CMYK-style material strategies, and helps translate visual information into printable model data for multi-material FDM printers.</span></p>
     <div class="split" style="margin-top:40px;align-items:stretch">
       <div class="grid" style="gap:20px">
         <div class="card">
@@ -303,9 +319,9 @@
 
 <section id="offline">
   <div class="wrap">
-    <span class="section-tag">Offline by design</span>
-    <h2>Offline by Design</h2>
-    <p class="lead" style="margin-top:12px">CMYKForge Standard is the local-first version: preparing image-based models, working with filament profiles, previewing expected results, and generating slicer-compatible files — without cloud processing or AI tools.</p>
+    <span class="kick kick-c">Offline by design</span>
+    <h2 class="chapter-h">Offline by Design</h2>
+    <p class="lead" style="margin-top:12px">CMYKForge Standard is the local-first version. <span class="dim">Preparing image-based models, working with filament profiles, previewing expected results, and generating slicer-compatible files — without cloud processing or AI tools.</span></p>
     <div class="grid g3" style="margin-top:40px">
       <div class="card"><h3>No Cloud Processing</h3><p>The generation workflow is designed around local use.</p></div>
       <div class="card"><h3>No AI Required</h3><p>Does not depend on cloud AI or local AI models by default.</p></div>
@@ -317,6 +333,34 @@
 
 
 <!-- Scroll-illuminated statement -->
+<section id="std-stats" class="stats-band" aria-label="CMYKForge Standard at a glance">
+  <div class="wrap">
+    <span class="kick kick-m">At a glance</span>
+    <div class="stats-grid">
+      <div class="stat" data-reveal>
+        <span class="stat-n" data-count="3">3</span>
+        <span class="stat-t">Export formats</span>
+        <span class="stat-l">3MF, STL, and OBJ output for real slicer workflows.</span>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat-n" data-count="5">5</span>
+        <span class="stat-t">Filament channels</span>
+        <span class="stat-l">Cyan, magenta, yellow, black — plus optional white.</span>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat-n" data-count="100" data-suffix="%">100%</span>
+        <span class="stat-t">Local processing</span>
+        <span class="stat-l">The core workflow is designed around local use — no cloud processing.</span>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat-n" data-count="50">50</span>
+        <span class="stat-t">Colors in the live demo</span>
+        <span class="stat-l">Try the interactive mix demo above — every blend totals 100%.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="statement" id="std-statement" data-illuminate aria-label="CMYKForge Standard in one line">
   <div class="statement-inner">
     <p class="statement-text">
@@ -330,9 +374,9 @@
 
 <section id="systems">
   <div class="wrap">
-    <span class="section-tag">Core systems</span>
-    <h2>The Systems Behind CMYKForge Standard</h2>
-    <p class="lead">CMYKForge Standard is more than a visual editor. Under the interface, multiple systems work together to turn an image into a color-aware 3D printable model.</p>
+    <span class="kick kick-m">Core systems</span>
+    <h2 class="chapter-h">The Systems Behind CMYKForge Standard</h2>
+    <p class="lead">CMYKForge Standard is more than a visual editor. <span class="dim">Under the interface, multiple systems work together to turn an image into a color-aware 3D printable model.</span></p>
 
     <!-- 1 Image Analysis -->
     <div class="sysrow" data-reveal="right" style="margin-top:40px">
@@ -426,9 +470,9 @@
 
 <section id="workflow">
   <div class="wrap">
-    <span class="section-tag">Workflow</span>
-    <h2>From image to print</h2>
-    <p class="lead">One clear path from a flat image to a color-aware print, without jumping between disconnected tools.</p>
+    <span class="kick kick-y">Workflow</span>
+    <h2 class="chapter-h">From image to print</h2>
+    <p class="lead">One clear path from a flat image to a color-aware print. <span class="dim">Without jumping between disconnected tools.</span></p>
     <div class="workflow-vert">
       <div class="wstep"><span class="wnum">1</span><div><h3>Image</h3><p>Start with a photo, artwork, logo, or design.</p></div></div>
       <div class="warrow" aria-hidden="true">↓</div>
@@ -497,16 +541,22 @@
 
 <section id="included">
   <div class="wrap">
-    <span class="section-tag">What's included</span>
-    <h2>What's Included</h2>
-    <p class="lead">Everything in the core local-first workflow, from image to slicer-ready file.</p>
-    <div class="grid g3" style="margin-top:40px">
+    <span class="kick kick-c">What's included</span>
+    <h2 class="chapter-h">What's Included</h2>
+    <p class="lead">Everything in the core local-first workflow. <span class="dim">From image to slicer-ready file.</span></p>
+    <div class="rail-wrap">
+      <div class="rail" id="includedRail" tabindex="0" role="group" aria-label="Included features — scrollable list">
       <div class="card accent-top"><h3>Image Analysis</h3><p>Reads color structure, contrast, and detail to prepare an image for color-aware model generation.</p></div>
       <div class="card accent-top"><h3>CMYK / CMYKW Color Engine</h3><p>Plans cyan, magenta, yellow, black, and optional white material strategies from image color.</p></div>
       <div class="card accent-top"><h3>Model Generation</h3><p>Turns the color plan into layered geometry designed for multi-material FDM workflows.</p></div>
       <div class="card accent-top"><h3>Preview Tools</h3><p>Helps you understand the expected result before exporting files for slicing.</p></div>
       <div class="card accent-top"><h3>Printability Checks</h3><p>Helps identify fragile structures, disconnected regions, or difficult geometry before export.</p></div>
       <div class="card accent-top"><h3>Slicer-Compatible Export</h3><p>Prepares 3MF, STL, and OBJ output for real slicer and printer workflows.</p></div>
+      </div>
+      <div class="rail-paddles">
+        <button class="rail-paddle" id="railPrev" type="button" aria-label="Scroll to previous features">&#8249;</button>
+        <button class="rail-paddle" id="railNext" type="button" aria-label="Scroll to next features">&#8250;</button>
+      </div>
     </div>
   </div>
 </section>
@@ -743,7 +793,7 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260719"></script>
+<script src="assets/app.js?v=20260719b"></script>
 <!-- Begin Brevo Form (scripts) -->
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
