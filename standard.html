@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=20260720">
+<link rel="stylesheet" href="assets/styles.css?v=20260720b">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -127,6 +127,7 @@
     <span class="subnav-name">CMYKForge Standard</span>
     <div class="subnav-links">
       <a href="#overview">Overview</a>
+      <a href="#spectrum">Full Spectrum</a>
       <a href="#colorsystems">Color Engine</a>
       <a href="#systems">Systems</a>
       <a href="#workflow">Workflow</a>
@@ -167,6 +168,22 @@
      Genuine evidence: original image, simulated preview, real physical print.
      Files in assets/images/real-progress/. Preview is labelled "Simulated".
 ================================================================= -->
+<section id="spectrum" aria-label="Full Spectrum — the CMYKForge color philosophy">
+  <div class="wrap spectrum-wrap">
+    <h2 class="spectrum-word" data-reveal>Full Spectrum.</h2>
+    <p class="lead spectrum-lead" data-reveal>Cyan, magenta, yellow, black — and optional white. <span class="dim">Every color between them, planned from a handful of spools.</span></p>
+    <div class="plate-fan" role="group" aria-label="The five CMYKForge filament channels — select one to see its name">
+      <button class="fanplate fp-c sel" type="button" data-cname="Process Cyan" aria-pressed="true"><span class="sr-only">Process Cyan</span></button>
+      <button class="fanplate fp-m" type="button" data-cname="Process Magenta" aria-pressed="false"><span class="sr-only">Process Magenta</span></button>
+      <button class="fanplate fp-y" type="button" data-cname="Process Yellow" aria-pressed="false"><span class="sr-only">Process Yellow</span></button>
+      <button class="fanplate fp-k" type="button" data-cname="Key Black" aria-pressed="false"><span class="sr-only">Key Black</span></button>
+      <button class="fanplate fp-w" type="button" data-cname="Optional White" aria-pressed="false"><span class="sr-only">Optional White</span></button>
+    </div>
+    <p class="spectrum-name" id="spectrumName" aria-live="polite">Process Cyan</p>
+    <p class="spectrum-note">Printed color varies with filament, calibration, and lighting.</p>
+  </div>
+</section>
+
 <section id="real-progress" class="progress-section" aria-label="Real CMYKForge progress">
   <div class="wrap">
     <span class="section-tag">Real progress</span>
@@ -860,7 +877,7 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260720"></script>
+<script src="assets/app.js?v=20260720b"></script>
 <!-- Begin Brevo Form (scripts) -->
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';

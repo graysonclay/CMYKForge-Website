@@ -640,3 +640,23 @@
       });
     });
   })();
+
+  // ===== "Full Spectrum." plate fan: select a filament channel =====
+  (function(){
+    var fan = document.querySelector('.plate-fan');
+    var nameEl = document.getElementById('spectrumName');
+    if (!fan || !nameEl) return;
+    fan.addEventListener('click', function(e){
+      var plate = e.target.closest('.fanplate');
+      if (!plate || plate.classList.contains('sel')) return;
+      fan.querySelectorAll('.fanplate').forEach(function(p){
+        p.classList.toggle('sel', p === plate);
+        p.setAttribute('aria-pressed', p === plate ? 'true' : 'false');
+      });
+      nameEl.classList.add('swap');
+      setTimeout(function(){
+        nameEl.textContent = plate.getAttribute('data-cname');
+        nameEl.classList.remove('swap');
+      }, 250);
+    });
+  })();

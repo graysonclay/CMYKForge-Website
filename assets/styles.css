@@ -2057,3 +2057,64 @@
     .tab-btn[aria-selected="true"]{border:2px solid Highlight}
     .req-list li::before{background:CanvasText}
   }
+
+  /* ============================================================
+     "Full Spectrum." chapter (standard.html) — Apple-style
+     single-word design statement + interactive filament plate fan.
+     ============================================================ */
+  .spectrum-wrap{text-align:center;padding:30px 24px 10px}
+  .spectrum-word{
+    font-size:clamp(52px,9vw,122px);font-weight:700;letter-spacing:-.04em;line-height:1;
+    margin-bottom:22px;
+    background:linear-gradient(100deg,var(--cyan) 10%,var(--magenta) 45%,var(--yellow) 80%);
+    background-size:220% 100%;background-position:0% 0;
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .js-anim .spectrum-word{animation:spectrumShimmer 3s var(--ease-out) .2s 1}
+  @keyframes spectrumShimmer{
+    0%{background-position:120% 0}
+    100%{background-position:0% 0}
+  }
+  .spectrum-lead{max-width:640px;margin:0 auto}
+  .plate-fan{position:relative;height:min(46vw,300px);margin:44px auto 6px;max-width:720px}
+  .fanplate{
+    --step:min(13vw,100px);
+    position:absolute;left:50%;top:8%;width:min(24vw,150px);aspect-ratio:3/4;
+    border-radius:18px;border:1px solid rgba(255,255,255,.14);cursor:pointer;padding:0;
+    box-shadow:0 24px 60px -22px rgba(0,0,0,.85);
+    transform:translateX(-50%) translateX(calc(var(--n,0)*var(--step))) rotate(var(--fr,0deg)) translateY(var(--fy,0px));
+    transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out),border-color .5s var(--ease-out);
+  }
+  .fp-c{--n:-2;--fr:-16deg;--fy:22px;background:linear-gradient(160deg,#3fc6f0,#1a8fc0);z-index:1}
+  .fp-m{--n:-1;--fr:-8deg;--fy:6px;background:linear-gradient(160deg,#f065b1,#c22e7e);z-index:2}
+  .fp-y{--n:0;--fr:0deg;--fy:0px;background:linear-gradient(160deg,#ffd75e,#dca92c);z-index:3}
+  .fp-k{--n:1;--fr:8deg;--fy:6px;background:linear-gradient(160deg,#2a3040,#0b0e15);z-index:2}
+  .fp-w{--n:2;--fr:16deg;--fy:22px;background:linear-gradient(160deg,#ffffff,#c9ced8);z-index:1}
+  .fanplate:hover{transform:translateX(-50%) translateX(calc(var(--n,0)*var(--step))) rotate(var(--fr)) translateY(calc(var(--fy) - 8px))}
+  .fanplate.sel{
+    transform:translateX(-50%) translateX(calc(var(--n,0)*var(--step))) rotate(var(--fr)) translateY(calc(var(--fy) - 16px)) scale(1.07);
+    border-color:rgba(255,255,255,.5);z-index:5;
+  }
+  .fp-c.sel{box-shadow:0 30px 70px -18px rgba(37,182,230,.55)}
+  .fp-m.sel{box-shadow:0 30px 70px -18px rgba(232,71,158,.55)}
+  .fp-y.sel{box-shadow:0 30px 70px -18px rgba(246,201,69,.5)}
+  .fp-k.sel{box-shadow:0 30px 70px -18px rgba(0,0,0,.9)}
+  .fp-w.sel{box-shadow:0 30px 70px -18px rgba(255,255,255,.3)}
+  .spectrum-name{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--text);
+    margin-top:20px;transition:opacity .25s var(--ease-out);
+  }
+  .spectrum-name.swap{opacity:0}
+  .spectrum-note{color:var(--soft);font-size:13.5px;margin-top:8px}
+  @media(max-width:680px){
+    .plate-fan{height:64vw}
+    .fanplate{width:24vw;--step:15vw}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .fanplate,.fanplate.sel,.fanplate:hover{transition:none}
+  }
+  @media(forced-colors:active){
+    .fanplate{border:1px solid ButtonText}
+    .fanplate.sel{border:3px solid Highlight}
+    .spectrum-word{background:none;-webkit-text-fill-color:CanvasText}
+  }
