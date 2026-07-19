@@ -2175,3 +2175,11 @@
   .bento-big h3{font-size:24px}
   @media(max-width:680px){.bento{grid-template-columns:1fr}.bento-big{grid-row:auto}}
   @media(forced-colors:active){.hl-card{border:1px solid LinkText}}
+
+  /* Offline badge inside the bento feature card */
+  .bento-big-inner{display:flex;align-items:center;gap:28px;position:relative;z-index:1}
+  .bento-badge{width:min(200px,32%);height:auto;border-radius:24px;flex-shrink:0;margin-left:auto}
+  @media(max-width:680px){
+    .bento-big-inner{flex-direction:column-reverse;align-items:flex-start}
+    .bento-badge{width:140px;margin:0 auto}
+  }

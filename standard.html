@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=20260722">
+<link rel="stylesheet" href="assets/styles.css?v=20260722b">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -188,7 +188,7 @@
           <span class="hl-body"><strong>The Color Engine</strong><span>CMYK-style planning from your actual filaments.</span></span>
         </a>
         <a class="hl-card" href="#offline">
-          <span class="hl-media hl-media-glyph" aria-hidden="true"><svg class="hl-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V21"/></svg></span>
+          <span class="hl-media"><img src="assets/images/offline-badge.avif" width="1000" height="1000" alt="Offline badge — a crossed-out wireless symbol ringed in CMYK colors" loading="lazy" decoding="async"></span>
           <span class="hl-body"><strong>Offline by design</strong><span>Local-first. No cloud processing of your images.</span></span>
         </a>
         <a class="hl-card" href="#exportstory">
@@ -376,7 +376,12 @@
     <h2 class="chapter-h">Offline by Design</h2>
     <p class="lead" style="margin-top:12px">CMYKForge Standard is the local-first version. <span class="dim">Preparing image-based models, working with filament profiles, previewing expected results, and generating slicer-compatible files — without cloud processing or AI tools.</span></p>
     <div class="bento" style="margin-top:40px">
-      <div class="card bento-big"><h3>No Cloud Processing</h3><p>The generation workflow is designed around local use.</p></div>
+      <div class="card bento-big">
+        <div class="bento-big-inner">
+          <div><h3>No Cloud Processing</h3><p>The generation workflow is designed around local use.</p></div>
+          <img class="bento-badge" src="assets/images/offline-badge.avif" width="1000" height="1000" alt="Offline badge — a crossed-out wireless symbol ringed in CMYK colors" loading="lazy" decoding="async">
+        </div>
+      </div>
       <div class="card"><h3>No AI Required</h3><p>Does not depend on cloud AI or local AI models by default.</p></div>
       <div class="card"><h3>Optional AI Path</h3><p>Optional AI tools may be added later through a separate edition.</p></div>
     </div>
