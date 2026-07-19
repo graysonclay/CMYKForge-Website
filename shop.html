@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=20260719">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -80,14 +80,14 @@
 
 <section id="shop">
   <div class="wrap">
-    <span class="section-tag">Shop</span>
+    <span class="section-tag" data-hi>Shop</span>
     <div class="shop-head">
-      <h1>CMYKForge Products</h1>
-      <p class="lead">Choose the version of CMYKForge that best matches your workflow.</p>
+      <h1 data-hi>CMYKForge Products</h1>
+      <p class="lead" data-hi>Choose the version of CMYKForge that best matches your workflow.</p>
     </div>
     <h2 class="sr-only" id="available-product">Available product</h2>
     <div class="products products-primary" style="margin-top:44px">
-      <a class="product featured" href="standard.html">
+      <a class="product featured" data-reveal="scale" href="standard.html">
         <div class="card-media banner" role="img" aria-label="CMYKForge — Print What You See brand artwork"></div>
         <div class="phead"><h3>CMYKForge Standard</h3><span class="pill pill-beta">In development</span></div>
         <p class="desc">The product in active development. The core CMYKForge workflow for image-based color FDM printing — local-first, no AI required, built around CMYK and optional white workflows.</p>
@@ -227,6 +227,6 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260718"></script>
+<script src="assets/app.js?v=20260719"></script>
 </body>
 </html>

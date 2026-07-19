@@ -166,26 +166,48 @@
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !reduceMotion){
     document.documentElement.classList.add('js-anim');
-    var revealSel = 'section h2, section > .wrap > .section-tag, section > .wrap > .lead, .card, .product, .fstep, .pstep, .wstep, .sysrow, .folder, .tnode, .video-showcase, .matrix-wrap, .faq-item, .finalcta, .process, .timeline, .placeholder, .colorviz, .prod-hero-media';
+
+    // Hero entrance choreography: number each [data-hi] element in document
+    // order (90ms apart), then flip .hero-in on the next frame so the whole
+    // hero cascades in. Delays are cleared afterwards so they never affect
+    // later hover/scroll transitions.
+    var heroEls = Array.prototype.slice.call(document.querySelectorAll('[data-hi]'));
+    heroEls.forEach(function(el, i){ el.style.transitionDelay = (i * 90) + 'ms'; });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      document.documentElement.classList.add('hero-in');
+      setTimeout(function(){
+        heroEls.forEach(function(el){ el.style.transitionDelay = ''; });
+      }, 900 + heroEls.length * 90);
+    }); });
+
+    var revealSel = 'section h2, section > .wrap > .section-tag, section > .wrap > .lead, .card, .product, .fstep, .pstep, .wstep, .sysrow, .folder, .tnode, .video-showcase, .matrix-wrap, .faq-item, .finalcta, .process, .timeline, .placeholder, .colorviz, .prod-hero-media, .spec-list li, .story-points li, .dlog-entry, .progress-card, [data-reveal]';
     var revealEls = Array.prototype.slice.call(document.querySelectorAll(revealSel))
-      .filter(function(el){ return !el.closest('.hero') && !el.closest('.pinned'); });
+      .filter(function(el){ return !el.closest('.hero') && !el.closest('.pinned') && !el.closest('.hero-stage') && !el.closest('[hidden]') && !el.classList.contains('sr-only') && !el.hasAttribute('data-hi'); });
     revealEls.forEach(function(el){ el.classList.add('reveal'); });
+    // Variant-aware cleanup times: classes are removed once the longest
+    // transition (container or inner image) has finished, restoring each
+    // element's natural transition behavior for hovers.
+    function revealDur(el){
+      var v = el.getAttribute('data-reveal');
+      return (v === 'clip') ? 1250 : (v === 'scale') ? 1050 : 750;
+    }
     var revealIO = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (!en.isIntersecting) return;
         var el = en.target;
         var sibs = Array.prototype.slice.call(el.parentElement.children)
           .filter(function(c){ return c.classList.contains('reveal'); });
-        el.style.transitionDelay = Math.min(sibs.indexOf(el), 6) * 70 + 'ms';
+        var delay = Math.min(sibs.indexOf(el), 6) * 80;
+        el.style.transitionDelay = delay + 'ms';
         el.classList.add('in');
-        el.addEventListener('transitionend', function te(){
+        setTimeout(function(){
           el.style.transitionDelay = '';
           el.classList.remove('reveal','in');
-          el.removeEventListener('transitionend', te);
-        });
+          el.removeAttribute('data-reveal');
+        }, revealDur(el) + delay + 60);
         revealIO.unobserve(el);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
     revealEls.forEach(function(el){ revealIO.observe(el); });
   }
 
@@ -237,20 +259,37 @@
   var pinnedSections = Array.prototype.slice.call(document.querySelectorAll('.pinned'));
   var illuminated = Array.prototype.slice.call(document.querySelectorAll('[data-illuminate]'))
     .map(function(sec){ return { sec: sec, words: Array.prototype.slice.call(sec.querySelectorAll('.word')) }; });
-  var driveQueued = false;
+  // Smoothed scroll values: each tracked value eases toward its target every
+  // frame (simple lerp), so pinned stages and the hero parallax scrub with a
+  // touch of inertia instead of 1:1 rawness. The rAF loop self-terminates
+  // once every value has settled, and restarts on the next scroll/resize.
+  var LERP = 0.16, SETTLE = 0.0006;
+  var heroSm = 0;
+  pinnedSections.forEach(function(sec){ sec._sm = 0; });
+  illuminated.forEach(function(item){ item.sm = 0; });
+  function sectionProgress(sec){
+    var total = sec.offsetHeight - window.innerHeight;
+    return total > 0 ? Math.min(Math.max(-sec.getBoundingClientRect().top / total, 0), 1) : 0;
+  }
   function driveScroll(){
-    driveQueued = false;
-    if (reduceMotion) return;
+    if (reduceMotion) return false;
+    var busy = false;
+    function ease(cur, target){
+      var next = cur + (target - cur) * LERP;
+      if (Math.abs(target - next) > SETTLE) busy = true;
+      else next = target;
+      return next;
+    }
     // Hero visual parallax: drift up, ease back, and fade as the hero scrolls away
     if (heroVisual){
-      var t = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1);
-      heroVisual.style.transform = 'translateY(' + (t * -60) + 'px) scale(' + (1 - t * 0.05) + ')';
-      heroVisual.style.opacity = String(1 - t * 0.45);
+      heroSm = ease(heroSm, Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1));
+      heroVisual.style.transform = 'translateY(' + (heroSm * -60) + 'px) scale(' + (1 - heroSm * 0.05) + ')';
+      heroVisual.style.opacity = String(1 - heroSm * 0.45);
     }
-    // Pinned sections: compute 0..1 progress and expose it as --p, advance captions
+    // Pinned sections: smoothed 0..1 progress exposed as --p, captions advance
     pinnedSections.forEach(function(sec){
-      var total = sec.offsetHeight - window.innerHeight;
-      var p = total > 0 ? Math.min(Math.max(-sec.getBoundingClientRect().top / total, 0), 1) : 0;
+      sec._sm = ease(sec._sm, sectionProgress(sec));
+      var p = sec._sm;
       sec.style.setProperty('--p', p.toFixed(4));
       var steps = sec.querySelectorAll('[data-step]');
       if (steps.length){
@@ -262,11 +301,10 @@
     });
     // Scroll-illuminated statements: sweep word brightness from dim to full
     illuminated.forEach(function(item){
-      var sec = item.sec, words = item.words;
-      var total = sec.offsetHeight - window.innerHeight;
-      var p = total > 0 ? Math.min(Math.max(-sec.getBoundingClientRect().top / total, 0), 1) : 0;
+      item.sm = ease(item.sm, sectionProgress(item.sec));
+      var words = item.words;
       var lead = 4; // how many words are mid-transition at once
-      var lit = p * (words.length + lead * 2) - lead;
+      var lit = item.sm * (words.length + lead * 2) - lead;
       words.forEach(function(w, i){
         var t = Math.max(0, Math.min(1, lit - i));
         // Keep every word above the WCAG large-text contrast threshold while
@@ -274,11 +312,17 @@
         w.style.opacity = (0.42 + t * 0.58).toFixed(3);
       });
     });
+    return busy;
   }
-  function queueDrive(){ if (!driveQueued){ driveQueued = true; requestAnimationFrame(driveScroll); } }
+  var driving = false;
+  function driveTick(){
+    if (driveScroll()) requestAnimationFrame(driveTick);
+    else driving = false;
+  }
+  function queueDrive(){ if (!driving){ driving = true; requestAnimationFrame(driveTick); } }
   window.addEventListener('scroll', queueDrive, { passive: true });
   window.addEventListener('resize', queueDrive);
-  driveScroll();
+  queueDrive();
 
   // ===== "Planned for a future release" notice for unannounced products =====
   (function(){

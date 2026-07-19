@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=20260719">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -124,24 +124,24 @@
 
 <main id="main-content" tabindex="-1">
 
-<section class="prod-hero" id="overview">
+<section class="prod-hero hero-stage" id="overview">
   <div class="wrap prod-hero-grid">
     <div class="prod-hero-copy">
-      <span class="pill pill-beta">In development</span>
-      <h1>CMYKForge Standard</h1>
-      <p class="prod-sub">The local-first workflow for full-spectrum color FDM printing.</p>
-      <div class="prod-hero-btns">
+      <span class="pill pill-beta" data-hi>In development</span>
+      <h1 data-hi>CMYKForge Standard</h1>
+      <p class="prod-sub" data-hi>The local-first workflow for full-spectrum color FDM printing.</p>
+      <div class="prod-hero-btns" data-hi>
         <a href="#newsletter" class="btn btn-primary">Get Beta Updates</a>
       </div>
-      <div class="chips">
+      <div class="chips" data-hi>
         <span class="chip">No AI</span>
         <span class="chip">No Cloud</span>
         <span class="chip">CMYK / CMYKW</span>
         <span class="chip">3MF Export</span>
       </div>
-      <p class="hero-foot" style="margin-top:18px">In active development — beta not open yet. Details may change before release.</p>
+      <p class="hero-foot" style="margin-top:18px" data-hi>In active development — beta not open yet. Details may change before release.</p>
     </div>
-    <div class="ui-collage" role="group" aria-label="Interface panels from the current CMYKForge build">
+    <div class="ui-collage" data-hi role="group" aria-label="Interface panels from the current CMYKForge build">
       <!-- Real UI components from the current development build -->
       <img class="uic uic-a" src="assets/images/app-ui/filament-profile.avif" width="523" height="477" alt="Filament profile editor from the current CMYKForge build — TD and density for Process Cyan Translucent" decoding="async" fetchpriority="high">
       <img class="uic uic-b" src="assets/images/app-ui/color-profile.avif" width="500" height="500" alt="Color profile selector from the current build — CMYK, CMYKW, or CMYW" decoding="async" fetchpriority="high">
@@ -161,15 +161,15 @@
     <h2>Real CMYKForge Progress</h2>
     <p class="lead">Real software builds, slicer workflows, and physical multi-material prints — updated as the beta develops.</p>
     <div class="progress-mini">
-      <figure class="progress-card">
+      <figure class="progress-card" data-reveal="clip">
         <div class="progress-media"><img src="assets/images/real-progress/original-image.avif" width="1200" height="1200" loading="lazy" decoding="async" alt="Original source image used as input to CMYKForge"></div>
         <figcaption><strong>Original Image</strong><span>The source photo or artwork you start from.</span></figcaption>
       </figure>
-      <figure class="progress-card">
+      <figure class="progress-card" data-reveal="clip">
         <div class="progress-media"><img src="assets/images/real-progress/cmykforge-preview.avif" width="1200" height="1200" loading="lazy" decoding="async" alt="CMYKForge simulated color preview of the expected print"></div>
         <figcaption><strong>CMYKForge Preview</strong><span>Simulated preview of the expected print — not a photograph.</span></figcaption>
       </figure>
-      <figure class="progress-card">
+      <figure class="progress-card" data-reveal="clip">
         <div class="progress-media"><img src="assets/images/real-progress/physical-print.avif" width="1200" height="1200" loading="lazy" decoding="async" alt="A real physical print produced from a CMYKForge-generated project"></div>
         <figcaption><strong>Physical Print</strong><span>A real physical print of the same project.</span></figcaption>
       </figure>
@@ -335,7 +335,7 @@
     <p class="lead">CMYKForge Standard is more than a visual editor. Under the interface, multiple systems work together to turn an image into a color-aware 3D printable model.</p>
 
     <!-- 1 Image Analysis -->
-    <div class="sysrow" style="margin-top:40px">
+    <div class="sysrow" data-reveal="right" style="margin-top:40px">
       <div class="num">1</div>
       <h3>Image Analysis System</h3>
       <p class="lead">CMYKForge Standard begins by reading the uploaded image and preparing it for color-aware model generation. Before the Color Engine builds a CMYK-style material plan, the Image Analysis System studies the image's color structure, contrast, detail, and visual regions.</p>
@@ -350,7 +350,7 @@
     </div>
 
     <!-- 2 Color Engine -->
-    <div class="sysrow">
+    <div class="sysrow" data-reveal="left">
       <div class="num">2</div>
       <h3>Color Engine</h3>
       <p class="lead">The Color Engine helps translate image color into cyan, magenta, yellow, black, and optional white material strategies for multi-material FDM printing. It is the system that connects image color, selected filament data, and preview expectations into a color-aware material plan.</p>
@@ -364,7 +364,7 @@
     </div>
 
     <!-- 3 Model Generation -->
-    <div class="sysrow">
+    <div class="sysrow" data-reveal="right">
       <div class="num">3</div>
       <h3>Model Generation System</h3>
       <p class="lead">The Model Generation System turns CMYKForge's color and image planning into an actual 3D printable structure. After the image has been analyzed and the Color Engine has prepared the material strategy, this system converts that information into layered geometry designed for real multi-material FDM workflows.</p>
@@ -382,7 +382,7 @@
     </div>
 
     <!-- 4 Export & Printability -->
-    <div class="sysrow">
+    <div class="sysrow" data-reveal="left">
       <div class="num">4</div>
       <h3>Export &amp; Printability System</h3>
       <p class="lead">The Export &amp; Printability System is the final step in the CMYKForge Standard workflow. After the model has been generated, this system helps prepare the project for slicer-compatible file output, including multi-material 3MF workflows where supported.</p>
@@ -743,7 +743,7 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260718"></script>
+<script src="assets/app.js?v=20260719"></script>
 <!-- Begin Brevo Form (scripts) -->
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';

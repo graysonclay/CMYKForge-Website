@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=20260719">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,9 +81,9 @@
 <!-- 1 + 2. About hero + main text -->
 <section id="about-us">
   <div class="wrap">
-    <span class="section-tag">About</span>
-    <h1>About CMYKForge</h1>
-    <p class="lead">Building a better workflow for full-spectrum color FDM printing.</p>
+    <span class="section-tag" data-hi>About</span>
+    <h1 data-hi>About CMYKForge</h1>
+    <p class="lead" data-hi>Building a better workflow for full-spectrum color FDM printing.</p>
     <p class="lead" style="margin-top:20px">CMYKForge is built around a simple belief: color 3D printing should be easier to understand, easier to preview, and easier to improve.</p>
     <p class="lead" style="margin-top:14px">Today, image-based color FDM printing often depends on trial and error. Loaded filament colors, slicer behavior, material translucency, layer thickness, printer calibration, and export settings can all change the final result. CMYKForge brings those decisions into one clearer workflow.</p>
     <p class="lead" style="margin-top:14px">The goal is to help creators move from a flat image to a color-aware 3D printable model using CMYK-style material planning, filament profiles, model generation, preview tools, printability checks, and slicer-compatible export.</p>
@@ -137,7 +137,7 @@
         <p class="lead" style="margin-top:16px">The goal is not simply to add more features. The goal is to build the focused color-printing platform that this workflow has been missing.</p>
         <div class="feature-line" style="margin-top:22px"><span class="chdot dm" aria-hidden="true"></span>Built to fill a gap in practical color FDM printing.</div>
       </div>
-      <figure class="creator-print">
+      <figure class="creator-print" data-reveal="clip">
         <img src="assets/images/print-cutout.avif" width="500" height="500" alt="A real CMYKForge test print of the color wheel, cut out on a plain background" loading="lazy" decoding="async">
         <figcaption>A real CMYKForge test print</figcaption>
       </figure>
@@ -295,6 +295,6 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260718"></script>
+<script src="assets/app.js?v=20260719"></script>
 </body>
 </html>
