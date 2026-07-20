@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CMYKForge Standard — Local-First Color FDM Workflow</title>
-<meta name="description" content="CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and slicer-ready export — 3MF first.">
+<meta name="description" content="CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and 3MF/STL/OBJ export.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://cmykforge.org/standard.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="CMYKForge">
 <meta property="og:title" content="CMYKForge Standard — Local-First Color FDM Workflow">
-<meta property="og:description" content="CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and slicer-ready export — 3MF first.">
+<meta property="og:description" content="CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and 3MF/STL/OBJ export.">
 <meta property="og:url" content="https://cmykforge.org/standard.html">
 <meta property="og:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
 <meta property="og:image:secure_url" content="https://cmykforge.org/assets/images/brand-banner.jpg">
@@ -21,7 +21,7 @@
 <meta property="og:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CMYKForge Standard — Local-First Color FDM Workflow">
-<meta name="twitter:description" content="CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and slicer-ready export — 3MF first.">
+<meta name="twitter:description" content="CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and 3MF/STL/OBJ export.">
 <meta name="twitter:image" content="https://cmykforge.org/assets/images/brand-banner.jpg">
 <meta name="twitter:image:alt" content="CMYKForge logo and Print What You See slogan on a CMYK-colored background">
 <meta name="theme-color" content="#07080B">
@@ -31,7 +31,6 @@
 <link rel="preload" href="assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css?v=20260723">
-<link rel="stylesheet" href="assets/standard.css?v=4">
 <!-- Begin Brevo Form (head) -->
 <style>
   :where(.sib-form-message-panel) {
@@ -72,7 +71,7 @@
       "@id": "https://cmykforge.org/standard.html#webpage",
       "url": "https://cmykforge.org/standard.html",
       "name": "CMYKForge Standard — Local-First Color FDM Workflow",
-      "description": "CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and slicer-ready export — 3MF first.",
+      "description": "CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and 3MF/STL/OBJ export.",
       "isPartOf": {"@id": "https://cmykforge.org/#website"},
       "about": {"@id": "https://cmykforge.org/standard.html#software"},
       "mainEntity": {"@id": "https://cmykforge.org/standard.html#software"},
@@ -84,7 +83,7 @@
       "name": "CMYKForge Standard",
       "applicationCategory": "DesignApplication",
       "url": "https://cmykforge.org/standard.html",
-      "description": "CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and slicer-ready export — 3MF first.",
+      "description": "CMYKForge Standard is a local-first, non-AI workflow for CMYK/CMYKW planning, model generation, previews, printability checks, and 3MF/STL/OBJ export.",
       "image": "https://cmykforge.org/assets/images/brand-banner.jpg",
       "creator": {"@id": "https://cmykforge.org/#organization"}
     }
@@ -92,7 +91,7 @@
 }
 </script>
 </head>
-<body class="std-page">
+<body>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -142,25 +141,27 @@
 
 <main id="main-content" tabindex="-1">
 
-<section class="prod-hero hero-stage tl t-hero" id="overview">
+<section class="prod-hero hero-stage" id="overview">
   <div class="wrap prod-hero-grid">
     <div class="prod-hero-copy">
       <span class="pill pill-beta" data-hi>In development</span>
       <h1 data-hi>CMYKForge Standard</h1>
-      <p class="hero-statement" data-hi>Print what you see.</p>
-      <p class="prod-sub" data-hi>Turn any image into a color-ready model for your multi-material 3D printer.</p>
+      <p class="prod-sub" data-hi>The local-first workflow for full-spectrum color FDM printing.</p>
       <div class="prod-hero-btns" data-hi>
         <a href="#newsletter" class="btn btn-primary">Get Beta Updates</a>
-        <a href="#real-progress" class="btn btn-ghost">See a real print</a>
       </div>
-      <p class="avail-line" data-hi>Beta not open yet. Details may change before release.</p>
+      <div class="chips" data-hi>
+        <span class="chip">No AI</span>
+        <span class="chip">No Cloud</span>
+        <span class="chip">CMYK / CMYKW</span>
+        <span class="chip">3MF Export</span>
+      </div>
+      <p class="avail-line" data-hi>In active development — beta not open yet.
+        <span class="avail-sub">Details may change before release. Join the newsletter to follow progress.</span></p>
     </div>
-    <figure class="hero-stack" data-hi>
-      <img class="hs-print" src="assets/images/real-progress/physical-print.avif" width="1200" height="1200" alt="Real physical print of the color wheel project, photographed unretouched" decoding="async" fetchpriority="high">
-      <img class="hs-ui" src="assets/images/app-ui/filament-profile.avif" width="523" height="477" alt="Filament profile editor from the current CMYKForge development build" loading="lazy" decoding="async">
-      <img class="hs-logo" src="assets/images/standard-logo.avif" width="1000" height="1000" alt="CMYKForge Standard logo" loading="lazy" decoding="async">
-      <figcaption>A real print and real interface panels from the current build.</figcaption>
-    </figure>
+    <div class="ui-collage solo" data-hi>
+      <img class="uic uic-solo" src="assets/images/standard-logo.avif" width="1000" height="1000" alt="CMYKForge Standard logo — a CMYK droplet mark in cyan, magenta, yellow, and black" decoding="async" fetchpriority="high">
+    </div>
   </div>
 </section>
 
@@ -168,7 +169,7 @@
      Genuine evidence: original image, simulated preview, real physical print.
      Files in assets/images/real-progress/. Preview is labelled "Simulated".
 ================================================================= -->
-<section id="highlights" class="tl t-cool">
+<section id="highlights">
   <div class="wrap">
     <span class="kick kick-c">Highlights</span>
     <h2 class="chapter-h">Get the highlights.</h2>
@@ -192,11 +193,11 @@
         </a>
         <a class="hl-card" href="#exportstory">
           <span class="hl-media"><img src="assets/images/app-ui/print-settings.avif" width="381" height="655" alt="Print settings panel from the current build" loading="lazy" decoding="async"></span>
-          <span class="hl-body"><strong>Slicer-ready export</strong><span>3MF first, in active testing. STL and OBJ planned.</span></span>
+          <span class="hl-body"><strong>Slicer-ready 3MF export</strong><span>3MF, STL, and OBJ for real slicer workflows.</span></span>
         </a>
-        <a class="hl-card" href="#real-progress">
-          <span class="hl-media"><img src="assets/images/real-progress/cmykforge-preview.avif" width="1200" height="1200" alt="CMYKForge simulated color preview of the expected print" loading="lazy" decoding="async"></span>
-          <span class="hl-body"><strong>Preview before you print</strong><span>A simulated look at the expected result — clearly labeled, never a photo.</span></span>
+        <a class="hl-card" href="shop.html">
+          <span class="hl-media"><img src="assets/images/pro-logo.avif" width="1000" height="1000" alt="CMYKForge Pro logo" loading="lazy" decoding="async"></span>
+          <span class="hl-body"><strong>CMYKForge Pro, later <span class="pill pill-soon">Planned</span></strong><span>The planned flagship edition — a long way out, never required.</span></span>
         </a>
       </div>
       <div class="rail-paddles">
@@ -210,7 +211,7 @@
 <section id="spectrum" aria-label="Full Spectrum — the CMYKForge color philosophy">
   <div class="wrap spectrum-wrap">
     <h2 class="spectrum-word" data-reveal>Full Spectrum.</h2>
-    <p class="lead spectrum-lead" data-reveal>Five filaments. Far more color. <span class="dim">Pick a plate to meet each channel.</span></p>
+    <p class="lead spectrum-lead" data-reveal>Cyan, magenta, yellow, black — and optional white. <span class="dim">Every color between them, planned from a handful of spools.</span></p>
     <div class="plate-fan" role="group" aria-label="The five CMYKForge filament channels — select one to see its name">
       <button class="fanplate fp-c sel" type="button" data-cname="Process Cyan" aria-pressed="true"><span class="sr-only">Process Cyan</span></button>
       <button class="fanplate fp-m" type="button" data-cname="Process Magenta" aria-pressed="false"><span class="sr-only">Process Magenta</span></button>
@@ -223,11 +224,11 @@
   </div>
 </section>
 
-<section id="real-progress" class="progress-section tl t-light" aria-label="Real CMYKForge progress">
+<section id="real-progress" class="progress-section" aria-label="Real CMYKForge progress">
   <div class="wrap">
-    <span class="kick kick-y">Real results</span>
-    <h2 class="chapter-h">Your image. Ready to print.</h2>
-    <p class="lead">One project, three honest views. <span class="dim">The original, the simulated preview, and the print — photographed, not retouched.</span></p>
+    <span class="section-tag">Real progress</span>
+    <h2>Real CMYKForge Progress</h2>
+    <p class="lead">Real software builds, slicer workflows, and physical multi-material prints — updated as the beta develops.</p>
     <div class="progress-mini">
       <figure class="progress-card" data-reveal="clip">
         <div class="progress-media"><img src="assets/images/real-progress/original-image.avif" width="1200" height="1200" loading="lazy" decoding="async" alt="Original source image used as input to CMYKForge"></div>
@@ -245,17 +246,27 @@
   </div>
 </section>
 
-<section id="colorsystems" class="tl t-cyan">
+<section id="colorsystems">
   <div class="wrap">
-    <span class="kick kick-c">Color Engine</span>
-    <h2 class="chapter-h">Color planned around what you load.</h2>
-    <p class="lead">The engine reads your image and plans cyan, magenta, yellow, black, and optional white — using the filaments you actually own. <span class="dim">Each spool's transmission distance and hex identity drive the plan, so accurate profiles matter.</span></p>
-    <div class="split engine-aside" style="margin-top:40px;align-items:stretch">
-      <div>
+    <span class="kick kick-c">Color engine</span>
+    <h2 class="chapter-h">The Color Engine</h2>
+    <p class="lead">CMYKForge Standard is designed around a color-focused generation workflow. <span class="dim">The software analyzes image color, prepares CMYK-style material strategies, and helps translate visual information into printable model data for multi-material FDM printers.</span></p>
+    <div class="split" style="margin-top:40px;align-items:stretch">
+      <div class="grid" style="gap:20px">
         <div class="card">
-          <h3>Preview first. Print with confidence.</h3>
-          <p>Every plan comes with a simulated preview of the expected result, so you can judge it before a single layer prints.</p>
-          <div class="note">Inaccurate TD or hex values can throw off color mixing — profiles are worth measuring carefully.</div>
+          <h3>CMYK-Based Preparation</h3>
+          <p>Uses cyan, magenta, yellow, black, and optional white material planning to prepare image-based models for color FDM printing.</p>
+          <div class="note">Needs the TD and hex code of each filament to work properly.</div>
+        </div>
+        <div class="card">
+          <h3>Filament-Aware Workflow</h3>
+          <p>Helps account for selected filament behavior so color preparation is better connected to the materials actually being used.</p>
+          <div class="note">Inaccurate TD and hex codes can cause issues with color mixing.</div>
+        </div>
+        <div class="card">
+          <h3>Preview-Focused Process</h3>
+          <p>Built to help users understand expected visual results before exporting files for slicing and printing.</p>
+          <div class="note">Image creation is not AI powered in apps across all versions.</div>
         </div>
       </div>
       <div class="engine-viz" id="engineDemo" role="group" aria-label="Interactive demo: pick one of 50 colors to see its CMYK mix">
@@ -336,7 +347,7 @@
   </div>
 </section>
 
-<section class="pinned wheel-sec tl t-cool" id="colorwheel" aria-label="How CMYK primaries form a wider color range">
+<section class="pinned wheel-sec" id="colorwheel" aria-label="How CMYK primaries form a wider color range">
   <div class="pin-wrap">
     <div class="pin-copy">
       <span class="section-tag">Color range</span>
@@ -359,56 +370,56 @@
   </div>
 </section>
 
-<section id="offline" class="tl t-warm">
+<section id="offline">
   <div class="wrap">
     <span class="kick kick-c">Offline by design</span>
-    <h2 class="chapter-h">Offline by design.</h2>
-    <p class="lead" style="margin-top:12px">Your files stay on your computer during the Standard workflow.</p>
+    <h2 class="chapter-h">Offline by Design</h2>
+    <p class="lead" style="margin-top:12px">CMYKForge Standard is the local-first version. <span class="dim">Preparing image-based models, working with filament profiles, previewing expected results, and generating slicer-compatible files — without cloud processing or AI tools.</span></p>
     <div class="bento" style="margin-top:40px">
       <div class="card bento-big">
         <div class="bento-big-inner">
-          <div><h3>No Cloud Processing</h3><p>Your images are processed on your machine.</p></div>
+          <div><h3>No Cloud Processing</h3><p>The generation workflow is designed around local use.</p></div>
           <img class="bento-badge" src="assets/images/offline-badge.avif" width="1000" height="1000" alt="Offline badge — a crossed-out wireless symbol ringed in CMYK colors" loading="lazy" decoding="async">
         </div>
       </div>
-      <div class="card"><h3>No AI Required</h3><p>Standard never depends on cloud or local AI models.</p></div>
-      <div class="card"><h3>No Internet Needed</h3><p>After installation, normal use doesn't require a connection.</p></div>
+      <div class="card"><h3>No AI Required</h3><p>Does not depend on cloud AI or local AI models by default.</p></div>
+      <div class="card"><h3>Optional AI Path</h3><p>Optional AI tools may be added later through a separate edition.</p></div>
     </div>
+    <div class="note" style="margin-top:26px;max-width:820px;border-left:2px solid var(--yellow)">AI features are not included in CMYKForge Standard by default. Optional AI tools may be added later through a separate version or upgrade when available.</div>
   </div>
 </section>
 
 
 <!-- Scroll-illuminated statement -->
-<section id="std-stats" class="stats-band tl t-cool" aria-label="CMYKForge Standard at a glance">
+<section id="std-stats" class="stats-band" aria-label="CMYKForge Standard at a glance">
   <div class="wrap">
     <span class="kick kick-m">At a glance</span>
     <div class="stats-grid">
-      <div class="stat">
+      <div class="stat" data-reveal>
+        <span class="stat-n" data-count="3">3</span>
+        <span class="stat-t">Export formats</span>
+        <span class="stat-l">3MF, STL, and OBJ output for real slicer workflows.</span>
+      </div>
+      <div class="stat" data-reveal>
         <span class="stat-n" data-count="5">5</span>
         <span class="stat-t">Filament channels</span>
         <span class="stat-l">Cyan, magenta, yellow, black — plus optional white.</span>
       </div>
-      <div class="stat">
+      <div class="stat" data-reveal>
         <span class="stat-n" data-count="100" data-suffix="%">100%</span>
         <span class="stat-t">Local processing</span>
-        <span class="stat-l">The core workflow runs on your machine, without cloud processing.</span>
+        <span class="stat-l">The core workflow is designed around local use — no cloud processing.</span>
       </div>
-      <div class="stat">
-        <span class="stat-n" data-count="3">3</span>
-        <span class="stat-t">Export paths</span>
-        <span class="stat-l">3MF in active testing; STL and OBJ planned.</span>
-        <span class="stat-flag">In development</span>
-      </div>
-      <div class="stat">
-        <span class="stat-n" data-count="3">3</span>
-        <span class="stat-t">Color profiles</span>
-        <span class="stat-l">CMYK, CMYKW, and CMYW modes in the current build.</span>
+      <div class="stat" data-reveal>
+        <span class="stat-n" data-count="50">50</span>
+        <span class="stat-t">Colors in the live demo</span>
+        <span class="stat-l">Try the interactive mix demo above — every blend totals 100%.</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="statement tl t-cyan" id="std-statement" data-illuminate aria-label="CMYKForge Standard in one line">
+<section class="statement" id="std-statement" data-illuminate aria-label="CMYKForge Standard in one line">
   <div class="statement-inner">
     <p class="statement-text">
       <span class="word">Every</span> <span class="word">color</span> <span class="word">decision</span>
@@ -419,33 +430,32 @@
   </div>
 </section>
 
-<section id="systems" class="tl t-magenta">
+<section id="systems">
   <div class="wrap">
     <span class="kick kick-m">Core systems</span>
-    <h2 class="chapter-h">Four systems, one job.</h2>
-    <p class="lead">Under the interface, four systems turn a picture into a printable model.</p>
+    <h2 class="chapter-h">The Systems Behind CMYKForge Standard</h2>
+    <p class="lead">CMYKForge Standard is more than a visual editor. <span class="dim">Under the interface, multiple systems work together to turn an image into a color-aware 3D printable model.</span></p>
 
     <!-- 1 Image Analysis -->
-    <div class="sysrow" data-reveal style="margin-top:40px">
+    <div class="sysrow" data-reveal="right" style="margin-top:40px">
       <div class="num">1</div>
-      <h3>Image Analysis <span class="dim" style="font-weight:500">— system 1</span></h3>
-      <p class="lead">Reads your image's color structure, contrast, and detail so every later decision starts from what's actually in the picture. No AI involved.</p>
-      <details class="sys-more">
-        <summary>More detail</summary>
-        <div class="mini-grid">
-          <div class="mini"><h4>Color Structure</h4><p>Reads visible color regions before material planning begins.</p></div>
-          <div class="mini"><h4>Detail Detection</h4><p>Finds edges and transitions that may affect the model.</p></div>
-          <div class="mini"><h4>Contrast Mapping</h4><p>Maps shadows, highlights, and tonal separation.</p></div>
-          <div class="mini"><h4>Print-Aware Prep</h4><p>Hands clean data to the rest of the workflow.</p></div>
-        </div>
-      </details>
+      <h3>Image Analysis System</h3>
+      <p class="lead">CMYKForge Standard begins by reading the uploaded image and preparing it for color-aware model generation. Before the Color Engine builds a CMYK-style material plan, the Image Analysis System studies the image's color structure, contrast, detail, and visual regions.</p>
+      <p class="lead" style="margin-top:12px">This helps CMYKForge understand where smooth gradients, sharp edges, shadows, highlights, and important visual transitions exist so the rest of the workflow can make more informed generation decisions.</p>
+      <div class="note" style="margin-top:16px">No AI is required. Image analysis in CMYKForge Standard is part of the core local workflow.</div>
+      <div class="mini-grid">
+        <div class="mini"><h4>Color Structure</h4><p>Reads the image's visible color regions before CMYK-style material planning begins.</p></div>
+        <div class="mini"><h4>Detail Detection</h4><p>Helps identify edges, fine details, and visual transitions that may affect the generated model.</p></div>
+        <div class="mini"><h4>Contrast Mapping</h4><p>Looks at shadows, highlights, and tonal separation so the image can be prepared more intelligently.</p></div>
+        <div class="mini"><h4>Print-Aware Prep</h4><p>Prepares image information for the next systems in the CMYKForge Standard workflow.</p></div>
+      </div>
     </div>
 
     <!-- 2 Color Engine -->
-    <div class="sysrow" data-reveal>
+    <div class="sysrow" data-reveal="left">
       <div class="num">2</div>
-      <h3>Color Engine <span class="dim" style="font-weight:500">— system 2</span></h3>
-      <p class="lead">Translates image color into a material plan across the five channels, connecting what's on screen to the filaments you loaded.</p>
+      <h3>Color Engine</h3>
+      <p class="lead">The Color Engine helps translate image color into cyan, magenta, yellow, black, and optional white material strategies for multi-material FDM printing. It is the system that connects image color, selected filament data, and preview expectations into a color-aware material plan.</p>
       <div class="chips" style="margin-top:18px">
         <span class="chip"><span class="chdot dc" style="margin-right:6px"></span>Cyan</span>
         <span class="chip"><span class="chdot dm" style="margin-right:6px"></span>Magenta</span>
@@ -456,12 +466,11 @@
     </div>
 
     <!-- 3 Model Generation -->
-    <div class="sysrow" data-reveal>
+    <div class="sysrow" data-reveal="right">
       <div class="num">3</div>
-      <h3>Model Generation <span class="dim" style="font-weight:500">— system 3</span></h3>
-      <p class="lead">Turns the color plan into layered, printable geometry — the bridge from decisions to an actual model.</p>
-      <details class="sys-more">
-        <summary>More detail</summary>
+      <h3>Model Generation System</h3>
+      <p class="lead">The Model Generation System turns CMYKForge's color and image planning into an actual 3D printable structure. After the image has been analyzed and the Color Engine has prepared the material strategy, this system converts that information into layered geometry designed for real multi-material FDM workflows.</p>
+      <p class="lead" style="margin-top:12px">This system helps turn color decisions into real model data, preparing the project for slicer-compatible file generation.</p>
       <div class="pipe-panel">
         <div class="pipe-title">Generation Pipeline</div>
         <div class="pipe-flow">
@@ -472,20 +481,20 @@
         </div>
         <div class="note" style="margin-top:14px">The model is generated from the same color and material plan used throughout the workflow.</div>
       </div>
-      </details>
     </div>
 
     <!-- 4 Export & Printability -->
-    <div class="sysrow" data-reveal>
+    <div class="sysrow" data-reveal="left">
       <div class="num">4</div>
-      <h3>Export &amp; Printability <span class="dim" style="font-weight:500">— system 4</span></h3>
-      <p class="lead">Checks the model for printability and prepares slicer-compatible output — 3MF first (in active testing), with STL and OBJ planned.</p>
+      <h3>Export &amp; Printability System</h3>
+      <p class="lead">The Export &amp; Printability System is the final step in the CMYKForge Standard workflow. After the model has been generated, this system helps prepare the project for slicer-compatible file output, including multi-material 3MF workflows where supported.</p>
+      <p class="lead" style="margin-top:12px">This step focuses on making the generated model usable beyond the preview. CMYKForge Standard is designed to help carry the color plan, material layout, and geometry into export-ready files for real FDM printing workflows.</p>
     </div>
   </div>
 </section>
 
 
-<section class="pinned layers-sec tl t-cool" id="layers" aria-label="Models are built layer by layer">
+<section class="pinned layers-sec" id="layers" aria-label="Models are built layer by layer">
   <div class="pin-wrap">
     <div class="pin-copy">
       <span class="section-tag">Model generation</span>
@@ -517,26 +526,32 @@
   </div>
 </section>
 
-<section id="workflow" class="tl t-warm">
+<section id="workflow">
   <div class="wrap">
     <span class="kick kick-y">Workflow</span>
     <h2 class="chapter-h">From image to print</h2>
     <p class="lead">One clear path from a flat image to a color-aware print. <span class="dim">Without jumping between disconnected tools.</span></p>
-    <ol class="flow-path">
-      <li><span class="fp-dot" aria-hidden="true">1</span><h3>Image</h3><p>Start with a photo, artwork, or design.</p></li>
-      <li><span class="fp-dot" aria-hidden="true">2</span><h3>Analyze</h3><p>Color structure, contrast, and detail are read.</p></li>
-      <li><span class="fp-dot" aria-hidden="true">3</span><h3>Generate</h3><p>A CMYK-style plan becomes layered geometry.</p></li>
-      <li><span class="fp-dot" aria-hidden="true">4</span><h3>Preview</h3><p>Judge the simulated result before exporting.</p></li>
-      <li><span class="fp-dot" aria-hidden="true">5</span><h3>Export</h3><p>A slicer-compatible file — 3MF first; STL and OBJ planned.</p></li>
-      <li><span class="fp-dot" aria-hidden="true">6</span><h3>Slice</h3><p>Open it in the slicer you already use.</p></li>
-      <li><span class="fp-dot" aria-hidden="true">7</span><h3>Print</h3><p>Run the multi-material print.</p></li>
-    </ol>
+    <div class="workflow-vert">
+      <div class="wstep"><span class="wnum">1</span><div><h3>Image</h3><p>Start with a photo, artwork, logo, or design.</p></div></div>
+      <div class="warrow" aria-hidden="true">↓</div>
+      <div class="wstep"><span class="wnum">2</span><div><h3>Analyze</h3><p>Read color structure, contrast, and detail.</p></div></div>
+      <div class="warrow" aria-hidden="true">↓</div>
+      <div class="wstep"><span class="wnum">3</span><div><h3>Generate</h3><p>Build a CMYK-style plan and layered geometry.</p></div></div>
+      <div class="warrow" aria-hidden="true">↓</div>
+      <div class="wstep"><span class="wnum">4</span><div><h3>Preview</h3><p>Review the expected result before exporting.</p></div></div>
+      <div class="warrow" aria-hidden="true">↓</div>
+      <div class="wstep"><span class="wnum">5</span><div><h3>Export</h3><p>Generate slicer-compatible 3MF, STL, or OBJ files.</p></div></div>
+      <div class="warrow" aria-hidden="true">↓</div>
+      <div class="wstep"><span class="wnum">6</span><div><h3>Slice</h3><p>Open the files in your slicer of choice.</p></div></div>
+      <div class="warrow" aria-hidden="true">↓</div>
+      <div class="wstep"><span class="wnum">7</span><div><h3>Print</h3><p>Run the multi-material print on your FDM printer.</p></div></div>
+    </div>
   </div>
 </section>
 
 
 <!-- ============ EXPORT PIPELINE (pinned scrollytelling) ============ -->
-<section class="pinned export-sec tl t-cyan" id="exportstory" aria-label="From generated model to downloaded slicer-ready file">
+<section class="pinned export-sec" id="exportstory" aria-label="From generated model to downloaded slicer-ready file">
   <div class="pin-wrap">
     <div class="pin-copy">
       <span class="section-tag">Export pipeline</span>
@@ -582,11 +597,11 @@
   </div>
 </section>
 
-<section id="included" class="tl t-light">
+<section id="included">
   <div class="wrap">
     <span class="kick kick-c">What's included</span>
     <h2 class="chapter-h">What's Included</h2>
-    <p class="lead">Everything in the core workflow. <span class="dim">From image to slicer-ready file.</span></p>
+    <p class="lead">Everything in the core local-first workflow. <span class="dim">From image to slicer-ready file.</span></p>
     <div class="rail-wrap">
       <div class="rail" id="includedRail" tabindex="0" role="group" aria-label="Included features — scrollable list">
       <div class="card accent-top"><h3>Image Analysis</h3><p>Reads color structure, contrast, and detail to prepare an image for color-aware model generation.</p></div>
@@ -594,7 +609,7 @@
       <div class="card accent-top"><h3>Model Generation</h3><p>Turns the color plan into layered geometry designed for multi-material FDM workflows.</p></div>
       <div class="card accent-top"><h3>Preview Tools</h3><p>Helps you understand the expected result before exporting files for slicing.</p></div>
       <div class="card accent-top"><h3>Printability Checks</h3><p>Helps identify fragile structures, disconnected regions, or difficult geometry before export.</p></div>
-      <div class="card accent-top"><h3>Slicer-Compatible Export</h3><p>3MF output first — in active testing. STL and OBJ planned.</p></div>
+      <div class="card accent-top"><h3>Slicer-Compatible Export</h3><p>Prepares 3MF, STL, and OBJ output for real slicer and printer workflows.</p></div>
       </div>
       <div class="rail-paddles">
         <button class="rail-paddle" id="railPrev" type="button" aria-label="Scroll to previous features">&#8249;</button>
@@ -605,7 +620,7 @@
 </section>
 
 
-<section id="requirements" class="tl t-cool" data-calm>
+<section id="requirements">
   <div class="wrap">
     <span class="section-tag">Requirements</span>
     <h2>What You'll Need</h2>
@@ -689,7 +704,7 @@
   </div>
 </section>
 
-<section id="matrix" class="tl t-light" data-calm>
+<section id="matrix">
   <div class="wrap">
     <span class="section-tag">Compatibility</span>
     <h2>Compatibility at a Glance</h2>
@@ -711,11 +726,11 @@
   </div>
 </section>
 
-<section id="beta" class="tl t-magenta">
+<section id="beta">
   <div class="wrap">
     <span class="section-tag">Beta access</span>
     <h2 class="center">Built with Early Tester Feedback</h2>
-    <p class="lead center">A limited beta group comes first. Early users will help test image workflows, export reliability, preview accuracy, slicer compatibility, and printability across different setups.</p>
+    <p class="lead center">CMYKForge Standard is currently being prepared for a limited beta testing group. Early users will help test real image workflows, export reliability, preview accuracy, slicer compatibility, and printability across different printer and filament setups.</p>
     <p class="betaline">A <span class="grad">limited first testing group</span> is planned.</p>
     <div class="grid g4">
       <div class="card"><h3>Color Results</h3><p>How generated models compare to the intended image.</p></div>
@@ -807,7 +822,7 @@
   </div>
 </section>
 
-<section id="faq" class="faq-section tl t-cool" data-calm>
+<section id="faq" class="faq-section">
   <div class="wrap">
     <span class="section-tag">FAQ</span>
     <h2>Questions Before Beta</h2>
@@ -834,7 +849,7 @@
 </section>
 
 
-<section id="principles" class="tl t-light" data-calm>
+<section id="principles">
   <div class="wrap">
     <span class="kick kick-y">Principles</span>
     <h2 class="chapter-h">The principles behind the work.</h2>
@@ -846,19 +861,32 @@
   </div>
 </section>
 
-<section id="explore-editions" class="tl t-cool" data-calm aria-label="The CMYKForge family">
+<section id="explore-editions">
   <div class="wrap">
-    <span class="kick kick-m">The family</span>
-    <h2 class="chapter-h">One family. Standard first.</h2>
-    <div class="family-strip">
-      <span><b>CMYKForge Standard</b> <span>— you're here. The core color workflow, in active development.</span></span>
-      <span><b>CMYKForge Pro</b> <span>— a separate future flagship edition. Optional, never required, still in planning.</span></span>
-      <a href="shop.html">See all editions</a>
+    <span class="kick kick-m">Keep exploring</span>
+    <h2 class="chapter-h">Keep exploring CMYKForge.</h2>
+    <div class="grid g3" style="margin-top:36px">
+      <div class="card accent-top" data-reveal>
+        <h3>CMYKForge Standard</h3>
+        <span class="pill pill-beta" style="margin:8px 0 10px;display:inline-block">Currently viewing</span>
+        <p>The local-first, non-AI core color workflow — in active development.</p>
+      </div>
+      <div class="card accent-top" data-reveal>
+        <h3>CMYKForge Pro</h3>
+        <span class="pill pill-soon" style="margin:8px 0 10px;display:inline-block">Planned</span>
+        <p>The planned flagship edition, with optional local AI assistance — a long way out. Details will be announced later.</p>
+      </div>
+      <div class="card accent-top" data-reveal>
+        <h3>All Editions</h3>
+        <span class="pill pill-soon" style="margin:8px 0 10px;display:inline-block">The lineup</span>
+        <p>See the full planned CMYKForge family and the release roadmap.</p>
+        <p style="margin-top:12px"><a class="btn btn-ghost" href="shop.html">Visit the shop</a></p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="final" class="tl t-cyan">
+<section id="final">
   <div class="wrap">
     <div class="finalcta">
       <div class="cmyk-bar" aria-hidden="true"></div>
