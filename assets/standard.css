@@ -331,3 +331,14 @@
 .tl .ex-file .fname{color:var(--ink)}
 .tl .ex-file .fbar{background:rgba(23,27,35,.1)}
 .tl .ex-file .fsize{color:var(--ink-soft2)}
+
+/* Requirements tab cards + compatibility matrix: an ID-scoped shared rule
+   (#requirements .card / .matrix-wrap {background:#13161e}) out-specifies
+   the class override, so raise specificity to bring these to light. */
+.tl#requirements .card{
+  background:var(--lt-card);border:0;
+  box-shadow:0 12px 34px -18px rgba(23,27,35,.16);
+}
+.tl#requirements .card h3,.tl#requirements .card h4{color:var(--ink)}
+.tl#requirements .card p,.tl#requirements .req-list li{color:var(--ink-muted)}
+.tl .matrix-wrap{background:transparent;border:0}
