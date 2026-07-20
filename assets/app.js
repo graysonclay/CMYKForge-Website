@@ -182,7 +182,7 @@
 
     var revealSel = 'section h2, section > .wrap > .section-tag, section > .wrap > .lead, .card, .product, .fstep, .pstep, .wstep, .sysrow, .folder, .tnode, .video-showcase, .matrix-wrap, .faq-item, .finalcta, .process, .timeline, .placeholder, .colorviz, .prod-hero-media, .spec-list li, .story-points li, .dlog-entry, .progress-card, [data-reveal]';
     var revealEls = Array.prototype.slice.call(document.querySelectorAll(revealSel))
-      .filter(function(el){ return !el.closest('.hero') && !el.closest('.pinned') && !el.closest('.hero-stage') && !el.closest('[hidden]') && !el.classList.contains('sr-only') && !el.hasAttribute('data-hi'); });
+      .filter(function(el){ return !el.closest('.hero') && !el.closest('.pinned') && !el.closest('.hero-stage') && !el.closest('[hidden]') && !el.closest('[data-calm]') && !el.classList.contains('sr-only') && !el.hasAttribute('data-hi'); });
     revealEls.forEach(function(el){ el.classList.add('reveal'); });
     // Variant-aware cleanup times: classes are removed once the longest
     // transition (container or inner image) has finished, restoring each
