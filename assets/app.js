@@ -211,19 +211,18 @@
     revealEls.forEach(function(el){ revealIO.observe(el); });
   }
 
-  // ===== Hero compare slider: real original vs real physical print =====
-  (function(){
-    var cmp = document.getElementById('heroCompare');
-    if (!cmp) return;
+  // ===== Compare sliders: before/after reveal (hero print + subject isolation) =====
+  // Drives every .compare block that carries a .cmp-range, so the range input
+  // gives keyboard + assistive-tech control while pointer events give 1:1 drag.
+  Array.prototype.forEach.call(document.querySelectorAll('.compare'), function(cmp){
     var range = cmp.querySelector('.cmp-range');
+    if (!range) return;
     function setPos(pct){
       pct = Math.max(0, Math.min(100, pct));
       cmp.style.setProperty('--pos', pct + '%');
       if (range.value != pct) range.value = pct;
     }
-    // range input drives it (keyboard + assistive tech + drag, since it overlays the card)
     range.addEventListener('input', function(){ setPos(+range.value); });
-    // direct pointer tracking for a 1:1 drag feel
     function fromEvent(e){
       var r = cmp.getBoundingClientRect();
       setPos((e.clientX - r.left) / r.width * 100);
@@ -236,8 +235,8 @@
     cmp.addEventListener('pointermove', function(e){
       if (cmp.hasPointerCapture && cmp.hasPointerCapture(e.pointerId)) fromEvent(e);
     });
-    setPos(50);
-  })();
+    setPos(+range.value || 50);
+  });
 
   // ===== Cursor-reactive hero spotlight (pointer devices only, motion-safe) =====
   (function(){

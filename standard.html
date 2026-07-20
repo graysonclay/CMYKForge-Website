@@ -179,6 +179,10 @@
           <span class="hl-media"><img src="assets/images/real-progress/physical-print.avif" width="1200" height="1200" alt="Real physical print of the color wheel project" loading="lazy" decoding="async"></span>
           <span class="hl-body"><strong>Real prints, really photographed</strong><span>Unretouched results, shown next to the original image.</span></span>
         </a>
+        <a class="hl-card" href="#imageprep">
+          <span class="hl-media"><img src="assets/images/real-progress/original-image.avif" width="1200" height="1200" alt="An imported source image, ready for subject isolation" loading="lazy" decoding="async"></span>
+          <span class="hl-body"><strong>Subject isolation <span class="pill pill-beta">In development</span></strong><span>Identify the main subject, remove the background, and refine exactly what stays in the image.</span></span>
+        </a>
         <a class="hl-card" href="#spectrum">
           <span class="hl-media hl-media-fan" aria-hidden="true"><i class="mfp mfp-c"></i><i class="mfp mfp-m"></i><i class="mfp mfp-y"></i><i class="mfp mfp-k"></i><i class="mfp mfp-w"></i></span>
           <span class="hl-body"><strong>Full Spectrum color</strong><span>Five filament channels, every color between them.</span></span>
@@ -427,6 +431,54 @@
       <span class="word hl">the</span> <span class="word hl">first</span> <span class="word hl">layer</span>
       <span class="word">prints.</span>
     </p>
+  </div>
+</section>
+
+<!-- ============ IMAGE PREPARATION: subject isolation (before generation) ============ -->
+<section id="imageprep" class="prep-sec" aria-labelledby="prep-h">
+  <div class="wrap prep-wrap">
+    <div class="prep-copy" data-reveal>
+      <span class="kick kick-c">Image preparation</span>
+      <h2 id="prep-h" class="chapter-h">Keep the subject. Remove the rest.</h2>
+      <p class="lead">CMYKForge can identify the likely subject of an image, separate it from the background, and give you tools to refine the selection before generating the model.</p>
+      <ol class="prep-stages">
+        <li class="prep-stage">
+          <span class="prep-num" aria-hidden="true">1</span>
+          <div><h3>Detect</h3><p>Identify the likely main subject of the image.</p></div>
+        </li>
+        <li class="prep-stage">
+          <span class="prep-num" aria-hidden="true">2</span>
+          <div><h3>Isolate</h3><p>Remove the surrounding background in one step.</p></div>
+        </li>
+        <li class="prep-stage">
+          <span class="prep-num" aria-hidden="true">3</span>
+          <div><h3>Refine</h3><p>Add back missing areas, or remove anything the first selection included by mistake.</p></div>
+        </li>
+      </ol>
+      <p class="note prep-note">Automatic subject detection may require manual refinement for complex images. You stay in control of what stays and what goes.</p>
+      <span class="pill pill-beta">In development</span>
+    </div>
+
+    <div class="prep-demo" data-reveal>
+      <figure class="prep-figure">
+        <div class="compare prep-compare" id="subjectDemo">
+          <!-- Base layer: subject isolated — background removed (checkerboard = transparency) -->
+          <div class="prep-iso">
+            <img src="assets/images/real-progress/original-image.avif" width="1200" height="1200" alt="The same image with the background removed, leaving only the isolated subject" loading="lazy" decoding="async">
+            <span class="prep-ring" aria-hidden="true"></span>
+          </div>
+          <!-- Reveal layer (left of the handle): the original imported image, background intact -->
+          <div class="cmp-over prep-orig" aria-hidden="true">
+            <img src="assets/images/real-progress/original-image.avif" width="1200" height="1200" alt="" loading="lazy" decoding="async">
+          </div>
+          <span class="cmp-handle" aria-hidden="true"><span></span></span>
+          <span class="cmp-tag cmp-tag-l">Original</span>
+          <span class="cmp-tag cmp-tag-r">Background removed</span>
+          <input class="cmp-range" type="range" min="0" max="100" value="50" step="1" aria-label="Reveal slider — drag from the original image to the isolated subject">
+        </div>
+        <figcaption class="cmp-cap">Feature visualization — drag to compare the imported image with the isolated subject.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -959,7 +1011,7 @@
     </div>
   </div>
 </div>
-<script src="assets/app.js?v=20260724"></script>
+<script src="assets/app.js?v=20260726"></script>
 <!-- Begin Brevo Form (scripts) -->
 <script>
   window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country code';
