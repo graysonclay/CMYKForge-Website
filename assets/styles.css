@@ -719,7 +719,7 @@
   /* Shared copy styles for single-statement pinned sections */
   .pin-title{font-size:clamp(30px,4.4vw,52px);margin-bottom:16px;text-wrap:balance}
   .pin-sub{color:var(--muted);font-size:clamp(15px,1.7vw,19px);max-width:440px}
-  .wheel-sec,.layers-sec{height:150vh}
+  .wheel-sec,.layers-sec{height:300vh}
 
   /* ===== Color wheel: CMY circles converge and draw a full hue wheel ===== */
   .wheel-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;color:var(--muted);font-size:13px}
@@ -863,7 +863,7 @@
     #separation .pin-step, .export-sec .pin-step{position:relative;opacity:1;transform:none}
     #separation .pin-rail, .export-sec .pin-rail{display:none}
     /* Wheel + layers animate cleanly single-column, so keep them pinned on phones. */
-    .wheel-sec,.layers-sec{height:155vh}
+    .wheel-sec,.layers-sec{height:300vh}
     .wheel-sec .pin-wrap,.layers-sec .pin-wrap{grid-template-columns:1fr;gap:22px;align-content:center}
     .wheel-sec .pin-stage,.layers-sec .pin-stage{height:44vh;order:-1}
     .wheel-rig{width:min(66%,240px)}
