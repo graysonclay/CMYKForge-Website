@@ -278,3 +278,56 @@
   .tl .card,.tl .faq-item,.tl .tab-btn,.flow-path .fp-dot{border:1px solid CanvasText}
   .tl .tab-btn[aria-selected="true"]{border:2px solid Highlight}
 }
+
+/* ============================================================
+   Light overrides for the remaining dark chapters
+   Only Full Spectrum (#spectrum) and the Newsletter (Brevo form,
+   styled for dark) stay dark. The pinned rigs are self-contained
+   dark objects that read well on light — only their copy, rails,
+   and the export download badge need light-surface colors.
+   ============================================================ */
+
+/* Pinned scroll chapters (wheel / layers / export) on light */
+.tl .pin-title,.tl .pin-step h2{color:var(--ink)}
+.tl .pin-sub,.tl .pin-step p{color:var(--ink-muted)}
+.tl .pin-step .k{color:var(--ink-soft2)}
+.tl .wheel-legend{color:var(--ink-soft2)}
+.tl .pin-rail i{background:rgba(23,27,35,.16)}
+.tl .pin-rail i.on{background:linear-gradient(90deg,var(--cyan),var(--magenta))}
+.tl.pinned .pin-wrap::before{opacity:.55}
+/* export download badge sits on light (not on a dark widget) */
+.tl .ex-dl .arr{color:var(--ink)}
+.tl .ex-dl .dlbl{color:var(--ink-soft2)}
+.tl .ex-dl .ring{background:rgba(11,124,166,.08);border-color:rgba(23,27,35,.16)}
+
+/* Scroll-illuminated statement on light */
+.tl .statement-text .word{color:var(--ink)}
+.tl .statement-text .word.hl{
+  background:linear-gradient(100deg,#0B7CA6,#B02268 55%,#8A6A0F);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* Beta band on light */
+.tl .betaline{color:var(--ink)}
+
+/* Final CTA card on light — colorful but bright */
+.tl .finalcta{
+  background:
+    radial-gradient(600px 320px at 50% 0%, rgba(37,182,230,.14), transparent 62%),
+    linear-gradient(180deg,#fff,var(--lt-cyan));
+  border:1px solid var(--lt-line);
+  box-shadow:0 26px 66px -30px rgba(23,27,35,.24);
+}
+.tl .finalcta h2{color:var(--ink)}
+.tl .finalcta .lead,.tl .finalcta .lead.center{color:var(--ink-muted)}
+.tl .finalcta .small-note{color:var(--ink-soft2)}
+
+/* Export file-row widget: solid light card on light (the translucent
+   dark glass turns muddy over a bright stage) */
+.tl .ex-file{
+  background:#fff;border-color:var(--lt-line);
+  box-shadow:0 18px 44px -24px rgba(23,27,35,.24);
+}
+.tl .ex-file .fname{color:var(--ink)}
+.tl .ex-file .fbar{background:rgba(23,27,35,.1)}
+.tl .ex-file .fsize{color:var(--ink-soft2)}
