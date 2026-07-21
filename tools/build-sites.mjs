@@ -16,13 +16,16 @@ await cp(staticOutput, clientOutput, { recursive: true });
 // the site's established public URLs with direct 200 responses.
 const htmlAliasOutput = new URL('__html/', clientOutput);
 await mkdir(htmlAliasOutput, { recursive: true });
-for (const file of (await readdir(clientOutput)).filter((name) => name.endsWith('.html'))) {
+const htmlFiles = (await readdir(clientOutput)).filter((name) => name.endsWith('.html'));
+for (const file of htmlFiles) {
   await copyFile(new URL(file, clientOutput), new URL(`${file.slice(0, -5)}.page`, htmlAliasOutput));
+  // Omit the original extension from the Sites asset manifest; otherwise its
+  // managed edge canonicalizes the request before run_worker_first executes.
+  await unlink(new URL(file, clientOutput));
 }
 
 // Sites serves the legacy URL with a real HTTP redirect from the Worker.
 // GitHub Pages keeps the source meta-refresh page as its compatible fallback.
-await unlink(new URL('cmykforge-website.html', clientOutput));
 
 const worker = `const SECURITY_HEADERS = {
   'Referrer-Policy': 'strict-origin-when-cross-origin',
