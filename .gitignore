@@ -1,4 +1,6 @@
 node_modules/
 _site/
+dist/
+.wrangler/
 lighthouse-*.json
 lighthouse-*.html

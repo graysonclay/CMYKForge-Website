@@ -165,6 +165,31 @@
   </div>
 </section>
 
+<section class="status-section" id="product-status" aria-labelledby="product-status-heading">
+  <div class="wrap">
+    <span class="section-tag">Capability status</span>
+    <h2 id="product-status-heading">A clear line between current, beta, and planned</h2>
+    <p class="lead">“Current” means implemented in active development builds, not generally released. Exact behavior and compatibility may still change before launch.</p>
+    <div class="status-grid">
+      <article class="status-card status-now">
+        <span class="status-label">Current development build</span>
+        <h3>Standard foundation</h3>
+        <p>Local-first CMYK/CMYKW processing, optical blending, filament calibration, LAB and Delta-E color optimization, preview simulation, printability checks, and multi-material model generation.</p>
+      </article>
+      <article class="status-card status-beta">
+        <span class="status-label">Limited beta — not open yet</span>
+        <h3>Testing targets</h3>
+        <p>Preview accuracy, 3MF export, slicer interoperability, print reliability, and end-to-end workflow clarity on varied hardware and filament profiles.</p>
+      </article>
+      <article class="status-card status-planned">
+        <span class="status-label">Planned</span>
+        <h3>Future scope</h3>
+        <p>STL/OBJ export, Pro and Business editions, and separately offered optional AI guidance. No planned AI feature is required for Standard.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ REAL CMYKFORGE PROGRESS (compact, live) ============
      Genuine evidence: original image, simulated preview, real physical print.
      Files in assets/images/real-progress/. Preview is labelled "Simulated".
@@ -193,7 +218,7 @@
         </a>
         <a class="hl-card" href="#exportstory">
           <span class="hl-media"><img src="assets/images/app-ui/print-settings.avif" width="381" height="655" alt="Print settings panel from the current build" loading="lazy" decoding="async"></span>
-          <span class="hl-body"><strong>Slicer-ready 3MF export</strong><span>3MF, STL, and OBJ for real slicer workflows.</span></span>
+          <span class="hl-body"><strong>Slicer-ready 3MF export</strong><span>3MF is in active testing; STL and OBJ are planned.</span></span>
         </a>
         <a class="hl-card" href="shop.html">
           <span class="hl-media"><img src="assets/images/pro-logo.avif" width="1000" height="1000" alt="CMYKForge Pro logo" loading="lazy" decoding="async"></span>
@@ -540,7 +565,7 @@
       <div class="warrow" aria-hidden="true">↓</div>
       <div class="wstep"><span class="wnum">4</span><div><h3>Preview</h3><p>Review the expected result before exporting.</p></div></div>
       <div class="warrow" aria-hidden="true">↓</div>
-      <div class="wstep"><span class="wnum">5</span><div><h3>Export</h3><p>Generate slicer-compatible 3MF, STL, or OBJ files.</p></div></div>
+      <div class="wstep"><span class="wnum">5</span><div><h3>Export</h3><p>Generate a slicer-compatible 3MF file. STL and OBJ are planned for later.</p></div></div>
       <div class="warrow" aria-hidden="true">↓</div>
       <div class="wstep"><span class="wnum">6</span><div><h3>Slice</h3><p>Open the files in your slicer of choice.</p></div></div>
       <div class="warrow" aria-hidden="true">↓</div>
@@ -609,7 +634,7 @@
       <div class="card accent-top"><h3>Model Generation</h3><p>Turns the color plan into layered geometry designed for multi-material FDM workflows.</p></div>
       <div class="card accent-top"><h3>Preview Tools</h3><p>Helps you understand the expected result before exporting files for slicing.</p></div>
       <div class="card accent-top"><h3>Printability Checks</h3><p>Helps identify fragile structures, disconnected regions, or difficult geometry before export.</p></div>
-      <div class="card accent-top"><h3>Slicer-Compatible Export</h3><p>Prepares 3MF, STL, and OBJ output for real slicer and printer workflows.</p></div>
+      <div class="card accent-top"><h3>Slicer-Compatible Export</h3><p>Prepares multi-material 3MF output, currently in active testing. STL and OBJ output are planned.</p></div>
       </div>
       <div class="rail-paddles">
         <button class="rail-paddle" id="railPrev" type="button" aria-label="Scroll to previous features">&#8249;</button>

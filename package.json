@@ -2,11 +2,14 @@
   "name": "cmykforge-website",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Production validation and build tooling for the CMYKForge static website.",
   "scripts": {
     "build": "npm run validate && node tools/build-site.mjs",
+    "build:sites": "npm run build && node tools/build-sites.mjs",
     "lint": "html-validate \"*.html\" && stylelint \"assets/**/*.css\" && node --check assets/app.js",
-    "test": "npm run validate",
+    "test": "npm run validate && npm run test:sites",
+    "test:sites": "node tools/test-sites-build.mjs",
     "validate": "npm run lint && node tools/validate-site.mjs"
   },
   "devDependencies": {

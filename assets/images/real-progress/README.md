@@ -1,7 +1,7 @@
 # Real CMYKForge Progress — image drop-in guide
 
-This folder holds the **genuine** media shown in the "Real CMYKForge Progress"
-section (hidden on the live site until real assets exist).
+This folder holds the **genuine** media shown in the live homepage comparison
+and the Standard page's "Real CMYKForge Progress" section.
 
 > Do **not** put stock photos, AI-generated images, simulated screenshots, or
 > mockups here. This section only exists to show real software builds, real
@@ -11,9 +11,9 @@ section (hidden on the live site until real assets exist).
 
 | Filename              | Shown as         | Where it appears                                   |
 |-----------------------|------------------|----------------------------------------------------|
-| `original-image.png` | Original Image    | `index.html` + `standard.html` evidence block (step 1) |
-| `cmykforge-preview.png` | CMYKForge Preview (SIMULATED) | evidence block (step 2) — labelled "Simulated" |
-| `physical-print.jpg` | Physical Print    | `index.html` + `standard.html` evidence block (step 3) |
+| `original-image.avif` | Original Image    | `index.html` + `standard.html` evidence block (step 1) |
+| `cmykforge-preview.avif` | CMYKForge Preview (SIMULATED) | evidence block (step 2) — labelled "Simulated" |
+| `physical-print.avif` | Physical Print    | `index.html` + `standard.html` evidence block (step 3) |
 | `creator-photo.webp`  | Creator photo     | `about.html` → "About the Creator" (hidden until added) |
 
 ## Recommended specs
@@ -25,19 +25,22 @@ section (hidden on the live site until real assets exist).
   - PNG accepted for **interface screenshots** (app build) where sharp text matters
 - Keep each optimized file ideally under ~300 KB.
 
-## How to enable the section (once real images are added)
+The three progress files above are already approved and live. Keep their source
+PNG/JPEG counterparts for future re-encoding, but browser pages should reference
+the optimized AVIF files.
+
+## Adding or replacing approved media
 
 1. Add the real files above into this folder.
-2. Open `index.html` and `standard.html`, find `<section id="real-progress" hidden ...>`
-   and **remove the `hidden` attribute**.
-3. In `about.html`, find the creator-photo figure marked
+2. Update the matching `index.html` and `standard.html` image references,
+   intrinsic dimensions, alternative text, and captions.
+3. For a creator portrait, find the `about.html` figure marked
    `<!-- CREATOR PHOTO: remove hidden once a real approved photo exists -->`
    and remove its `hidden` attribute after adding `creator-photo.webp`.
 4. Update the **alt text** on each `<img>` to describe the real content
    (alt text lives in the `alt="..."` attribute on each image).
-5. Review and replace the **captions** — they are marked
-   `<!-- CAPTION TEMPLATE — review before publishing -->` and must be rewritten
-   to describe the actual image.
+5. Review every caption so it describes the actual image and continues to label
+   simulated content explicitly.
 
 ## Optimize before publishing
 

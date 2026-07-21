@@ -129,6 +129,28 @@
     opacity:.85;
   }
 
+  /* Product-maturity legend: keep capability claims explicit and scannable. */
+  .status-section{padding-top:34px}
+  .status-section .lead{margin-bottom:28px}
+  .status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .status-card{
+    min-width:0;padding:26px;border:1px solid var(--border);border-radius:var(--radius);
+    background:linear-gradient(180deg,var(--panel),var(--panel2));position:relative;overflow:hidden;
+  }
+  .status-card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--soft)}
+  .status-now::before{background:var(--cyan)}
+  .status-beta::before{background:var(--yellow)}
+  .status-planned::before{background:var(--magenta)}
+  .status-label{
+    display:inline-block;margin-bottom:14px;color:var(--soft);font-size:11px;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;
+  }
+  .status-now .status-label{color:var(--cyan)}
+  .status-beta .status-label{color:var(--yellow)}
+  .status-planned .status-label{color:#f17db9}
+  .status-card h3{font-size:19px;margin-bottom:10px}
+  .status-card p{color:var(--muted);font-size:14.5px}
+
   /* ============ HEADER ============ */
   header.site{
     position:sticky;top:0;z-index:100;
@@ -829,6 +851,7 @@
     .products{grid-template-columns:1fr 1fr}
     .foot-grid{grid-template-columns:1fr 1fr}
     .timeline{grid-template-columns:repeat(2,1fr);gap:28px}
+    .status-grid{grid-template-columns:1fr}
     .timeline::before{display:none}
   }
   @media(max-width:680px){

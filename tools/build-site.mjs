@@ -11,7 +11,16 @@ const productionNames = new Set(['.nojekyll', 'CNAME', 'llms.txt', 'robots.txt',
 // download just to read metadata stored at the end of the source file.
 const productionExtensions = new Set(['.html', '.mp4', '.webmanifest']);
 const sourceOnlyAssets = [
+  'images/dev-comparison.avif',
+  'images/localai-logo.avif',
   'images/print-cutout.png',
+  'images/pro-share-banner.jpg',
+  'images/shop-standard-hero.avif',
+  'images/shop-standard-hero.jpg',
+  'images/standard-art.avif',
+  'images/standard-art.jpg',
+  'images/standard-badge.avif',
+  'images/standard-badge.jpg',
   'images/app-ui/color-profile.png',
   'images/app-ui/filament-profile.png',
   'images/app-ui/print-settings.png',
