@@ -6,7 +6,9 @@ Launch status: **Not launched; public DNS remains on GitHub Pages**
 
 ## 1. Owner-only review URL
 
-Pending first Sites deployment. Every Sites deployment URL is a production URL, so access will remain owner-only during review.
+[https://cmykforge-migration.big-carp.chatgpt.site](https://cmykforge-migration.big-carp.chatgpt.site)
+
+The Site is deployed with owner-only access for review. It is not attached to the public CMYKForge DNS.
 
 ## 2. Summary of changes
 
@@ -21,7 +23,9 @@ Pending first Sites deployment. Every Sites deployment URL is a production URL, 
 
 ## 3. Files changed
 
-The final list will be generated from the committed branch after hosted-preview validation.
+- Hosting/build: `.github/workflows/deploy-pages.yml`, `.openai/hosting.json`, `.gitignore`, `package.json`, `package-lock.json`, `tools/build-site.mjs`, `tools/build-sites.mjs`, `tools/test-sites-build.mjs`.
+- Site/content: `index.html`, `standard.html`, `shop.html`, `sitemap.xml`, `assets/styles.css`, `assets/images/real-progress/README.md`.
+- Documentation: `README.md` and all seven migration documents in `docs/`, including this review package.
 
 ## 4. Build and test results
 
@@ -32,13 +36,13 @@ Local results:
 - GitHub Pages production build: pass.
 - Sites Worker build and package: pass.
 - Dependency audit: zero known vulnerabilities.
-- Local Worker routes: all expected pages 200; legacy redirect 308; unknown route 404.
+- Local Worker routes: all expected pages 200; legacy redirect 308; unknown route 404. A Sites-specific asset canonicalization issue discovered on the first hosted version was corrected with byte-identical page aliases so established `.html` URLs remain 200.
 - Desktop/tablet/mobile browser review: pass with no horizontal overflow or console warnings observed.
 - Mobile menu open/close/Escape/focus behavior: pass.
 - Brevo assets and invalid-email validation: pass without creating a subscription.
 - External destinations: official Kickstarter page, social profiles, YouTube, and Brevo assets resolved during the audit. Kickstarter showed an active campaign at review time.
 
-Pending hosted results are tracked in `docs/prelaunch-checklist.md`.
+Hosted results are tracked in `docs/prelaunch-checklist.md`.
 
 ## 5. Known limitations
 
@@ -46,7 +50,7 @@ Pending hosted results are tracked in `docs/prelaunch-checklist.md`.
 - Legal pages are drafts and remain `noindex` pending legal review.
 - Kickstarter status must be rechecked at launch because it is time-sensitive.
 - Public PageSpeed field testing cannot be completed against an owner-only Site; run it after an approved public deployment but before or immediately after DNS cutover.
-- Custom-domain availability depends on the Sites account/workspace.
+- The exact custom-domain records are attached in Sites but intentionally remain pending; SSL initialization cannot finish before approved DNS validation.
 
 ## 6. SEO migration summary
 
@@ -61,7 +65,7 @@ See `docs/seo-migration-plan.md` and `docs/search-console-after-migration.md`.
 
 ## 7. Exact Squarespace DNS changes
 
-Pending the exact records returned by the CMYKForge Site. No Squarespace access or DNS change has occurred.
+Sites supplied two apex A targets, one `www` CNAME target, and four validation TXT records. They are recorded verbatim in the DNS guide. No Squarespace access or DNS change has occurred.
 
 See `docs/squarespace-dns-cutover.md`.
 
@@ -75,4 +79,4 @@ Restore the four GitHub Pages A records and `www` CNAME, keep every email/verifi
 
 ## 10. Readiness recommendation
 
-**Not ready for public launch yet.** The code and local artifact are ready for owner-only hosted review. Public launch remains blocked on hosted-preview approval, the controlled newsletter test, exact Sites DNS values, custom-domain/SSL validation, final legal/Kickstarter review, and explicit owner authorization.
+**Ready for owner review; not ready for public launch.** Public launch remains gated by owner preview approval, the controlled newsletter test, final legal/Kickstarter review, explicit launch authorization, the documented Squarespace cutover, and successful custom-domain/SSL validation.

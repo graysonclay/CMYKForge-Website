@@ -23,7 +23,7 @@ Status legend: `[x]` passed, `[ ]` pending, `[!]` blocked or requires owner acti
 - [x] Production `_site/` build succeeds.
 - [x] Sites `dist/` build succeeds.
 - [x] Sites package contains the required Worker and hosting metadata.
-- [x] Automated Worker tests cover homepage, security headers, legacy redirect, `www` redirect, and custom 404.
+- [x] Automated Worker tests cover homepage, direct `.html` responses, security headers, legacy redirect, `www` redirect, and custom 404.
 
 ## Content and product accuracy
 
@@ -41,25 +41,25 @@ Status legend: `[x]` passed, `[ ]` pending, `[!]` blocked or requires owner acti
 
 ## Hosted preview
 
-- [ ] Owner-only Sites URL recorded.
-- [ ] Homepage returns 200.
-- [ ] All expected `.html` routes return 200.
-- [ ] Legacy route returns one HTTP 308 to `/`.
-- [ ] Unknown route returns custom content with HTTP 404.
-- [ ] `robots.txt`, `sitemap.xml`, `site.webmanifest`, and `llms.txt` return 200.
-- [ ] No unexpected console errors.
-- [ ] No mixed-content requests.
-- [ ] No broken fonts, images, or video.
+- [x] Owner-only Sites URL recorded.
+- [x] Homepage returns 200.
+- [x] All expected `.html` routes return 200.
+- [x] Legacy route returns one HTTP 308 to `/`.
+- [x] Unknown route returns custom content with HTTP 404.
+- [x] `robots.txt`, `sitemap.xml`, `site.webmanifest`, and `llms.txt` return 200.
+- [x] No unexpected console errors.
+- [x] No mixed-content requests.
+- [x] No broken fonts, images, or video in browser review.
 
 ## Desktop, tablet, and mobile
 
-- [ ] Desktop test at approximately 1440×900.
-- [ ] Tablet test at approximately 820×1180.
-- [ ] Mobile test at approximately 390×844.
-- [ ] No horizontal overflow at any test width.
-- [ ] Navigation is readable and usable.
-- [ ] Mobile menu opens, closes, and returns focus correctly.
-- [ ] Calls to action remain visible without overlap.
+- [x] Desktop test at approximately 1440×900.
+- [x] Tablet test at approximately 820×1180.
+- [x] Mobile test at approximately 390×844.
+- [x] No horizontal overflow at any test width.
+- [x] Navigation is readable and usable.
+- [x] Mobile menu opens, closes with Escape, and returns focus correctly.
+- [x] Calls to action remain visible without overlap.
 - [ ] Comparison slider is touch- and keyboard-usable.
 - [ ] Scrollytelling sections do not trap or obscure content.
 - [ ] Reduced-motion mode provides complete static content.
@@ -77,8 +77,8 @@ Status legend: `[x]` passed, `[ ]` pending, `[!]` blocked or requires owner acti
 
 ## Newsletter
 
-- [ ] Brevo stylesheet and script load on interaction or near-viewport observation.
-- [ ] Required-email validation appears without sending invalid data.
+- [x] Brevo stylesheet and script load on interaction or near-viewport observation.
+- [x] Required-email validation appears without sending invalid data.
 - [ ] Error and success messages are announced accessibly.
 - [!] Complete one owner-authorized subscription with a controlled inbox.
 - [!] Confirm receipt and completion of the double-opt-in email.
@@ -114,14 +114,14 @@ Status legend: `[x]` passed, `[ ]` pending, `[!]` blocked or requires owner acti
 - [x] JSON-LD is valid JSON.
 - [x] Sitemap contains only the five indexable canonical URLs.
 - [x] Legal drafts and 404 remain `noindex`.
-- [ ] Hosted preview source matches the reviewed metadata.
+- [x] Hosted preview source matches the reviewed metadata.
 - [ ] Search Console ownership remains verified after cutover.
 - [ ] Sitemap is resubmitted after cutover.
 - [ ] Homepage URL inspection reports crawlable and correct canonical.
 
 ## Domain, HTTPS, and rollback
 
-- [ ] Exact Sites apex and `www` records copied into the DNS guide.
+- [x] Exact Sites apex, `www`, and validation records copied into the DNS guide.
 - [ ] Owner explicitly approves launch.
 - [ ] Squarespace changes performed in Google Chrome.
 - [ ] Only conflicting GitHub Pages hosting records are changed.

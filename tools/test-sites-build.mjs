@@ -48,6 +48,11 @@ const homepageHtml = await homepage.text();
 assert(homepageHtml.includes('Print What') && homepageHtml.includes('You See.'), 'homepage content is missing');
 assert(homepage.headers.get('x-content-type-options') === 'nosniff', 'security headers are missing');
 
+const standard = await worker.fetch(new Request('https://preview.example/standard.html'), env);
+assert(standard.status === 200, 'existing .html URLs must return 200 without canonicalization');
+assert(standard.headers.get('content-type') === 'text/html; charset=utf-8', 'HTML alias content type is wrong');
+assert((await standard.text()).includes('CMYKForge Standard'), 'standard page content is missing');
+
 const legacy = await worker.fetch(new Request('https://preview.example/cmykforge-website.html'), env);
 assert(legacy.status === 308, 'legacy URL must return 308');
 assert(legacy.headers.get('location') === 'https://preview.example/', 'legacy redirect target is wrong');
@@ -61,4 +66,4 @@ assert(missing.status === 404, 'unknown route must return 404');
 assert((await missing.text()).includes('Page not found'), 'custom 404 content is missing');
 assert(missing.headers.get('cache-control') === 'no-store', '404 response must not be cached');
 
-console.log('Validated Sites homepage, security headers, redirects, and custom 404 handling.');
+console.log('Validated Sites homepage, existing HTML URLs, security headers, redirects, and custom 404 handling.');

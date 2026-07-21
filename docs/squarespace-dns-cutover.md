@@ -19,18 +19,23 @@ No apex AAAA records were returned during the audit. Confirm the Squarespace pan
 
 ## Exact Sites records
 
-The values below must be populated only from the CMYKForge Site’s **Add domain** response. Never infer them.
+Sites supplied these values on 2026-07-21 after both hostnames were attached in pending state. They have **not** been entered in Squarespace. Both domains will remain pending and SSL will remain initializing until an approved DNS cutover.
 
 | Type | Host/name | Current value | New value | Action | Reason |
 |---|---|---|---|---|---|
-| A | `@` | `185.199.108.153` | **Pending Sites apex target** | Replace/remove at cutover | Conflicts with Sites apex routing |
-| A | `@` | `185.199.109.153` | **Pending Sites apex target** | Replace/remove at cutover | Conflicts with Sites apex routing |
-| A | `@` | `185.199.110.153` | **Pending Sites apex target** | Replace/remove at cutover | Conflicts with Sites apex routing |
-| A | `@` | `185.199.111.153` | **Pending Sites apex target** | Replace/remove at cutover | Conflicts with Sites apex routing |
-| CNAME | `www` | `graysonclay.github.io.` | **Pending Sites CNAME target** | Replace at cutover | Routes `www` to Sites |
-| TBD | Supplied by Sites | None/current panel value | **Pending Sites validation value** | Add | Proves domain control and provisions routing/SSL |
+| A | `@` | `185.199.108.153` | — | Remove at cutover | GitHub Pages apex record conflicts with Sites |
+| A | `@` | `185.199.109.153` | — | Remove at cutover | GitHub Pages apex record conflicts with Sites |
+| A | `@` | `185.199.110.153` | — | Remove at cutover | GitHub Pages apex record conflicts with Sites |
+| A | `@` | `185.199.111.153` | — | Remove at cutover | GitHub Pages apex record conflicts with Sites |
+| A | `@` | None | `162.159.143.30` | Add at cutover | Sites apex routing target |
+| A | `@` | None | `172.66.3.26` | Add at cutover | Sites apex routing target |
+| CNAME | `www` | `graysonclay.github.io.` | `custom-domains.chatgpt.site.` | Replace at cutover | Routes `www` to Sites |
+| TXT | `_openai-site-verification.cmykforge.org` | None/current panel value | `openai-site-verification=xNvFDoSxvOC4t_wlVNceE4TxYR6sFVoNDWS90yn_sJI` | Add before or at cutover | Sites ownership validation for apex |
+| TXT | `_cf-custom-hostname.cmykforge.org` | None/current panel value | `d645971a-a5f9-4008-b70b-9542813c8125` | Add before or at cutover | Certificate/routing validation for apex |
+| TXT | `_openai-site-verification.www.cmykforge.org` | None/current panel value | `openai-site-verification=hAsiflhze9zcroN71rZWI5FkhCXssmk9uMoueQgZ_ZE` | Add before or at cutover | Sites ownership validation for `www` |
+| TXT | `_cf-custom-hostname.www.cmykforge.org` | None/current panel value | `f0616f5b-b5cb-42c5-85e7-ae9ec8f4643d` | Add before or at cutover | Certificate/routing validation for `www` |
 
-The exact Sites values will be inserted after the owner-only Site has been deployed and the domain has been added in Site settings. Do not proceed while any value still says **Pending**.
+The table uses the fully qualified TXT names returned by Sites. Squarespace commonly appends the domain automatically: if its **Host** field does so, enter the relative labels `_openai-site-verification`, `_cf-custom-hostname`, `_openai-site-verification.www`, and `_cf-custom-hostname.www`. Confirm the resulting displayed names exactly match the table before saving.
 
 ## Records that must not be changed
 
@@ -56,9 +61,9 @@ Labels can vary slightly with Squarespace UI updates. Use the labels visible in 
 4. Open **DNS Settings**. Depending on the account view, this may appear under **Domain settings** or **Advanced settings**.
 5. Under **Custom records**, locate the four apex A records whose host is `@` and values begin `185.199.*.153`, plus the `www` CNAME pointing to `graysonclay.github.io`.
 6. Compare the entire panel against the pre-cutover screenshot/export. Identify MX, SPF, DKIM, DMARC, Search Console, and other verification records; mark them “keep.”
-7. Choose **Add record** and add every exact validation record supplied by Sites.
-8. Add the exact Sites apex A target or targets supplied for `cmykforge.org`.
-9. Replace the `www` CNAME with the exact Sites CNAME target supplied for `www.cmykforge.org`.
+7. Choose **Add record** and add the four exact TXT validation records in the table above.
+8. Add the two apex A records `162.159.143.30` and `172.66.3.26` for host `@`.
+9. Replace the `www` CNAME with `custom-domains.chatgpt.site.`.
 10. Remove only the GitHub Pages A records that conflict with the new Sites apex A records.
 11. Do not remove MX, SPF, DKIM, DMARC, Search Console, or unrelated verification records.
 12. Save each change, then review the final list before leaving the page.

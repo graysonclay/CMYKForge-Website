@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, unlink, writeFile } from 'node:fs/promises';
+import { copyFile, cp, mkdir, readFile, readdir, rm, unlink, writeFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const staticOutput = new URL('../_site/', import.meta.url);
@@ -10,6 +10,15 @@ await rm(sitesOutput, { recursive: true, force: true });
 await mkdir(clientOutput, { recursive: true });
 await mkdir(serverOutput, { recursive: true });
 await cp(staticOutput, clientOutput, { recursive: true });
+
+// Sites' managed asset layer may canonicalize .html paths before the Worker can
+// return them. Keep byte-identical, non-HTML aliases so the Worker can preserve
+// the site's established public URLs with direct 200 responses.
+const htmlAliasOutput = new URL('__html/', clientOutput);
+await mkdir(htmlAliasOutput, { recursive: true });
+for (const file of (await readdir(clientOutput)).filter((name) => name.endsWith('.html'))) {
+  await copyFile(new URL(file, clientOutput), new URL(`${file.slice(0, -5)}.page`, htmlAliasOutput));
+}
 
 // Sites serves the legacy URL with a real HTTP redirect from the Worker.
 // GitHub Pages keeps the source meta-refresh page as its compatible fallback.
@@ -52,15 +61,27 @@ export default {
     }
 
     let assetRequest = request;
-    if (url.pathname === '/') {
-      const indexUrl = new URL('/index.html', request.url);
-      assetRequest = new Request(indexUrl, request);
+    let servesHtmlAlias = false;
+    if (url.pathname === '/' || url.pathname.endsWith('.html')) {
+      const pageName = url.pathname === '/' ? 'index' : url.pathname.slice(1, -5);
+      const pageUrl = new URL('/__html/' + pageName + '.page', request.url);
+      assetRequest = new Request(pageUrl, request);
+      servesHtmlAlias = true;
     }
 
     const response = await env.ASSETS.fetch(assetRequest);
-    if (response.status !== 404) return withSecurityHeaders(response);
+    if (response.status !== 404) {
+      if (!servesHtmlAlias) return withSecurityHeaders(response);
+      const headers = new Headers(response.headers);
+      headers.set('Content-Type', 'text/html; charset=utf-8');
+      return withSecurityHeaders(new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers
+      }));
+    }
 
-    const notFoundUrl = new URL('/404.html', request.url);
+    const notFoundUrl = new URL('/__html/404.page', request.url);
     const notFound = await env.ASSETS.fetch(new Request(notFoundUrl, { method: request.method }));
     const headers = new Headers(notFound.headers);
     headers.set('Cache-Control', 'no-store');
