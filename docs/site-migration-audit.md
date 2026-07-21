@@ -13,7 +13,7 @@ The existing site already has unusually strong SEO and accessibility fundamental
 
 The most important findings were:
 
-- The GitHub Pages workflow uploaded the repository root even though the documented production build writes a smaller, minified `_site/` artifact. The migration branch corrects the workflow without removing GitHub Pages.
+- The GitHub Pages workflow uploads the repository root even though the documented production build writes a smaller, minified `_site/` artifact. This is less efficient, but it remains deliberately unchanged during migration to preserve the known-good live-host rollback path.
 - Several Standard-page sentences described STL and OBJ export as included even though the compatibility table correctly marked them as planned. The migration makes 3MF “in active testing” and STL/OBJ “planned” consistently.
 - The site did not provide one concise, explicit distinction between current development capabilities, beta validation targets, and planned features. A status section now does so on the home and Standard pages.
 - The static output is not directly a Sites deployment artifact. Sites requires a compatible server entrypoint and asset manifest. The migration adds a thin Worker that serves the existing built files, implements the legacy redirect, redirects `www` to the canonical apex when both domains are connected, returns the existing custom 404 with a real 404 status, and adds conservative security headers.

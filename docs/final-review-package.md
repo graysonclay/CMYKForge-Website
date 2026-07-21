@@ -15,7 +15,7 @@ The Site is deployed with owner-only access for review. It is not attached to th
 - Preserved the existing static site, branding, official logos, content, page structure, canonical URLs, newsletter, SEO metadata, structured data, accessibility work, and responsive behavior.
 - Added clear current-development, limited-beta, and planned capability sections.
 - Corrected inconsistent STL/OBJ export claims; 3MF is in active testing and STL/OBJ are planned.
-- Fixed the GitHub Pages workflow to upload the validated/minified `_site/` artifact rather than the repository root.
+- Preserved the live GitHub Pages workflow and `CNAME` unchanged as the known-good rollback path.
 - Removed unused authoring assets from production while retaining them in source.
 - Cleared the npm dependency audit finding.
 - Added a thin ChatGPT Sites Worker artifact that preserves `.html` URLs, serves the existing site, returns the custom 404 with HTTP 404, redirects the legacy URL and `www`, and adds conservative security headers.
@@ -23,7 +23,7 @@ The Site is deployed with owner-only access for review. It is not attached to th
 
 ## 3. Files changed
 
-- Hosting/build: `.github/workflows/deploy-pages.yml`, `.openai/hosting.json`, `.gitignore`, `package.json`, `package-lock.json`, `tools/build-site.mjs`, `tools/build-sites.mjs`, `tools/test-sites-build.mjs`.
+- Hosting/build: `.openai/hosting.json`, `.gitignore`, `package.json`, `package-lock.json`, `tools/build-site.mjs`, `tools/build-sites.mjs`, `tools/test-sites-build.mjs`.
 - Site/content: `index.html`, `standard.html`, `shop.html`, `sitemap.xml`, `assets/styles.css`, `assets/images/real-progress/README.md`.
 - Documentation: `README.md` and all seven migration documents in `docs/`, including this review package.
 

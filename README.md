@@ -19,6 +19,6 @@ npm run build:sites
 
 ## Deployment
 
-Pushes to `main` run the quality workflow and the GitHub Pages deployment workflow. The deployment job validates the repository, builds `_site/`, and publishes that production artifact. See [DEPLOY.md](DEPLOY.md) for domain and DNS setup.
+Pushes to `main` run the existing quality and GitHub Pages deployment workflows. Pages continues to publish the repository root so the current live-host rollback path remains unchanged; `npm run build` creates the smaller local `_site/` artifact used for validation. See [DEPLOY.md](DEPLOY.md) for domain and DNS setup.
 
 The `chatgpt-sites-migration` branch prepares an owner-only ChatGPT Sites review deployment. Do not connect the public domain or merge that branch until the migration checklist is approved.
