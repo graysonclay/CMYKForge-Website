@@ -2417,3 +2417,55 @@
     .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#std-stats,#systems,#subject-isolation,#workflow,#offline,#included,#requirements,#matrix,#beta,#faq,#principles){background:Canvas;color:CanvasText}
     .subject-steps li,.trust-item{border:1px solid CanvasText;background:Canvas}
   }
+
+  /* Standard dark studio: every chapter stays within the dark CMYKForge shell.
+     Subtle CMY undertones separate chapters without introducing light bands. */
+  .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final){
+    --text:#F3F5F8;--muted:#B6BDC8;--soft:#8D96A6;--border:rgba(255,255,255,.12);
+    color:var(--text);background:#0d1017;border-top:1px solid var(--border);
+  }
+  .theme-standard main > :is(#spectrum,#workflow,#principles,#colorwheel){
+    background:linear-gradient(135deg,#0b141a,#101722);
+  }
+  .theme-standard main > :is(#colorsystems,#subject-isolation,#beta,#newsletter,#layers){
+    background:linear-gradient(135deg,#171018,#10131b);
+  }
+  .theme-standard main > :is(#std-stats,#requirements,#final,#exportstory){
+    background:linear-gradient(135deg,#17150e,#10131a);
+  }
+  .theme-standard main > :is(#offline,#std-statement){
+    background:
+      radial-gradient(700px 320px at 16% 0%,rgba(37,182,230,.08),transparent 70%),
+      radial-gradient(620px 300px at 84% 100%,rgba(232,71,158,.08),transparent 72%),
+      #0d1017;
+  }
+  .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final) :is(h2,h3,h4,strong,.hl-body strong){color:var(--text)}
+  .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final) :is(.lead,p,.dim,.hl-body > span){color:var(--muted)}
+  .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final) a:not(.btn){color:#69D6F5;text-decoration-color:rgba(105,214,245,.38)}
+  .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final) :is(.card,.status-card,.hl-card,.sysrow,.wstep,.faq-item,.mini,.matrix-wrap,.subject-steps li,.trust-item,.pin-step,.finalcta){
+    color:var(--text);background:rgba(255,255,255,.045);border-color:var(--border);box-shadow:none;
+  }
+  .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final) :is(.chip,.pill,.section-tag){
+    color:var(--muted);background:rgba(255,255,255,.045);border-color:var(--border);
+  }
+  .theme-standard #highlights .rail-paddle{
+    color:var(--text);background:#151a24;border-color:var(--border);
+  }
+  .theme-standard :is(#colorwheel,#layers,#exportstory) .pin-stage{
+    background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:24px;
+  }
+  .theme-standard #std-statement .statement-text .word{color:var(--text)}
+  .theme-standard #std-statement .statement-text .word.hl{
+    background:linear-gradient(100deg,var(--cyan),var(--magenta),var(--yellow));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .theme-standard #explore-editions .edition-pro{
+    background:
+      radial-gradient(340px 180px at 70% 0%,rgba(232,71,158,.14),transparent 70%),
+      linear-gradient(180deg,#090a0e,#131722);
+  }
+  .theme-standard #final .btn-ghost{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.04)}
+
+  @media(forced-colors:active){
+    .theme-standard :is(#product-status,#highlights,#spectrum,#real-progress,#colorsystems,#colorwheel,#std-stats,#std-statement,#systems,#layers,#subject-isolation,#workflow,#exportstory,#offline,#included,#requirements,#matrix,#beta,#newsletter,#faq,#principles,#explore-editions,#final){background:Canvas;color:CanvasText}
+  }
