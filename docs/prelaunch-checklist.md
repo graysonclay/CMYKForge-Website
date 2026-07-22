@@ -30,6 +30,8 @@ Status legend: `[x]` passed, `[ ]` pending, `[!]` blocked or requires owner acti
 - [x] Official logo and brand colors are preserved.
 - [x] Slogan is exactly “Print What You See.”
 - [x] Current development, beta, and planned features are distinguished.
+- [x] Subject isolation and manual selection refinement are labeled as current-development capabilities, not generally released features.
+- [x] Standard’s trust content is separate from color evidence and preserves local-first, privacy, honest-preview, and optional-AI distinctions.
 - [x] 3MF is described as in active testing.
 - [x] STL and OBJ are described as planned.
 - [x] Optional AI is not described as required.

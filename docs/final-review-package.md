@@ -14,6 +14,9 @@ The Site is deployed with owner-only access for review. It is not attached to th
 
 - Preserved the existing static site, branding, official logos, content, page structure, canonical URLs, newsletter, SEO metadata, structured data, accessibility work, and responsive behavior.
 - Added clear current-development, limited-beta, and planned capability sections.
+- Refined the shared visual system while keeping page personalities distinct: the parent brand remains dark and technical, Standard uses brighter neutral and softly tinted chapters, and planned Pro treatments remain darker and cinematic.
+- Added Standard subject isolation as a current-development capability, including manual selection refinement, a Highlights entry, and a dedicated pre-generation explanation without fabricated screenshots or results.
+- Moved Standard offline, privacy, honest-preview, and optional-AI information into a dedicated Trust and Control section.
 - Corrected inconsistent STL/OBJ export claims; 3MF is in active testing and STL/OBJ are planned.
 - Preserved the live GitHub Pages workflow and `CNAME` unchanged as the known-good rollback path.
 - Removed unused authoring assets from production while retaining them in source.
