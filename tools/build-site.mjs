@@ -27,7 +27,6 @@ const sourceOnlyAssets = [
   'images/partners/README.md',
   'images/real-progress/README.md',
   'images/real-progress/cmykforge-preview.png',
-  'images/real-progress/original-image.png',
   'images/real-progress/physical-print.jpg'
 ];
 const rootFiles = (await readdir(root, { withFileTypes: true }))
